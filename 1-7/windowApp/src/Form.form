@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Form">
+  <grid id="27dc6" binding="rootpanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="384" height="310"/>
+    </constraints>
+    <properties>
+      <background color="-131075"/>
+      <enabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="37f91" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <foreground color="-14282725"/>
+          <text value="Your age"/>
+        </properties>
+      </component>
+      <component id="3f6a8" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints/>
+        <properties>
+          <maximumSize width="100" height="30"/>
+          <minimumSize width="100" height="30"/>
+          <preferredSize width="100" height="30"/>
+        </properties>
+      </component>
+      <component id="1f0b1" class="javax.swing.JButton" binding="confirmButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <text value="Confirm"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

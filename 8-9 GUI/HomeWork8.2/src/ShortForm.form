@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ShortForm">
+  <grid id="27dc6" binding="RootPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="611" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="7972e" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <labelFor value="8d5e4"/>
+          <text value="Ф.И.О."/>
+        </properties>
+      </component>
+      <component id="8d5e4" class="javax.swing.JTextField" binding="fioField">
+        <constraints/>
+        <properties>
+          <maximumSize width="250" height="24"/>
+          <minimumSize width="250" height="24"/>
+          <preferredSize width="250" height="24"/>
+        </properties>
+      </component>
+      <component id="99716" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
+        <constraints/>
+        <properties>
+          <maximum value="3"/>
+          <maximumSize width="200" height="14"/>
+          <minimumSize width="200" height="14"/>
+          <preferredSize width="200" height="14"/>
+        </properties>
+      </component>
+      <component id="c96f5" class="javax.swing.JButton" binding="buttonOk">
+        <constraints/>
+        <properties>
+          <label value="Ok"/>
+          <maximumSize width="50" height="24"/>
+          <minimumSize width="50" height="24"/>
+          <preferredSize width="50" height="24"/>
+          <text value="Ok"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

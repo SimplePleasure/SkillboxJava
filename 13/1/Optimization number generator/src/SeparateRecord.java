@@ -1,0 +1,92 @@
+import java.io.*;
+import java.nio.channels.FileChannel;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class SeparateRecord {
+
+
+    /*
+    Класс SeparateRecords
+    Значитальная оптимизация по времени, выполняется примерно в треть быстрее от NumGenerator или ProduceConsume классов.
+    */
+
+
+
+    void generate() {
+        long startGenerate = System.currentTimeMillis();
+        ExecutorService ex = Executors.newFixedThreadPool(4);
+
+
+        char[] letters = {'a', 'в', 'е', 'и', 'к', 'м', 'н', 'о', 'р', 'с', 'т', 'х'};
+        int[] region = {47, 78, 98, 147, 178, 198, 77, 99, 199, 750};
+
+
+        for (int reg : region) {
+            ex.execute(() -> {
+                StringBuilder buffer = new StringBuilder();
+
+
+
+
+                try (FileOutputStream fos = new FileOutputStream("res/" + reg + ".txt");
+                        PrintWriter pw = new PrintWriter(fos)) {
+
+                    for (int num = 1; num < 1000; num++) {
+                        for (char ch1 : letters) {
+                            for (char ch2 : letters) {
+                                for (char ch3 : letters) {
+
+                                    if (buffer.length() > 1000000) {
+                                        pw.write(buffer.toString());
+                                        buffer = new StringBuilder();
+                                    }
+
+                                    buffer.append(ch1);
+                                    if (num < 10) {
+                                        buffer.append("00");
+                                    } else if (num < 100) {
+                                        buffer.append("0");
+                                    }
+                                    buffer.append(num)
+                                            .append(ch2)
+                                            .append(ch3)
+                                            .append(reg)
+                                            .append('\n');
+                                }
+                            }
+                        }
+                    }
+                    synchronized (this) {
+                        pw.write(buffer.toString());
+                    }
+
+                    fos.getChannel().force(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            });
+
+
+        }
+
+        try {
+            ex.shutdown();
+            ex.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(System.currentTimeMillis()-startGenerate);
+
+    }
+
+    public static void main(String[] args) {
+        SeparateRecord v = new SeparateRecord();
+        v.generate();
+    }
+}

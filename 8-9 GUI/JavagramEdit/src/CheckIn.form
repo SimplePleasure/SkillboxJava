@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CheckIn">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="0" width="1600" height="600"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="d2132" binding="topPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-1579033"/>
+          <foreground color="-4473925"/>
+          <inheritsPopupMenu value="false"/>
+          <maximumSize width="800" height="20"/>
+          <minimumSize width="800" height="20"/>
+          <name value=""/>
+          <preferredSize width="800" height="20"/>
+          <toolTipText value=""/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="8faae" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <background color="-1579033"/>
+              <font name="Impact"/>
+              <foreground color="-14141137"/>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="11"/>
+              <maximumSize width="700" height="20"/>
+              <minimumSize width="700" height="20"/>
+              <preferredSize width="650" height="20"/>
+              <text value="Registration"/>
+              <verticalTextPosition value="1"/>
+            </properties>
+          </component>
+          <component id="3c4e9" class="javax.swing.JButton" binding="rollupButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <actionCommand value="Button"/>
+              <alignmentY value="0.0"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="true"/>
+              <horizontalTextPosition value="11"/>
+              <label value=""/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <name value=""/>
+              <opaque value="false"/>
+              <preferredSize width="20" height="20"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="13d3b" class="javax.swing.JButton" binding="closeButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <borderPainted value="false"/>
+              <label value=""/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <name value=""/>
+              <opaque value="false"/>
+              <preferredSize width="20" height="20"/>
+              <selected value="false"/>
+              <text value=""/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="a96c7" binding="bottomPanel" custom-create="true" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <maximumSize width="800" height="575"/>
+          <minimumSize width="800" height="575"/>
+          <opaque value="false"/>
+          <preferredSize width="800" height="575"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <vspacer id="f43cb">
+            <constraints/>
+          </vspacer>
+          <vspacer id="8e0b5">
+            <constraints/>
+          </vspacer>
+          <grid id="d1ce2" binding="LogoPanel" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <background color="-1"/>
+              <maximumSize width="165" height="168"/>
+              <minimumSize width="165" height="168"/>
+              <opaque value="false"/>
+              <preferredSize width="165" height="168"/>
+              <requestFocusEnabled value="false"/>
+            </properties>
+            <border type="none">
+              <font/>
+            </border>
+            <children/>
+          </grid>
+          <component id="966b8" class="javax.swing.JTextPane" binding="text">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <editable value="false"/>
+              <focusable value="false"/>
+              <font size="12"/>
+              <foreground color="-1"/>
+              <margin top="40" left="0" bottom="0" right="0"/>
+              <maximumSize width="190" height="90"/>
+              <minimumSize width="190" height="90"/>
+              <opaque value="false"/>
+              <preferredSize width="190" height="90"/>
+              <requestFocusEnabled value="false"/>
+              <text value="Введите код страны и номер вашего мобильного телефона"/>
+            </properties>
+          </component>
+          <component id="ecbe0" class="javax.swing.JTextField" binding="numberField" custom-create="true">
+            <constraints/>
+            <properties>
+              <font size="28" style="2"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="4"/>
+              <margin top="2" left="5" bottom="2" right="5"/>
+              <maximumSize width="280" height="40"/>
+              <minimumSize width="280" height="40"/>
+              <opaque value="false"/>
+              <preferredSize width="280" height="40"/>
+            </properties>
+          </component>
+          <vspacer id="45e39">
+            <constraints/>
+          </vspacer>
+          <component id="cbcd7" class="javax.swing.JButton" binding="next">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <autoscrolls value="false"/>
+              <background color="-16731162"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <enabled value="false"/>
+              <font size="15"/>
+              <foreground color="-1"/>
+              <horizontalTextPosition value="11"/>
+              <iconTextGap value="4"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <maximumSize width="200" height="35"/>
+              <minimumSize width="200" height="35"/>
+              <opaque value="true"/>
+              <preferredSize width="200" height="35"/>
+              <requestFocusEnabled value="true"/>
+              <text value="ПРОДОЛЖИТЬ"/>
+              <verifyInputWhenFocusTarget value="true"/>
+              <visible value="true"/>
+            </properties>
+          </component>
+          <vspacer id="b8b1f">
+            <constraints/>
+          </vspacer>
+          <vspacer id="e5ae0">
+            <constraints/>
+          </vspacer>
+          <vspacer id="54259">
+            <constraints/>
+          </vspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Settings">
+  <grid id="27dc6" binding="RootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="800" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="91147" binding="TopPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="4">
+        <constraints border-constraint="North"/>
+        <properties>
+          <minimumSize width="100" height="20"/>
+          <preferredSize width="800" height="20"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a4609" class="javax.swing.JButton" binding="rollUpButton">
+            <constraints/>
+            <properties>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="_"/>
+            </properties>
+          </component>
+          <component id="fabe1" class="javax.swing.JButton" binding="closeButton">
+            <constraints/>
+            <properties>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="X"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="cbc3a" binding="CenterPanel" layout-manager="FlowLayout" hgap="0" vgap="10" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <minimumSize width="0" height="0"/>
+          <opaque value="false"/>
+          <preferredSize width="800" height="700"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <vspacer id="ad2ef">
+            <constraints/>
+          </vspacer>
+          <component id="52017" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <font size="26"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <maximumSize width="280" height="70"/>
+              <minimumSize width="280" height="70"/>
+              <preferredSize width="280" height="70"/>
+              <text value="Настройки профиля"/>
+            </properties>
+          </component>
+          <vspacer id="55f33">
+            <constraints/>
+          </vspacer>
+          <grid id="e22c5" binding="MainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <maximumSize width="400" height="170"/>
+              <minimumSize width="0" height="0"/>
+              <preferredSize width="400" height="170"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="2b770" binding="PhotoSettings" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <maximumSize width="150" height="170"/>
+                  <minimumSize width="150" height="170"/>
+                  <preferredSize width="150" height="170"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="e12dc" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <background color="-15923391"/>
+                      <maximumSize width="150" height="150"/>
+                      <preferredSize width="150" height="150"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="3ff9a" layout-manager="FlowLayout" hgap="3" vgap="0" flow-align="1">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <maximumSize width="150" height="20"/>
+                      <minimumSize width="150" height="20"/>
+                      <preferredSize width="150" height="20"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="5fe8b" class="javax.swing.JButton" binding="editImage">
+                        <constraints/>
+                        <properties>
+                          <alignmentX value="0.5"/>
+                          <maximumSize width="45" height="20"/>
+                          <minimumSize width="45" height="20"/>
+                          <preferredSize width="45" height="20"/>
+                          <text value="Button"/>
+                        </properties>
+                      </component>
+                      <hspacer id="6ec5c">
+                        <constraints/>
+                      </hspacer>
+                      <component id="1d417" class="javax.swing.JButton" binding="deleteImage">
+                        <constraints/>
+                        <properties>
+                          <alignmentX value="0.5"/>
+                          <maximumSize width="45" height="20"/>
+                          <minimumSize width="45" height="20"/>
+                          <preferredSize width="45" height="20"/>
+                          <text value="Button"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="6a2ef" binding="NameSettings" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <maximumSize width="250" height="170"/>
+                  <minimumSize width="0" height="0"/>
+                  <preferredSize width="250" height="170"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <vspacer id="91a6e">
+                    <constraints/>
+                  </vspacer>
+                  <component id="b7d06" class="javax.swing.JTextField" binding="name">
+                    <constraints/>
+                    <properties>
+                      <maximumSize width="200" height="30"/>
+                      <minimumSize width="200" height="30"/>
+                      <preferredSize width="200" height="30"/>
+                    </properties>
+                  </component>
+                  <vspacer id="f0e24">
+                    <constraints/>
+                  </vspacer>
+                  <component id="1f99d" class="javax.swing.JTextField" binding="surname">
+                    <constraints/>
+                    <properties>
+                      <maximumSize width="200" height="30"/>
+                      <minimumSize width="200" height="30"/>
+                      <preferredSize width="200" height="30"/>
+                    </properties>
+                  </component>
+                  <vspacer id="fa805">
+                    <constraints/>
+                  </vspacer>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <vspacer id="e66c7">
+            <constraints/>
+          </vspacer>
+          <component id="b342d" class="javax.swing.JButton" binding="Ok">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="true"/>
+              <maximumSize width="200" height="40"/>
+              <minimumSize width="200" height="40"/>
+              <preferredSize width="200" height="40"/>
+              <text value="Сохранить"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="5683f" binding="BottomPanel" layout-manager="FlowLayout" hgap="10" vgap="15" flow-align="4">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="800" height="70"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d5829" class="javax.swing.JButton" binding="back">
+            <constraints/>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <text value="Назад"/>
+            </properties>
+          </component>
+          <component id="2a161" class="javax.swing.JLabel" binding="phoneNumber">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="11"/>
+              <maximumSize width="600" height="30"/>
+              <preferredSize width="600" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="53ab5" class="javax.swing.JButton" binding="userExit">
+            <constraints/>
+            <properties>
+              <text value="Выход"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

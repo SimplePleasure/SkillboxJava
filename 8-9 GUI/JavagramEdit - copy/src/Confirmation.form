@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Confirmation">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="800" height="645"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="54a64" binding="topPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="4">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-1644826"/>
+          <maximumSize width="800" height="20"/>
+          <minimumSize width="800" height="20"/>
+          <preferredSize width="800" height="20"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a43ca" class="javax.swing.JLabel" binding="Confirmation">
+            <constraints/>
+            <properties>
+              <background color="-4473925"/>
+              <font name="Impact"/>
+              <foreground color="-14141137"/>
+              <maximumSize width="600" height="20"/>
+              <minimumSize width="600" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="600" height="20"/>
+              <text value="Confirmation"/>
+            </properties>
+          </component>
+          <component id="5f27f" class="javax.swing.JButton" binding="rollupButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <borderPainted value="false"/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <preferredSize width="20" height="20"/>
+              <text value=""/>
+              <toolTipText value="Свернуть"/>
+            </properties>
+          </component>
+          <component id="9aaec" class="javax.swing.JButton" binding="closeButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <borderPainted value="false"/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <preferredSize width="20" height="20"/>
+              <text value=""/>
+              <toolTipText value="Закрыть"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="327d4" binding="bottomPanel" custom-create="true" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <alignmentX value="0.5"/>
+          <alignmentY value="0.5"/>
+          <font/>
+          <maximumSize width="800" height="575"/>
+          <minimumSize width="800" height="575"/>
+          <opaque value="false"/>
+          <preferredSize width="800" height="575"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <vspacer id="f3bc7">
+            <constraints/>
+          </vspacer>
+          <grid id="d1807" binding="logo" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <maximumSize width="124" height="98"/>
+              <minimumSize width="124" height="98"/>
+              <opaque value="false"/>
+              <preferredSize width="124" height="98"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <vspacer id="5103e">
+            <constraints/>
+          </vspacer>
+          <component id="11ba1" class="javax.swing.JLabel" binding="phoneNumber">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <enabled value="true"/>
+              <font size="22" style="2"/>
+              <foreground color="-3816508"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <maximumSize width="200" height="50"/>
+              <minimumSize width="200" height="500"/>
+              <preferredSize width="200" height="50"/>
+              <text value=""/>
+              <verifyInputWhenFocusTarget value="true"/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+          <component id="1a439" class="javax.swing.JTextPane" binding="message">
+            <constraints/>
+            <properties>
+              <autoscrolls value="true"/>
+              <disabledTextColor color="-1710364"/>
+              <editable value="false"/>
+              <enabled value="false"/>
+              <font size="10"/>
+              <foreground color="-3816508"/>
+              <margin top="30" left="0" bottom="30" right="0"/>
+              <maximumSize width="240" height="100"/>
+              <minimumSize width="240" height="60"/>
+              <opaque value="false"/>
+              <preferredSize width="240" height="100"/>
+              <requestFocusEnabled value="false"/>
+              <selectedTextColor color="-1"/>
+              <text value="На данный номер телефона было отправлено SMS-cообщение с кодом подтверждения. Пожалуйста введите этот код в поле ниже:"/>
+            </properties>
+          </component>
+          <component id="9247d" class="javax.swing.JPasswordField" binding="passwordField1" custom-create="true" default-binding="true">
+            <constraints/>
+            <properties>
+              <font size="18"/>
+              <foreground color="-66050"/>
+              <horizontalAlignment value="0"/>
+              <maximumSize width="120" height="40"/>
+              <minimumSize width="120" height="40"/>
+              <opaque value="false"/>
+              <preferredSize width="120" height="40"/>
+            </properties>
+          </component>
+          <vspacer id="6715b">
+            <constraints/>
+          </vspacer>
+          <component id="56336" class="javax.swing.JButton" binding="continueButton">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <background color="-16731162"/>
+              <enabled value="false"/>
+              <font size="15"/>
+              <foreground color="-1"/>
+              <label value="ПРОДОЛЖИТЬ"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <maximumSize width="200" height="35"/>
+              <minimumSize width="200" height="35"/>
+              <preferredSize width="200" height="35"/>
+              <text value="ПРОДОЛЖИТЬ"/>
+              <toolTipText value="Поле будет доступно после ввода кода-подтверждения"/>
+            </properties>
+          </component>
+          <vspacer id="cdb00">
+            <constraints/>
+          </vspacer>
+          <vspacer id="5eec1">
+            <constraints/>
+          </vspacer>
+          <vspacer id="ec3ff">
+            <constraints/>
+          </vspacer>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

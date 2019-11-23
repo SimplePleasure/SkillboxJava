@@ -1,0 +1,56 @@
+1) Несоответствие начальника отдела с отделом в котором он работает.
+SELECT * 
+FROM learn.employee
+join learn.department on department.head_id = employee.id 
+where department_id != department.id;
+
+2) з.п. Б 115000
+where salary < '115000'
+
+3) сотрудники устроившиеся до марта 2010 г
+where hire_date < '2010-03-01'
+
+
+Список отделов с количеством сотрудников >3
+SELECT d.name, COUNT(e.id) as Employees, sum(e.salary) 'salary'
+FROM learn.department d 
+left join employee e ON e.department_id = d.id
+GROUP BY d.id
+HAVING COUNT(e.id) < 3
+order by count(e.id)
+
+
+
+Список отделов с количеством сотрудников в каждом из них
+SELECT d.name, COUNT(emp.id) AS employee_count
+FROM learn.department d
+LEFT JOIN learn.employee emp ON d.id = emp.department_id
+GROUP BY d.id;
+
+Список отделов, в которых работает меньше трёх сотрудников
+SELECT d.name
+FROM learn.department d
+LEFT JOIN learn.employee emp ON d.id = emp.department_id
+GROUP BY d.id
+HAVING COUNT(emp.id) < 3;
+
+
+вывести ошибочно привязанных сотрудников, которые работают в одних отделах, а руководят другими;
+SELECT e.name 'Сотрудник', d.name 'Руководит подразделением',  d2.name 'Числится в подразделении'
+FROM learn.department d, learn.department d2
+JOIN learn.employee e
+WHERE d.head_id = e.id AND d.id <> e.department_id AND d2.id = e.department_id
+
+
+вывести руководителей отделов, зарплата которых составляет менее 115 000 рублей в месяц;
+SELECT e.name 'Начальник отдела', d.name 'Отдел', e.salary 'Зарплата' FROM learn.department d
+JOIN learn.employee e ON d.head_id = e.id
+WHERE e.salary < 115000
+
+
+вывести руководителей отделов, которые вышли на работу до марта
+SELECT e.name 'Начальник отдела', d.name 'Отдел', e.hire_date 'Дата трудоустройства' FROM learn.department d
+JOIN learn.employee e ON d.head_id = e.id
+WHERE MONTH(e.hire_date) BETWEEN '1' AND '2'
+
+

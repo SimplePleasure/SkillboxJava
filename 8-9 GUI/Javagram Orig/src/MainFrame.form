@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="MainFrame">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="860" height="600"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="f84bd" binding="topPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="4">
+        <constraints border-constraint="North"/>
+        <properties>
+          <enabled value="true"/>
+          <maximumSize width="800" height="20"/>
+          <minimumSize width="800" height="20"/>
+          <preferredSize width="800" height="20"/>
+          <toolTipText value=""/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="ca01d" class="javax.swing.JButton" binding="rollupButton">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="_"/>
+              <toolTipText value="Свернуть"/>
+            </properties>
+          </component>
+          <component id="8c897" class="javax.swing.JButton" binding="closeButton">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="X"/>
+              <toolTipText value="Зкарыть"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f35e7" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="cd307" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="North"/>
+            <properties>
+              <maximumSize width="800" height="20"/>
+              <minimumSize width="800" height="20"/>
+              <preferredSize width="800" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <splitpane id="3b5e">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <resizeWeight value="0.0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="b066a" binding="contactPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="540"/>
+                  <minimumSize width="200" height="540"/>
+                  <preferredSize width="200" height="540"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="a912c" class="javax.swing.JList" binding="list1" default-binding="true">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                  </component>
+                  <grid id="620b3" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <maximumSize width="200" height="30"/>
+                      <minimumSize width="200" height="30"/>
+                      <preferredSize width="200" height="30"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="534cf" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <maximumSize width="200" height="30"/>
+                      <minimumSize width="200" height="30"/>
+                      <preferredSize width="200" height="30"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="2e15a" binding="dialogWindow" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="600" height="540"/>
+                  <minimumSize width="600" height="540"/>
+                  <preferredSize width="600" height="540"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="7e0d" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <maximumSize width="600" height="30"/>
+                      <minimumSize width="600" height="30"/>
+                      <preferredSize width="600" height="30"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="c2541" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <maximumSize width="600" height="30"/>
+                      <minimumSize width="600" height="30"/>
+                      <preferredSize width="600" height="30"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="afb48" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </splitpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
