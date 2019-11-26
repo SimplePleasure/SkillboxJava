@@ -1,5 +1,9 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,14 +29,11 @@ public class Test2 {
 
     boolean isGenering;
     long startGenerating;
-    //ExecutorService ex;
-//    StringBuilder buffer;
     LinkedList<StringBuilder> list;
 
     public static void main (String[] args) {
 
         Test2 t = new Test2();
-
 
         new Thread(new Runnable() {
             @Override
@@ -40,7 +41,6 @@ public class Test2 {
                 t.produce();
             }
         }).start();
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -56,17 +56,15 @@ public class Test2 {
         list = new LinkedList<>();
         ExecutorService ex = Executors.newFixedThreadPool(3);
 
-        char[] letters = {'a', 'в', 'е', 'к', 'м', 'н', 'о', 'р', 'с', 'у' , 'т', 'х'};
-        int[] region = {47, 78, 98, 147, 178, 198, 77, 99, 199, 750};
 
 
-        for (int reg: region) {
+        for (int reg: GenericOrder.region) {
             ex.execute(() -> {
                 StringBuilder buffer = new StringBuilder();
                 for (int num=1; num<1000; num++) {
-                    for (char ch1: letters) {
-                        for (char ch2: letters) {
-                            for (char ch3: letters) {
+                    for (char ch1: GenericOrder.letters) {
+                        for (char ch2: GenericOrder.letters) {
+                            for (char ch3: GenericOrder.letters) {
 
 
 
