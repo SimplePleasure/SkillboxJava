@@ -14,11 +14,9 @@
 out/
 
 
-C:/Users/Костя/Desktop/Projects/**/out/
-C:/Users/Костя/Desktop/Projects/**/.idea/
-
-
 
 **/.idea/
 **/out/
+**/*.iml
+**/res/
 

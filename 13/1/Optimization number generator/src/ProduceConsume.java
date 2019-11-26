@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,21 +8,10 @@ public class ProduceConsume {
 
 
 
-    /*Код работает нестабильно. Бывает обгоняет однопоточный генератор, а бывает и наоборот. В среднем скорость выполнения
-    такая же как при выполнении в 1 поток, может чуть быстрее.
-    Иногда код не завершался, а оставался запущенным. Добавил 82 и 84 строку, вроде ошибка ушла.
-
-     */
-
-
-
-
     public static void main (String[] args) throws InterruptedException {
 
 
-
         ExecutorService ex = Executors.newFixedThreadPool(2);
-
         final Processor processor = new Processor();
         ex.execute(processor::generate);
         ex.execute(processor::writeNums);
@@ -48,11 +36,11 @@ public class ProduceConsume {
             char[] letters = {'a', 'в', 'е', 'и', 'к', 'м', 'н', 'о', 'р', 'с', 'т', 'х'};
             int[] region = {47, 78, 98, 147, 178, 198, 77, 99, 199, 750};
 
-            for (int reg: region) {
+            for (int reg: GenericOrder.region) {
                 for (int num=1; num < 1000; num++) {
-                    for (char ch1: letters) {
-                        for (char ch2: letters) {
-                            for (char ch3: letters) {
+                    for (char ch1: GenericOrder.letters) {
+                        for (char ch2: GenericOrder.letters) {
+                            for (char ch3: GenericOrder.letters) {
 
                                 if (buffer.length() > 1_000_000) {
                                     synchronized (this) {
@@ -107,8 +95,7 @@ public class ProduceConsume {
                     }
                 }
 
-                FileChannel fileChannel = fos.getChannel();
-                fileChannel.force(true);
+                fos.getChannel().force(true);
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
