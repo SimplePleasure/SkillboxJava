@@ -3,9 +3,9 @@ public class Voter {
     String name;
     String birthday;
 
-    Voter (String name, String i) {
+    Voter (String name, String birthDay) {
         this.name = name;
-        this.birthday = i;
+        this.birthday = birthDay;
     }
 
 

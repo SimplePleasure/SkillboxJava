@@ -44,9 +44,7 @@ public class SeparateRecord {
                             }
                         }
                     }
-                    synchronized (this) {
-                        pw.write(buffer.toString());
-                    }
+                    pw.write(buffer.toString());
 
                     fos.getChannel().force(true);
                 } catch (IOException e) {

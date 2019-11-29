@@ -72,8 +72,8 @@ public class Loader
                 String month = deque.take();
 
                 if (!month.equals("exit")) {
-                    System.out.println(month);
                     Thread.sleep((int) (Math.random() * 1000));
+                    System.out.println(month);
                 } else {
                     System.out.println("\n\tDone.");
                     break;
