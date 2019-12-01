@@ -1,5 +1,3 @@
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class GenericOrder {
@@ -8,15 +6,12 @@ public class GenericOrder {
     static int[] region = {47, 78, 98, 147, 178, 198, 77, 99, 199, 750};
 
     LinkedBlockingDeque<StringBuilder> deque;
-    String POSION_PILL;
 
-    GenericOrder(LinkedBlockingDeque<StringBuilder> deque, String posionPill) {
+    GenericOrder(LinkedBlockingDeque<StringBuilder> deque) {
         this.deque = deque;
-        POSION_PILL = posionPill;
     }
 
     void generate() {
-        ExecutorService ex = Executors.newFixedThreadPool(2);
 
         try {
             StringBuilder buffer = new StringBuilder();
@@ -28,7 +23,6 @@ public class GenericOrder {
                             for (char ch3 : letters) {
 
                                 buffer.append(ch1);
-                                //.append(String.format("%03d", num))
                                 if (num < 10) {
                                     buffer.append("00");
                                 } else if (num < 100) {
@@ -50,9 +44,6 @@ public class GenericOrder {
                     }
                 }
             }
-            deque.put(buffer);
-            buffer = new StringBuilder();
-            buffer.append(POSION_PILL);
             deque.put(buffer);
         } catch (InterruptedException e) {
             e.printStackTrace();
