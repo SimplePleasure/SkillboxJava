@@ -14,12 +14,10 @@ public class ProduceConsume {
         final ProduceConsume produceConsume = new ProduceConsume();
         Future produce = ex.submit(produceConsume::generate);
         Future consume = ex.submit(produceConsume::writeNums);
-
-
+        
         produce.get();
         produceConsume.isDone = true;
         consume.cancel(true);
-
 
 
         ex.shutdown();
@@ -36,23 +34,23 @@ public class ProduceConsume {
     }
 
     void writeNums() {
+
         try (FileOutputStream fos = new FileOutputStream("res/test.txt");
              PrintWriter pw = new PrintWriter(fos)) {
 
             while (!isDone || deque.size() > 0) {
-                if (isDone && deque.size()==1) {
-                    pw.write(deque.getFirst().toString());
-                    deque.removeFirst();
+                try {
+                    StringBuilder buf = deque.take();
+                    pw.write(buf.toString());
+                } catch (InterruptedException interruption) {
+                    Thread.currentThread().interrupt();
                 }
-                StringBuilder buf = deque.take();
-                pw.write(buf.toString());
             }
 
             fos.getChannel().force(true);
             System.out.println("Writing completed");
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             System.out.println(e);
-            Thread.currentThread().interrupt();
         }
         System.out.println(System.currentTimeMillis() - start);
     }
