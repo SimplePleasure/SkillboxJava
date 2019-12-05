@@ -3,13 +3,13 @@ import java.util.concurrent.*;
 
 public class ProduceConsume {
 
-    long start;
     volatile boolean isDone = false;
     LinkedBlockingDeque<StringBuilder> deque;
 
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
+        long start = System.currentTimeMillis();
         ExecutorService ex = Executors.newFixedThreadPool(2);
         final ProduceConsume produceConsume = new ProduceConsume();
         Future produce = ex.submit(produceConsume::generate);
@@ -22,12 +22,11 @@ public class ProduceConsume {
 
         ex.shutdown();
         ex.awaitTermination(1, TimeUnit.MINUTES);
+        System.out.println(System.currentTimeMillis()-start);
     }
 
 
     void generate() {
-
-        start = System.currentTimeMillis();
         deque = new LinkedBlockingDeque<>();
         GenericOrder generate = new GenericOrder(deque);
         generate.generate();
@@ -42,17 +41,17 @@ public class ProduceConsume {
                 try {
                     StringBuilder buf = deque.take();
                     pw.write(buf.toString());
-                } catch (InterruptedException interruption) {
-                    Thread.currentThread().interrupt();
-                }
+                } catch (InterruptedException ignore) {}
             }
-
+            if (Thread.currentThread().isInterrupted()) {
+                Thread.interrupted();
+            }
+            System.out.println("writing...");
             fos.getChannel().force(true);
             System.out.println("Writing completed");
         } catch (IOException e) {
             System.out.println(e);
         }
-        System.out.println(System.currentTimeMillis() - start);
     }
 
 }

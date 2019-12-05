@@ -31,11 +31,12 @@ public class Loader {
 //       DocumentBuilderFactory dbf = DocumentBuilderFactory.newDefaultInstance();
 //       DocumentBuilder db = dbf.newDocumentBuilder();
 //       Document doc = db.parse("res/data-0.2M.xml");
-//       NodeList voter = doc.getElementsByTagName("voter");
+//       NodeList voters = doc.getElementsByTagName("voter");
 //
-//       for (int i=0; i<voter.getLength(); i++) {
-//           Node voterNode = voter.item(i);
-//           NamedNodeMap nodeVoterMap = voterNode.getAttributes();
+//       for (int i=0; i<voters.getLength(); i++) {
+//           Node voter = voters.item(i);
+//
+//           NamedNodeMap nodeVoterMap = voter.getAttributes();
 //
 //           String name = nodeVoterMap.getNamedItem("name").getNodeValue();
 //           String birthday = nodeVoterMap.getNamedItem("birthDay").getNodeValue();
@@ -52,8 +53,8 @@ public class Loader {
 //               System.out.format("%-25s %10s %d\n",v.name, v.birthday, map.get(v));
 //           }
 //       }
-
-
-
+//
+//
+//
     }
 }
