@@ -1,58 +1,60 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class Attempt {
 
     static char[] letters = {'a', 'в', 'е', 'к', 'м', 'н', 'о', 'р', 'с', 'у', 'т', 'х'};
     Queue<String> queue;
+    volatile boolean isCompleted = false;
 
     public static void main(String[] args) {
 
-        Attempt attempt = new Attempt();
-        attempt.queue = new Queue<>(20);
+        long start = System.currentTimeMillis();
 
-        ExecutorService ex = Executors.newFixedThreadPool(3);
-        ex.execute(() -> attempt.generate());
-        ex.execute(attempt::write);
+        Attempt attempt = new Attempt();
+        attempt.queue = new Queue<>(6);
+        ExecutorService ex = Executors.newFixedThreadPool(4);
+
+        Future generate1 = ex.submit(() -> attempt.generate(78));
+        Future generate2 = ex.submit(() -> attempt.generate(178));
+        Future writing = ex.submit(attempt::write);
+        Future writing2 = ex.submit(attempt::write);
+
 
         try {
+            generate1.get();
+            generate2.get();
+
+            attempt.isCompleted = true;
+            writing.cancel(true);
+            writing2.cancel(true);
+
             ex.shutdown();
             ex.awaitTermination(1, TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
+
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
-
+        System.out.println(System.currentTimeMillis()-start + "\nCompleted. QueueSize: " + attempt.queue.size() );
     }
 
 
-    void generate() {
+    void generate(int reg) {
 
 
-        int reg = 78;
-        for (char ch1 : letters) {
-            for (char ch2 : letters) {
-                for (char ch3 : letters) {
-                    for (int num = 1; num < 17; num++) {
-                        String n = String.format("%s%03d%s%s%d", ch1, num, ch2, ch3, reg);
-                        queue.addElement(n);
-                        System.out.println("Element added:\t" + n);
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            return;
-                        }
-                    }
-                    break;
-                }
-                break;
+        char ch = 'a';
+        try {
+            for (int num = 1; num < 100; num++) {
+
+                String n = String.format("%s%03d%s%s%d", ch, num, ch, ch, reg);
+                if (queue.addElement(n)) System.out.println("Element added:\t" + n);
+                Thread.sleep(100);
             }
-            break;
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
-        queue.addElement("exit");
+
     }
 
 
@@ -61,18 +63,13 @@ public class Attempt {
 
     void write() {
 
-           while(true) {
-               String num = queue.getFirst();
-               if (num.equals("exit")) break;
-               System.out.println("\t\tElement taken\t" + num);
-
-               try {
-                   Thread.sleep(2000);
-               } catch (InterruptedException e) {
-                   return;
-               }
-           }
-
+        while (!isCompleted || queue.size() > 0) {
+            try {
+                String num = queue.getFirst();
+                System.out.println("\t\tElement taken\t" + num);
+                //Thread.sleep(100);
+            } catch (InterruptedException ignore) {}
+        }
     }
 
 

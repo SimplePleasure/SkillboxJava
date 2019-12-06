@@ -16,14 +16,14 @@ public class Queue<T> {
 
     Queue (int queueSize) {
         queue = new LinkedList<>();
-        lock = new ReentrantLock();
+        lock = new ReentrantLock(true);
         addCondition = lock.newCondition();
         takeCondition = lock.newCondition();
         size = queueSize;
 
     }
 
-    boolean addElement (T obj) {
+    boolean addElement (T obj) throws InterruptedException {
         lock.lock();
         boolean isSucsessfull = false;
         try {
@@ -32,15 +32,13 @@ public class Queue<T> {
             }
             isSucsessfull = queue.add(obj);
             takeCondition.signal();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } finally {
             lock.unlock();
         }
         return isSucsessfull;
     }
 
-    T getFirst () {
+    T getFirst () throws InterruptedException {
         lock.lock();
         T obj = null;
         try {
@@ -50,14 +48,20 @@ public class Queue<T> {
             obj = queue.removeFirst();
             addCondition.signal();
 
-        } catch (InterruptedException e) {
-            System.out.println(e);
         } finally {
             lock.unlock();
         }
         return obj;
     }
 
+    int size() {
+        lock.lock();
+        try {
+            return size = queue.size();
+        } finally {
+            lock.unlock();
+        }
+    }
 
 
 
