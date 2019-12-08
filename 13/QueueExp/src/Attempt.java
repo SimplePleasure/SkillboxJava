@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.concurrent.*;
 
 public class Attempt {
@@ -7,6 +5,10 @@ public class Attempt {
     static char[] letters = {'a', 'в', 'е', 'к', 'м', 'н', 'о', 'р', 'с', 'у', 'т', 'х'};
     Queue<String> queue;
     volatile boolean isCompleted = false;
+
+    int in =0;
+    int out = 0;
+    Object test = new Object();
 
     public static void main(String[] args) {
 
@@ -36,19 +38,23 @@ public class Attempt {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        System.out.println(System.currentTimeMillis()-start + "\nCompleted. QueueSize: " + attempt.queue.size() );
+        System.out.println("Completed. " + (System.currentTimeMillis()-start) + " ms.");
+        System.out.println("Objects input: " + attempt.in + "\tObjects output: " + attempt.out);
     }
-
 
     void generate(int reg) {
 
-
         char ch = 'a';
         try {
-            for (int num = 1; num < 100; num++) {
+            for (int num = 1; num < 10; num++) {
 
                 String n = String.format("%s%03d%s%s%d", ch, num, ch, ch, reg);
-                if (queue.addElement(n)) System.out.println("Element added:\t" + n);
+                if (queue.addElement(n)) {
+                    System.out.println("Element added:\t" + n);
+                    synchronized (test) {
+                        in++;
+                    }
+                }
                 Thread.sleep(100);
             }
         } catch (InterruptedException e) {
@@ -57,21 +63,17 @@ public class Attempt {
 
     }
 
-
-
-
-
     void write() {
 
         while (!isCompleted || queue.size() > 0) {
             try {
                 String num = queue.getFirst();
                 System.out.println("\t\tElement taken\t" + num);
+                synchronized (test) {
+                    out++;
+                }
                 //Thread.sleep(100);
             } catch (InterruptedException ignore) {}
         }
     }
-
-
-
 }

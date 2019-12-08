@@ -10,8 +10,9 @@ public class Voter {
 
 
     /*
-    Переопределение методов equals и hashCode выполнено для работы HashMap в классе Loader
-    При создании нового объекта Voter и добавлении его в
+    Переопределение методов equals и hashCode выполнено для работы HashMap в классе Loader.
+    При добавлении нового объекта Voter в коллекцию HashMap сверяет ключи(Voter) и при наличии
+    совпадений использует уже имеющийся объект.
      */
     @Override
     public boolean equals(Object obj)

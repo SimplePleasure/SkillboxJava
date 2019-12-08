@@ -1,3 +1,5 @@
+
+
 import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -62,12 +64,5 @@ public class Queue<T> {
             lock.unlock();
         }
     }
-
-
-
-
-
-
-
 
 }
