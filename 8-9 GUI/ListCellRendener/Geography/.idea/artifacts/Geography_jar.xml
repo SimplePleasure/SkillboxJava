@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Geography:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Geography_jar</output-path>
+    <root id="archive" name="Geography.jar">
+      <element id="module-output" name="Geography" />
+    </root>
+  </artifact>
+</component>
