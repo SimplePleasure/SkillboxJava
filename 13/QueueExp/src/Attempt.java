@@ -6,8 +6,8 @@ public class Attempt {
     Queue<String> queue;
     volatile boolean isCompleted = false;
 
-    int in =0;
-    int out = 0;
+    long in = 0;
+    long out = 0;
     Object test = new Object();
 
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Attempt {
         long start = System.currentTimeMillis();
 
         Attempt attempt = new Attempt();
-        attempt.queue = new Queue<>(6);
+        attempt.queue = new Queue<>(10);
         ExecutorService ex = Executors.newFixedThreadPool(4);
 
         Future generate1 = ex.submit(() -> attempt.generate(78));
@@ -46,16 +46,16 @@ public class Attempt {
 
         char ch = 'a';
         try {
-            for (int num = 1; num < 10; num++) {
+            for (int num = 1; num < 1000; num++) {
 
-                String n = String.format("%s%03d%s%s%d", ch, num, ch, ch, reg);
+                String n = String.format("%s%04d%s%s%d", ch, num, ch, ch, reg);
                 if (queue.addElement(n)) {
                     System.out.println("Element added:\t" + n);
                     synchronized (test) {
                         in++;
                     }
                 }
-                Thread.sleep(100);
+                Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
             System.out.println(e);
@@ -72,7 +72,7 @@ public class Attempt {
                 synchronized (test) {
                     out++;
                 }
-                //Thread.sleep(100);
+                Thread.sleep(1500);
             } catch (InterruptedException ignore) {}
         }
     }

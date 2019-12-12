@@ -20,7 +20,8 @@ public class Handler extends DefaultHandler {
             String name = attributes.getValue("name");
             String birthDay = attributes.getValue("birthDay");
             Voter voter = new Voter(name, birthDay);
-            votersCounter.put(voter, votersCounter.get(voter)== null ? 1 : votersCounter.get(voter)+1);
+//            votersCounter.put(voter, votersCounter.get(voter)== null ? 1 : votersCounter.get(voter)+1);
+            votersCounter.merge(voter, 1, Integer::sum);
         }
         if (qName.equals("visit")) {
             try {
