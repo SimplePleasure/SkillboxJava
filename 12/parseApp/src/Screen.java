@@ -24,7 +24,6 @@ public class Screen {
     private Screen screen;
     private Thread th;
     private int urlsCount =0;
-    private TreeSet<String> collection;
 
 
 

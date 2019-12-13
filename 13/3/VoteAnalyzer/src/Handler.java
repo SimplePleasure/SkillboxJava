@@ -2,15 +2,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -27,59 +22,32 @@ public class Handler extends DefaultHandler {
 
 
     Lock lock;
-    Condition condition;
-    ExecutorService ex;
+    Condition continueReading;
+    Condition sendingElements;
     int readNodesCount =0;
-    boolean isScanning = true;
-    volatile boolean docWasRead = false;
+    volatile boolean isScaning = false;
 
-    void preparePartiallyReading () {
-
-        ex = Executors.newFixedThreadPool(1);
+    Handler() {
         lock = new ReentrantLock();
-        condition = lock.newCondition();
-
-        ex.execute(() -> {
-            for (;;) {
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-                    reader.readLine();
-                    lock.lock();
-                    isScanning = true;
-                    condition.signal();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
-                }
-            }
-        });
+        continueReading = lock.newCondition();
+        sendingElements = lock.newCondition();
     }
 
-
-    @Override
-    public void endElement (String uri, String localName, String qName) {
-        readNodesCount++;
-        if (readNodesCount == 1000 || docWasRead) {
-
-            printResult();
-            if(!docWasRead) {
-                lock.lock();
-                try {
-                    System.out.println("Locking. Enter to continue");
-                    isScanning = false;
-                    readNodesCount = 0;
-
-                    while (!isScanning) {
-                        condition.await();
-                    }
-                } catch (InterruptedException ignore) {
-                } finally {
-                    lock.unlock();
-                }
+    HashMap next() {
+        isScaning = true;
+        lock.lock();
+        try {
+            continueReading.signal();
+            while (isScaning) {
+                sendingElements.await();
             }
+        }catch(InterruptedException e) {
+        }finally {
+            lock.unlock();
         }
+        return voterCounts;
     }
+
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -112,16 +80,46 @@ public class Handler extends DefaultHandler {
     }
 
     @Override
-    public void endDocument() {
-        docWasRead = true;
+    public void endElement (String uri, String localName, String qName) {
+        readNodesCount++;
+        if (readNodesCount == 1000) {
+            isScaning = false;
+            readNodesCount = 0;
+            lock.lock();
+            try {
+                System.out.println("Enter to continue");
+                sendingElements.signal();
+                while (!isScaning) {
+                    continueReading.await();
+                }
+            } catch (InterruptedException ignore) {
+            } finally {
+                lock.unlock();
+            }
+        }
     }
 
-    HashMap getVoters () {
-        return voterCounts;
-    }
-    void printResult () {
-        for (Voter v: voterCounts.keySet()) {
-            System.out.println(v.toString());
+    @Override
+    public void startDocument() {
+        lock.lock();
+        try {
+            while (!isScaning) {
+                continueReading.await();
+            }
+        } catch (InterruptedException e) {
+        }finally {
+            lock.unlock();
         }
+    }
+
+    @Override
+    public void endDocument() {
+        lock.lock();
+        try {
+            sendingElements.signal();
+        } finally {
+            lock.unlock();
+        }
+
     }
 }

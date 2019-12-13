@@ -1,4 +1,3 @@
-import javax.swing.*;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -7,27 +6,20 @@ import javax.xml.parsers.SAXParserFactory;
  */
 public class Loader {
 
-    public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-            Output out = new Output();
-            JFrame frame = new JFrame();
-            frame.setContentPane(out.getRootPanel());
-            frame.setSize(800, 600);
-            frame.setLocationRelativeTo(null);
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-
-            try {
-                out.statrReading();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+    public static void main(String[] args) throws Exception {
+        String fileName = "res/data-0.2M.xml";
+        parseFile(fileName);
     }
 
-
     private static void parseFile(String fileName) throws Exception {
+
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser parser = spf.newSAXParser();
+        Handler h = new Handler();
+        h.preparePartiallyReading();
+        parser.parse(fileName, h);
+
+
 //=====================PrintResults==============================================================
 //        HashMap<Voter, Integer> voters = h.getVoters();
 //        for (Voter voter: voters.keySet()) {
