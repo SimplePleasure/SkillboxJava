@@ -7,9 +7,11 @@ import javax.xml.parsers.SAXParserFactory;
  */
 public class Loader {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
 
         SwingUtilities.invokeLater(() -> {
+
             Output out = new Output();
             JFrame frame = new JFrame();
             frame.setContentPane(out.getRootPanel());
@@ -23,6 +25,7 @@ public class Loader {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         });
     }
 
