@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 public class MainForm {
@@ -19,12 +18,6 @@ public class MainForm {
 
     MainForm(){
 
-
-
-//        reader = new FileReader("C:\\Users\\Костя\\Desktop\\Projects\\13\\FileReader\\res\\data-18M.xml");
-//        reader = new FileReader("C:/Users/Костя/Desktop/Projects/13/FileReader/res/data-18M.xml");
-
-
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,23 +31,18 @@ public class MainForm {
         scroll.addMouseWheelListener(new MouseWheelListener() {
             @Override
             public void mouseWheelMoved(MouseWheelEvent e) {
-
-                int maxScroll = scroll.getVerticalScrollBar().getMaximum()- 528;   //??
+                JScrollBar vScroll = scroll.getVerticalScrollBar();
+                int maxScroll = vScroll.getMaximum() - vScroll.getVisibleAmount();
+                int current = vScroll.getValue();
                 System.out.println("maxScroll: " + maxScroll);
-                System.out.println("value: " + scroll.getVerticalScrollBar().getValue());
-                if (scroll.getVerticalScrollBar().getValue()  >= maxScroll && e.getWheelRotation()== 1 && e.isShiftDown()) {
-                    System.out.println("length: " + position);
+                System.out.println("value: " + current);
+                if (current == maxScroll && e.getWheelRotation()== 1 && e.isShiftDown()) {
                     showNext();
                 }
-                if (scroll.getVerticalScrollBar().getValue()  == 0 && e.getWheelRotation()== -1 && e.isShiftDown()) {
-                    position = position-5000;
-                    if (position <= 0) {
-                        position = 0;
-                        showNext();
-                    } else {
-                        position = reader.shiftLine(position);
-                        showNext();
-                    }
+                if (current == 0 && e.getWheelRotation()== -1 && e.isShiftDown()) {
+                    position = reader.shiftLine(position-5000);
+                    showNext();
+
                 }
             }
         });

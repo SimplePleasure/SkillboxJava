@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -39,16 +38,20 @@ public class FileReader {
 
     long shiftLine(long position) {
         long pos = 0;
-        try {
-            file.seek(position);
-            file.readLine();
-            pos = file.getFilePointer();
+        if (position >= 0) {
+            try {
+                file.seek(position);
+                file.readLine();
+                pos = file.getFilePointer();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return pos;
     }
+
 
     public long getPosition() {
         return position;
