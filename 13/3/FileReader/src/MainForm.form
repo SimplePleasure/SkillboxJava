@@ -35,7 +35,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="data-18M.xml"/>
+              <text value="res/data-18M.xml"/>
             </properties>
           </component>
         </children>

@@ -17,12 +17,12 @@ public class MainForm {
 
 
     MainForm(){
-
-        button1.addActionListener(new ActionListener() {
+                button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                reader = new FileReader("res/" + pathField.getText());
+                if (reader != null) reader.close();
+                reader = new FileReader(pathField.getText());
                 position = reader.getPosition();
                 System.out.println(position);
             }
@@ -34,15 +34,14 @@ public class MainForm {
                 JScrollBar vScroll = scroll.getVerticalScrollBar();
                 int maxScroll = vScroll.getMaximum() - vScroll.getVisibleAmount();
                 int current = vScroll.getValue();
-                System.out.println("maxScroll: " + maxScroll);
-                System.out.println("value: " + current);
+//                System.out.println("maxScroll: " + maxScroll);
+//                System.out.println("value: " + current);
                 if (current == maxScroll && e.getWheelRotation()== 1 && e.isShiftDown()) {
                     showNext();
                 }
                 if (current == 0 && e.getWheelRotation()== -1 && e.isShiftDown()) {
                     position = reader.shiftLine(position-5000);
                     showNext();
-
                 }
             }
         });
@@ -52,8 +51,9 @@ public class MainForm {
         try {
             String res = reader.read(position).toString();
             String utf8 = new String(res.getBytes("ISO-8859-1"), "UTF-8");
-            textArea.setText("\n"+utf8+"\n");
+            textArea.setText(utf8);
             position = reader.getPosition();
+            System.out.println(utf8.length());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

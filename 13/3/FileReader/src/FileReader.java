@@ -52,6 +52,14 @@ public class FileReader {
         return pos;
     }
 
+    public void close () {
+
+        try {
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public long getPosition() {
         return position;
