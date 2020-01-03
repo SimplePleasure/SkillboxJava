@@ -2,10 +2,15 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -22,32 +27,74 @@ public class Handler extends DefaultHandler {
 
 
     Lock lock;
-    Condition continueReading;
-    Condition sendingElements;
+    Condition condition;
+    ExecutorService ex;
     int readNodesCount =0;
-    volatile boolean isScaning = false;
+    volatile boolean isScaning = true;
+    volatile boolean isRead = false;
 
-    Handler() {
+    void preparePartiallyReading () {
+
+
+        ex = Executors.newFixedThreadPool(1);
         lock = new ReentrantLock();
-        continueReading = lock.newCondition();
-        sendingElements = lock.newCondition();
-    }
+        condition = lock.newCondition();
 
-    HashMap next() {
-        isScaning = true;
-        lock.lock();
-        try {
-            continueReading.signal();
-            while (isScaning) {
-                sendingElements.await();
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame();
+            Output out = new Output(lock, condition, isScaning);
+            frame.setContentPane(out.getRootPanel());
+            frame.setVisible(true);
+
+
+
+        });
+
+
+
+
+        ex.execute(() -> {
+            for (;;) {
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                    reader.readLine();
+                    lock.lock();
+                    isScaning = true;
+                    condition.signal();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+                if (isRead) break;
             }
-        }catch(InterruptedException e) {
-        }finally {
-            lock.unlock();
-        }
-        return voterCounts;
+        });
     }
 
+
+
+    @Override
+    public void endElement (String uri, String localName, String qName) {
+        readNodesCount++;
+        if (readNodesCount == 1000) {
+
+            printResult();
+            lock.lock();
+            try {
+                System.out.println("Enter to continue");
+                isScaning = false;
+                readNodesCount = 0;
+                while (!isScaning) {
+
+                    condition.await();
+                }
+            } catch (InterruptedException ignore) {
+            } finally {
+                lock.unlock();
+            }
+
+        }
+    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -80,46 +127,28 @@ public class Handler extends DefaultHandler {
     }
 
     @Override
-    public void endElement (String uri, String localName, String qName) {
-        readNodesCount++;
-        if (readNodesCount == 1000) {
-            isScaning = false;
-            readNodesCount = 0;
-            lock.lock();
-            try {
-                System.out.println("Enter to continue");
-                sendingElements.signal();
-                while (!isScaning) {
-                    continueReading.await();
-                }
-            } catch (InterruptedException ignore) {
-            } finally {
-                lock.unlock();
-            }
-        }
-    }
-
-    @Override
-    public void startDocument() {
-        lock.lock();
-        try {
-            while (!isScaning) {
-                continueReading.await();
-            }
-        } catch (InterruptedException e) {
-        }finally {
-            lock.unlock();
-        }
-    }
-
-    @Override
     public void endDocument() {
-        lock.lock();
+        isRead = true;
+        if (readNodesCount != 0) {
+            printResult();
+        }
+        System.out.println("End document");
         try {
-            sendingElements.signal();
-        } finally {
-            lock.unlock();
+            ex.shutdown();
+            ex.awaitTermination(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
+    }
+
+    HashMap getVoters () {
+        return voterCounts;
+    }
+
+    void printResult () {
+        for (Voter v: voterCounts.keySet()) {
+            System.out.println(v.toString());
+        }
     }
 }

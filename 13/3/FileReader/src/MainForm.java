@@ -1,8 +1,5 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+import java.awt.event.*;
 import java.io.UnsupportedEncodingException;
 
 public class MainForm {
@@ -17,7 +14,13 @@ public class MainForm {
 
 
     MainForm(){
-                button1.addActionListener(new ActionListener() {
+
+        scroll.getVerticalScrollBar().setMaximum(100000);
+        scroll.repaint();
+        scroll.revalidate();
+
+
+        button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -43,6 +46,18 @@ public class MainForm {
                     position = reader.shiftLine(position-5000);
                     showNext();
                 }
+            }
+        });
+
+
+        pathField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println("qq");
+                SwingUtilities.invokeLater(() -> {
+                    scroll.getVerticalScrollBar().setMaximum(1000);
+                });
             }
         });
     }
