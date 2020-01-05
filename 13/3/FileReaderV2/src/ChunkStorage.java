@@ -91,7 +91,7 @@ public class ChunkStorage {
 //                        result = result.substring(result.indexOf(10));
 //                    }
 //                    if (caretPos < docSize) {
-//                        result = result + getNLine();
+//                        result = result + supplementLine();
 //                    }
 //                    chunkMap.put(chunkNum, new Chunk(result));
 //                    byteBuffer.clear();
@@ -135,7 +135,7 @@ public class ChunkStorage {
                     if (caretPos < docSize) {  // Дополняем кусок до новой строки.
                         result = result + getNLine();
                     }
-                    chunkMap.put(chunkNum, new Chunk(result));
+//                    chunkMap.put(chunkNum, new Chunk(result, docSize/caretPos));
                     byteBuffer.clear();
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();

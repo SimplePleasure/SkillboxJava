@@ -12,6 +12,7 @@ public class MainForm {
     private JTextArea textArea;
     private JTextField path;
     private JButton loadFile;
+    private Chunk chunk;
 
 
     int knobSize;
@@ -37,8 +38,9 @@ public class MainForm {
                 g.fillRect(0, e.getY(), 20, knobSize);
 
                 double percent = (double)e.getY()/scrollPanel.getHeight();
+
                 cs.shiftToPercent(percent);
-                textArea.setText(cs.getChunk().getText());
+                changeChunk();
             }
         });
 
@@ -54,7 +56,10 @@ public class MainForm {
                 cs = new Storage(path.getText());
                 knobSize = (scrollPanel.getHeight() / cs.getChunkCount()) > 5 ?
                         (int) (scrollPanel.getHeight() / cs.getChunkCount()) : 5;
-                textArea.setText(cs.getChunk().getText());
+
+                chunk = cs.getChunk();
+                textArea.setText(chunk.getText());
+//                textArea.setText(cs.getChunk().getText());
             }
         });
 
@@ -64,14 +69,25 @@ public class MainForm {
 
                 if(e.getWheelRotation() == 1 && scroll.getVerticalScrollBar().getMaximum() -
                         scroll.getVerticalScrollBar().getVisibleAmount() == scroll.getVerticalScrollBar().getValue()) {
-                    textArea.setText(cs.getChunk().getText());
+
+                    changeChunk();
+//                    textArea.setText(cs.getChunk().getText());
+
                 } else if (e.getWheelRotation() == -1 && scroll.getVerticalScrollBar().getValue() == 0) {
                     cs.shiftBackward();
-                    textArea.setText(cs.getChunk().getText());
+
+                    changeChunk();
+//                    textArea.setText(cs.getChunk().getText());
                 }
 
             }
         });
+    }
+
+    public void changeChunk() {
+        chunk.checkUpdate(textArea.getText());
+        chunk = cs.getChunk();
+        textArea.setText(chunk.getText());
     }
 
     public JPanel getRootPanel() {

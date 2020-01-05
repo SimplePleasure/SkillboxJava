@@ -40,7 +40,7 @@
           <component id="2498f" class="javax.swing.JTextField" binding="path">
             <constraints border-constraint="Center"/>
             <properties>
-              <text value="/res/data-18M.xml"/>
+              <text value="/res/1.txt"/>
             </properties>
           </component>
           <component id="b65c5" class="javax.swing.JButton" binding="loadFile">
