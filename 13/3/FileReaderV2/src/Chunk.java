@@ -27,17 +27,22 @@ public class Chunk {
     long getNum() {
         return chunkNum;
     }
+    int getShift() {
+        return shift;
+    }
 
     String getText() {
         return  text;
     }
 
     ByteBuffer getBufferedText() {
-        return ByteBuffer.allocate(Storage.CHUNK_SIZE * 2).put(text.getBytes());
+        ByteBuffer buffer = ByteBuffer.allocate(Storage.CHUNK_SIZE * 2).put(text.getBytes());
+        buffer.flip();
+        buffer.clear();
+        return buffer;
     }
 
     void checkUpdate(String t) {
-        System.out.println("checking");
         if (!t.equals(text)) {
             text = t;
             chunkState = ChunkState.DURTY;

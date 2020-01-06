@@ -38,7 +38,7 @@ public class Storage {
             ex.shutdown();
             ex.awaitTermination(1, TimeUnit.MINUTES);
             channel.close();
-            System.out.println("channel is Closed: " + channel.isOpen());
+            System.out.println("New channel is open");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -55,21 +55,25 @@ public class Storage {
     void reWriteText(Chunk chunk) {
 
 
-        channel.write(chunk.getBufferedText(), (chunk.getNum()*CHUNK_SIZE)+chunk.getNum(),
-                                                chunk.getNum(), new CompletionHandler<Integer, Long>() {
-            @Override
-            public void completed(Integer result, Long attachment) {
-                chunk.setLoaded();
-                System.out.println("Chunk " + attachment + " was sucsesfully rewtite.");
-            }
+//        channel.write(chunk.getBufferedText(), (chunk.getNum()*CHUNK_SIZE)+chunk.getShift(),
+//                                                chunk.getNum(), new CompletionHandler<Integer, Long>() {
+//            @Override
+//            public void completed(Integer result, Long attachment) {
+//                chunk.setLoaded();
+//                System.out.println("Chunk " + attachment + " was sucsesfully rewtite.");
+//            }
+//
+//            @Override
+//            public void failed(Throwable exc, Long attachment) {
+//                System.out.println("Chunk " + attachment + " doesn't rewrite.");
+//                exc.printStackTrace();
+//            }
+//        });
 
-            @Override
-            public void failed(Throwable exc, Long attachment) {
-                System.out.println("Chunk " + attachment + " doesn't rewrite.");
-                exc.printStackTrace();
-            }
-        });
+        channel.write(chunk.getBufferedText(), (chunk.getNum()*CHUNK_SIZE)+ chunk.getShift());
+        chunk.setLoaded();
 
+//        chunkStorage = new HashMap<>();
 
     }
 
@@ -79,12 +83,11 @@ public class Storage {
 
         try {
             if (chunkStorage.get(lastViewed.getNum()).chunkState == Chunk.ChunkState.DURTY) {
-                System.out.println("\n\n\nredacting "+ lastViewed.getNum());
-                ex.execute(() -> reWriteText(lastViewed));
+                System.out.println("\nredacting "+ lastViewed.getNum());
+//                ex.execute(() -> reWriteText(lastViewed));
+                reWriteText(lastViewed);
             }
-        } catch (NullPointerException e) {}
-
-
+        } catch (NullPointerException ignore) {}
 
         if (chunkStorage.get(caretPos/CHUNK_SIZE) == null && docSize-caretPos > CHUNK_SIZE) {
             System.out.println("reading chunk " + caretPos/CHUNK_SIZE);
@@ -126,7 +129,7 @@ public class Storage {
             result += supplementLine();
 
         }
-        Chunk chunk = new Chunk(result, chunkNum, shift);
+        Chunk chunk = new Chunk(result.trim(), chunkNum, shift);
         chunkStorage.put(chunkNum, chunk);
         byteBuffer.clear();
         return chunk;
@@ -142,7 +145,6 @@ public class Storage {
             channel.read(b, caretPos).get();
             String res = new String(b.array());
             res = res.substring(0, res.indexOf(10));
-            System.out.println(res);
             b.clear();
 
             return res;
@@ -150,7 +152,7 @@ public class Storage {
             System.out.println("add remaining line");
             ByteBuffer b = ByteBuffer.allocate(CHUNK_SIZE);
             shiftForward(channel.read(b, caretPos).get());
-            String res = new String(b.array()) + "\n\nEnd.";
+            String res = new String(b.array());
             b.clear();
             return res;
         }
