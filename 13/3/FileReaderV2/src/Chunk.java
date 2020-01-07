@@ -1,6 +1,6 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.StandardOpenOption;
 
 public class Chunk {
 
@@ -36,10 +36,12 @@ public class Chunk {
     }
 
     ByteBuffer getBufferedText() {
-        ByteBuffer buffer = ByteBuffer.allocate(Storage.CHUNK_SIZE * 2).put(text.getBytes());
-        buffer.flip();
-        buffer.clear();
-        return buffer;
+        byte[] bytes = text.getBytes();
+//        ByteBuffer buffer = ByteBuffer.allocate(bytes.length).put(bytes);
+//        buffer.flip();
+//        buffer.clear();
+
+        return ByteBuffer.wrap(text.getBytes(StandardCharsets.UTF_8));
     }
 
     void checkUpdate(String t) {

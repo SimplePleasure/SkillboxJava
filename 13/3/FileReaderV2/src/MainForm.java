@@ -44,9 +44,6 @@ public class MainForm {
             }
         });
 
-
-
-
 //      ============================================================= Loading / scrolling ==============================
         loadFile.addActionListener(new ActionListener() {
             @Override
@@ -59,7 +56,6 @@ public class MainForm {
 
                 chunk = cs.getChunk();
                 textArea.setText(chunk.getText());
-//                textArea.setText(cs.getChunk().getText());
             }
         });
 
@@ -69,15 +65,11 @@ public class MainForm {
 
                 if(e.getWheelRotation() == 1 && scroll.getVerticalScrollBar().getMaximum() -
                         scroll.getVerticalScrollBar().getVisibleAmount() == scroll.getVerticalScrollBar().getValue()) {
-
                     changeChunk();
-//                    textArea.setText(cs.getChunk().getText());
 
                 } else if (e.getWheelRotation() == -1 && scroll.getVerticalScrollBar().getValue() == 0) {
                     cs.shiftBackward();
-
                     changeChunk();
-//                    textArea.setText(cs.getChunk().getText());
                 }
 
             }

@@ -18,7 +18,7 @@ public class Storage {
     private AsynchronousFileChannel channel;
     private HashMap<Long, Chunk> chunkStorage;
     private ByteBuffer byteBuffer = ByteBuffer.allocate(CHUNK_SIZE);
-    private ExecutorService ex;
+//    private ExecutorService ex;
 
 
     Storage (String path) {
@@ -28,18 +28,18 @@ public class Storage {
             docSize = channel.size();
             chunkCount = docSize/CHUNK_SIZE > 0 ? (docSize/CHUNK_SIZE) : 1;
             caretPos = 0;
-            ex = Executors.newCachedThreadPool();
+//            ex = Executors.newCachedThreadPool();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     void close() {
         try {
-            ex.shutdown();
-            ex.awaitTermination(1, TimeUnit.MINUTES);
+//            ex.shutdown();
+//            ex.awaitTermination(1, TimeUnit.MINUTES);
             channel.close();
             System.out.println("New channel is open");
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -72,9 +72,7 @@ public class Storage {
 
         channel.write(chunk.getBufferedText(), (chunk.getNum()*CHUNK_SIZE)+ chunk.getShift());
         chunk.setLoaded();
-
-//        chunkStorage = new HashMap<>();
-
+        chunkStorage = new HashMap<>();
     }
 
 
@@ -84,7 +82,6 @@ public class Storage {
         try {
             if (chunkStorage.get(lastViewed.getNum()).chunkState == Chunk.ChunkState.DURTY) {
                 System.out.println("\nredacting "+ lastViewed.getNum());
-//                ex.execute(() -> reWriteText(lastViewed));
                 reWriteText(lastViewed);
             }
         } catch (NullPointerException ignore) {}
@@ -129,7 +126,7 @@ public class Storage {
             result += supplementLine();
 
         }
-        Chunk chunk = new Chunk(result.trim(), chunkNum, shift);
+        Chunk chunk = new Chunk(result, chunkNum, shift);
         chunkStorage.put(chunkNum, chunk);
         byteBuffer.clear();
         return chunk;
@@ -142,6 +139,7 @@ public class Storage {
         if (docSize - caretPos > CHUNK_SIZE) {
             System.out.println("add piece of string");
             ByteBuffer b = ByteBuffer.allocate(150);
+
             channel.read(b, caretPos).get();
             String res = new String(b.array());
             res = res.substring(0, res.indexOf(10));
