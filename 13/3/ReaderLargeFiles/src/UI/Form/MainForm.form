@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI.Form.MainForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="5" vgap="5">
+    <constraints>
+      <xy x="20" y="20" width="900" height="600"/>
+    </constraints>
+    <properties>
+      <minimumSize width="900" height="600"/>
+      <preferredSize width="900" height="365"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="b9447" layout-manager="FlowLayout" hgap="10" vgap="10" flow-align="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="73f2c" class="javax.swing.JButton" binding="btnSelectFile">
+            <constraints/>
+            <properties>
+              <text value="Открыть файл..."/>
+            </properties>
+          </component>
+          <component id="fc857" class="javax.swing.JLabel" binding="lblFilePath">
+            <constraints/>
+            <properties>
+              <font name="Courier New" size="12"/>
+              <preferredSize width="600" height="30"/>
+              <text value="файл не выбран"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="aa9a0" layout-manager="FlowLayout" hgap="20" vgap="5" flow-align="2">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a7e1f" class="javax.swing.JLabel" binding="lblFileInfo">
+            <constraints/>
+            <properties>
+              <text value="Строка:"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="98493" class="javax.swing.JTextArea" binding="txtFileView">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <editable value="false"/>
+          <enabled value="true"/>
+          <font name="Arial" size="14"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <grid id="5d26d" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a37f" class="javax.swing.JButton" binding="ForwardToBeginFile">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="⇑ Начало"/>
+            </properties>
+          </component>
+          <component id="42ed1" class="javax.swing.JButton" binding="btnForwardToEndFile">
+            <constraints border-constraint="South"/>
+            <properties>
+              <text value="⇓ Конец"/>
+            </properties>
+          </component>
+          <grid id="d436c" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6b204" class="javax.swing.JButton" binding="btnPrev_100">
+                <constraints border-constraint="North"/>
+                <properties>
+                  <text value="⇑ 100"/>
+                </properties>
+              </component>
+              <component id="4947" class="javax.swing.JButton" binding="btnForward_100">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <text value="⇓ 100"/>
+                </properties>
+              </component>
+              <grid id="8a3fb" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="fba91" class="javax.swing.JButton" binding="btnPrev_10">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <text value="⇑ 10"/>
+                    </properties>
+                  </component>
+                  <component id="f086f" class="javax.swing.JButton" binding="btnForward_10">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <text value="⇓ 10"/>
+                    </properties>
+                  </component>
+                  <grid id="5c062" layout-manager="FlowLayout" hgap="5" vgap="150" flow-align="1">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="4049c" class="javax.swing.JTextPane" binding="lblDescTextPane" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <opaque value="false"/>
+                          <text value="Перемещение&#10;по строкам"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <component id="28848" class="javax.swing.JScrollBar" binding="scrBarTextView">
+        <constraints border-constraint="East"/>
+        <properties>
+          <blockIncrement value="1"/>
+          <maximum value="1000"/>
+          <valueIsAdjusting value="false"/>
+          <visibleAmount value="1"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
