@@ -21,25 +21,25 @@ public class Test {
 //        Reduce            ********************************
         ArrayList<Integer> l = new ArrayList<>();
         l.add(10);
-        l.add(5);
+        l.add(9);
         Integer i = l.stream().reduce((sum, x) -> sum *= x).filter(x -> x<100).orElse(-1);
         System.out.println("multiply = " + i);
 
 
-        int[] array = new int[] {5, 5, 5, 5, 6};
+        int[] array = new int[] {5, 5, 5, 5, 10};
         long count = IntStream.of(array).summaryStatistics().getCount();
         Double average = IntStream.of(array).average().orElseThrow(PleaseImplementMeException::new);
         System.out.println(average);
 
 
 //        *************************
-//        System.out.println(Task03TruckTypes.getTypeByWeight(20000).name());
+//        System.out.println(Task03TruckTypes.getTypeByWeight(1000).name());
         System.out.println("\n\n\n");
         Task03TruckTypes.Truck t10 = new Task03TruckTypes.Truck(11990);
         Task03TruckTypes.Truck t7 = new Task03TruckTypes.Truck(1600);
         Task03TruckTypes.Truck t = new Task03TruckTypes.Truck(2000);
         Task03TruckTypes.Truck t1 = new Task03TruckTypes.Truck(1900);
-        Task03TruckTypes.Truck t9 = new Task03TruckTypes.Truck(11900);
+        Task03TruckTypes.Truck t9 = new Task03TruckTypes.Truck(15900);
 
         ArrayList<Task03TruckTypes.Truck> list = new ArrayList<>();
         list.add(t);

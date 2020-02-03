@@ -7,7 +7,7 @@ public class Loader {
         Handler handler = new Handler(screen);
         handler.build();
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Пост советское пространство");
         frame.setSize(800, 550);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);

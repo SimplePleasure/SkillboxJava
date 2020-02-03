@@ -9,7 +9,7 @@ public class DBConnection
 
     private static String dbName = "learn";
     private static String dbUser = "root";
-    private static String dbPass = "mmm333";
+    private static String dbPass = "12541254";
 
     public static Connection getConnection()
     {

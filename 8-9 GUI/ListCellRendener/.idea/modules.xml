@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WorkingWithXML.iml" filepath="$PROJECT_DIR$/WorkingWithXML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ListCellRendener.iml" filepath="$PROJECT_DIR$/.idea/ListCellRendener.iml" />
     </modules>
   </component>
 </project>

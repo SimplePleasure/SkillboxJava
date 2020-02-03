@@ -1,5 +1,7 @@
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by Danya on 24.02.2016.
@@ -25,11 +27,12 @@ public class Voter
     @Override
     public int hashCode()
     {
-        long code = name.hashCode() + birthDay.hashCode();
-        while(code > Integer.MAX_VALUE) {
-            code = code/10;
-        }
-        return (int) code;
+//        long code = name.hashCode() + birthDay.hashCode();
+//        while(code > Integer.MAX_VALUE) {
+//            code = code/10;
+//        }
+//        return (int) code;
+        return Objects.hash(name, birthDay);
     }
 
     public String toString()

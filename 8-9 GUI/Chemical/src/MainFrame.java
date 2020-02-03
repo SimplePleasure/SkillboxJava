@@ -12,15 +12,13 @@ public class MainFrame extends JFrame {
     private JPanel rootPanel;
     private JLabel nwField;
     private JLabel owField;
-    private JButton btn2;
-    private JButton btn1;
     private JLabel p3;
     private JLabel p2;
     private JLabel p1;
-    private JComboBox box2;
-    private JComboBox box1;
-    private JLabel substance;
-    private JLabel info;
+    private JComboBox<String> box2;
+    private JComboBox<String> box1;
+    private JLabel substanceName;
+    private JTextArea info;
 
 
     HashMap<String, Classifier> classifier;
@@ -48,9 +46,41 @@ public class MainFrame extends JFrame {
         classifier.put("Нуклеиновые к-ты", new Classifier("Нуклеиновые к-ты", "классификация", "Функции", "Строение"));
         classifier.put("АТФ и др. соед. кл.", new Classifier("АТФ и др. соед. кл." , "param"));
 
-        classifier.get("Минеральные в-ва").inf1 = "Макро эл-ты";
-        classifier.get("Минеральные в-ва").inf2 = "Микро эл-ты";
-        classifier.get("Минеральные в-ва").inf3 = "Ультра микро эл-ты";
+//        nw
+        Classifier h2o = classifier.get("H2O");
+        h2o.inf1 = "  unique раст";
+
+        Classifier minW = classifier.get("Минеральные в-ва");
+        minW.inf1 = "Макро \nэл-ты";
+        minW.inf2 = "Микро эл-ты";
+        minW.inf3 = "Ультра микро эл-ты";
+//        ow
+        Classifier uglevod = classifier.get("Углеводы");
+        uglevod.inf1 = "    Классификация углеводов: \n\n\n" +
+                "Моносахариды: \n       рибоза, дезоксирибоза, глюкоза, фруктоза, галактоза.\n\n" +
+                "Олигосахариды (дисахариды):\n      сахароза, мальтоза, лактоза. \n\n" +
+                "Полисахариды:\n        крахмал, гликоген, целлюлоза, хитин и другие.";
+        uglevod.inf2 = "Функции углеводов: \n Энергетическая, запасающая, структурно-строительная и защитная";
+
+        Classifier belki = classifier.get("Белки");
+        belki.inf1 = "  Классификация белков: \n Простые - протеины, протеиды\n" +
+                "Сложные - Гликопротеиды, липопротеиды, нуклеопротеиды";
+        belki.inf2 = "Уровни организации с белковые молекулы заменить пункт найти картинки.";
+        belki.inf3 = "  Функции белков: \nСтруктурная, ферментативная, транспортная, защитная, регуляторная, энергетическая";
+
+        Classifier lipid = classifier.get("Липиды");
+        lipid.inf1 = "";
+        lipid.inf2 = "";
+
+        Classifier nukl = classifier.get("Нуклеиновые к-ты");
+        nukl.inf1 = "";
+        nukl.inf2 = "";
+        nukl.inf3 = "";
+
+        Classifier atf = classifier.get("АТФ и др. соед. кл.");
+        atf.inf1 = "";
+
+
 
 
 
@@ -98,13 +128,13 @@ public class MainFrame extends JFrame {
             public void itemStateChanged(ItemEvent e) {
 
                 if (box1.getSelectedItem().toString().length() == 0) {
-                    substance.setText("");
+                    substanceName.setText("");
                     p1.setText("");
                     p2.setText("");
                     p3.setText("");
                 } else {
                     Classifier current = classifier.get(box1.getSelectedItem());
-                    substance.setText(current.name);
+                    substanceName.setText(current.name);
                     p1.setText(current.param1);
                     if (current.param2 != null) {
                         p2.setText(current.param2);
@@ -127,13 +157,13 @@ public class MainFrame extends JFrame {
             public void itemStateChanged(ItemEvent e) {
 
                 if (box2.getSelectedItem().toString().length() == 0) {
-                    substance.setText("");
+                    substanceName.setText("");
                     p1.setText("");
                     p2.setText("");
                     p3.setText("");
                 } else {
                     Classifier current = classifier.get(box2.getSelectedItem());
-                    substance.setText(current.name);
+                    substanceName.setText(current.name);
                     p1.setText(current.param1);
                     if (current.param2 != null) {
                         p2.setText(current.param2);
@@ -156,59 +186,24 @@ public class MainFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                info.setText(classifier.get(substance.getText()).inf1);
+                info.setText(classifier.get(substanceName.getText()).inf1);
             }
         });
         p2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                info.setText(classifier.get(substance.getText()).inf2);
+                info.setText(classifier.get(substanceName.getText()).inf2);
             }
         });
         p3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                info.setText(classifier.get(substance.getText()).inf3);
+                info.setText(classifier.get(substanceName.getText()).inf3);
             }
         });
     }
 
 
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-
-        rootPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(background, 0, 0, 800, 600, null);
-            }
-        };
-
-        btn1= new JButton(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                btn1.setText("H.B.");
-                g.setColor(new Color(203, 79, 0, 200));
-                g.fillRect(0, 25, 200, 5);
-
-            }
-        };
-        btn2 = new JButton(){
-            @Override
-            protected void paintComponent(Graphics g) {
-
-
-
-
-                g.setColor(new Color(1, 203, 150, 200));
-                g.fillRect(0, 25, 200, 5);
-
-                btn2.setText("О.В.");
-            }
-        };
-    }
 }
