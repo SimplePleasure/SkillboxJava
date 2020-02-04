@@ -12,6 +12,7 @@ public class HttpServer {
 
     public static void main(String[] args) throws Throwable {
 //        в браузере http://localhost:1000/
+
         ServerSocket ss = new ServerSocket(1000);
         while (true) {
             Socket s = ss.accept();  //Метод accept блокирующий, ожидает подключения
@@ -32,6 +33,7 @@ public class HttpServer {
             this.os = s.getOutputStream();
         }
 
+        @Override
         public void run() {
             try {
                 readInputHeaders();

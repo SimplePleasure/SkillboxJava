@@ -69,8 +69,8 @@ public class DBConnection {
     public static void executeQuery() throws SQLException {
         long startInsert = System.currentTimeMillis();
 
+
 //          1)batch approach================================================================
-        System.out.println("executing " + butchCounter + " inserts...");
         preparedStatement.executeBatch();
         preparedStatement.clearBatch();
         butchCounter = 0;
@@ -86,12 +86,19 @@ public class DBConnection {
 
     public static void printVoterCounts() throws SQLException {
         long startSearch = System.currentTimeMillis();
-        String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > 1";
-        ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
+
+        String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > ?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, 1);
+        ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
             System.out.println("\t" + rs.getString("name") + " (" +
                     rs.getString("birthDate") + ") - " + rs.getInt("count"));
         }
+
+//        ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
+
+
         System.out.println("Time to insert: " + totalInsertTime);
         System.out.println("Time to search: " + (System.currentTimeMillis()-startSearch));
     }
