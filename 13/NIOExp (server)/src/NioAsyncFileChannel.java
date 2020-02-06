@@ -46,6 +46,8 @@ public class NioAsyncFileChannel {
             channel.close();
 
             System.out.println(new String(bb.array()));
+
+
         }
 
         public static void write(Path path,int pos, String text) throws Exception {
@@ -98,5 +100,4 @@ public class NioAsyncFileChannel {
             volatile static boolean res = false;
         }
     }
-
 }

@@ -16,7 +16,7 @@ https://www.tutorialspoint.com/java_nio/java_nio_server_socket_channel.htm
  */
 
 
-public class NIOExample {
+public class CONSIDERTHISCLASS {
 
         public static class SocketChannelClient {
             public static void main(String[] args) throws IOException {

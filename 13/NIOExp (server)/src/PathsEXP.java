@@ -12,7 +12,7 @@ import static java.nio.file.Files.readAllLines;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 
-public class PathsEXPERIENCE {
+public class PathsEXP {
 
     public static void main(String[] args) throws IOException {
 ////======================== File ================================================
