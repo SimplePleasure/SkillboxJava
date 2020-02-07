@@ -13,12 +13,12 @@ public class DBConnection {
 
 //            1)batch approach==================================================
     private static PreparedStatement preparedStatement;                 //======
-    private static int butchCounter = 0;                                //======
     private static int butchSize = 20000;                               //======
+    private static int butchCounter = 0;                                //======
 
 //            2)buffering approach==============================================
-    private static StringBuilder buffer = new StringBuilder();          //======
-    private static int bufSize = 256_000;                               //======
+//    private static StringBuilder buffer = new StringBuilder();          //======
+//    private static int bufSize = 256_000;                               //======
 
 
     public static Connection getConnection() {
@@ -34,6 +34,12 @@ public class DBConnection {
 //                        "birthDate DATE NOT NULL, " +
 //                        "`count` INT NOT NULL, " +
 //                        "PRIMARY KEY(id))");
+
+                if (preparedStatement == null) {
+                    preparedStatement = connection.prepareStatement("INSERT INTO voter_count " +
+                            "(name, birthDate, `count`) VALUES (?,?,?)  ON DUPLICATE KEY UPDATE `count`=`count`+1 ");
+                }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -41,21 +47,16 @@ public class DBConnection {
         return connection;
     }
 
-    public static void countVoter(String name, String birthDay) throws SQLException {
+    public static void countVoter(String name, String birthDay) throws SQLException{
 
 
 //          1)batch approach================================================================
-        if (preparedStatement == null) {
-            preparedStatement = getConnection().prepareStatement("INSERT INTO voter_count " +
-                    "(name, birthDate, `count`) VALUES (?,?,?)  ON DUPLICATE KEY UPDATE `count`=`count`+1 ");
-        }
         birthDay = birthDay.replace('.', '-');
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, birthDay);
         preparedStatement.setInt(3, 1);
         preparedStatement.addBatch();
         if (butchCounter++ == butchSize) executeQuery();
-
 //          2)buffering approach============================================================
 //        if (buffer.length() > bufSize) executeQuery();
 //        if (buffer.length() > 0) {
@@ -64,17 +65,32 @@ public class DBConnection {
 //            buffer.append("INSERT INTO voter_count (name, birthDate, `count`) VALUES ");
 //        }
 //        buffer.append("('" + name + "', '" + birthDay + "', 1)");
-
     }
-    public static void executeQuery() throws SQLException {
+
+    public static void executeQuery() {
         long startInsert = System.currentTimeMillis();
 
-
 //          1)batch approach================================================================
-        preparedStatement.executeBatch();
-        preparedStatement.clearBatch();
-        butchCounter = 0;
-
+        try {
+            getConnection().setAutoCommit(false);
+            preparedStatement.executeBatch();
+            preparedStatement.clearBatch();
+            butchCounter = 0;
+            getConnection().commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 //          2)buffering approach============================================================
 //        buffer.append(" ON DUPLICATE KEY UPDATE `count`=`count`+1");
 //        getConnection().createStatement().execute(buffer.toString());
@@ -84,19 +100,25 @@ public class DBConnection {
         totalInsertTime += insertTime;
     }
 
-    public static void printVoterCounts() throws SQLException {
+    public static void printVoterCounts()  {
         long startSearch = System.currentTimeMillis();
 
-        String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > ?";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, 1);
-        ResultSet rs = preparedStatement.executeQuery();
-        while (rs.next()) {
-            System.out.println("\t" + rs.getString("name") + " (" +
-                    rs.getString("birthDate") + ") - " + rs.getInt("count"));
-        }
+        try {
 
-//        ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
+//            getConnection().prepareStatement("CREATE INDEX count ON learn.voter_count(count)").execute();
+            String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                System.out.println("\t" + rs.getString("name") + " (" +
+                        rs.getString("birthDate") + ") - " + rs.getInt("count"));
+            }
+//            getConnection().prepareStatement("ALTER TABLE learn.voter_count DROP INDEX count").execute();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         System.out.println("Time to insert: " + totalInsertTime);

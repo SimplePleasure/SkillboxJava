@@ -14,13 +14,11 @@ import java.util.*;
 /**
  * Created by Danya on 24.02.2016.
  */
-public class Loader
-{
-
+public class Loader {
 
     public static void main(String[] args) throws Exception
     {
-        String fileName = "res/data-1M.xml";
+        String fileName = "res/data-18M.xml";
         long start = System.currentTimeMillis();
         parseFile(fileName);
         System.out.println("Total time: " + (System.currentTimeMillis()-start));
@@ -33,7 +31,7 @@ public class Loader
         SAXParser parser = spf.newSAXParser();
         Handler h = new Handler();
         parser.parse(fileName, h);
-        h.printResults();
+
     }
 
 }

@@ -28,7 +28,7 @@ public class Task02Reduce {
      * @return
      */
     public static Integer multiply(List<Integer> linkedListOfNumbers) {
-        return linkedListOfNumbers.stream().reduce((sum, x) -> sum *= x).filter(x -> x<=100).orElse(-1);
+        return linkedListOfNumbers.stream().reduce((sum, x) -> sum * x).filter(x -> x<=100).orElse(-1);
     }
 
     /**

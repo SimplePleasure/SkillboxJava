@@ -17,19 +17,19 @@ public class Handler extends DefaultHandler {
     private HashMap<Voter, Integer> voterCounts = new HashMap<>();
 
 
+    @Override   // Создание Connection и PreparedStatement
+    public void startDocument() {
+            DBConnection.getConnection();
+    }
 
-
-    @Override
-    public void endDocument() throws SAXException {
-        try {
+    @Override   // Дописываем остаток
+    public void endDocument() {
             DBConnection.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            DBConnection.printVoterCounts();
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         if (qName.equals("voter")) {
             try {
                 String name = attributes.getValue("name");
@@ -55,15 +55,16 @@ public class Handler extends DefaultHandler {
         }
     }
 
-    public void printResults() {
-        System.out.println("Voting station work time: ");
-        for (Integer i : voteStationWorkTimes.keySet()) {
-            System.out.format("уч. %-7d %10s\n", i, voteStationWorkTimes.get(i));
-        }
-        try {
-            DBConnection.printVoterCounts();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
+//    public void printResults() {
+//        System.out.println("Voting station work time: ");
+//        for (Integer i : voteStationWorkTimes.keySet()) {
+//            System.out.format("уч. %-7d %10s\n", i, voteStationWorkTimes.get(i));
+//        }
+//        try {
+//            DBConnection.printVoterCounts();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
