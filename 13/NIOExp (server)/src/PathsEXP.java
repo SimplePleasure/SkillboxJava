@@ -23,13 +23,13 @@ public class PathsEXP {
 
 
 //======================== Folder creating =======================================
-        Path pp = Paths.get("./res/1");
-        if (!Files.exists(pp)) {
-            Files.createDirectories(pp);
+        Path folder = Paths.get("./res/1");
+        if (!Files.exists(folder)) {
+            Files.createDirectories(folder);
         }
 
 //======================== File creating =========================================
-        Path p = Paths.get(pp.toAbsolutePath().normalize() + "/text.txt");
+        Path p = Paths.get(folder.toAbsolutePath().normalize() + "/text.txt");
         if (!Files.exists(p)) {
             Files.createFile(p);
             System.out.println(p);

@@ -11,14 +11,11 @@ public class DBConnection {
     private static String dbPass = "12541254";
     private static long totalInsertTime = 0;
 
-//            1)batch approach==================================================
-    private static PreparedStatement preparedStatement;                 //======
-    private static int butchSize = 20000;                               //======
-    private static int butchCounter = 0;                                //======
 
-//            2)buffering approach==============================================
-//    private static StringBuilder buffer = new StringBuilder();          //======
-//    private static int bufSize = 256_000;                               //======
+    private static PreparedStatement preparedStatement;
+    private static int butchSize = 20000;
+    private static int butchCounter = 0;
+
 
 
     public static Connection getConnection() {
@@ -32,12 +29,11 @@ public class DBConnection {
 //                        "id INT NOT NULL AUTO_INCREMENT, " +
 //                        "name TINYTEXT NOT NULL, " +
 //                        "birthDate DATE NOT NULL, " +
-//                        "`count` INT NOT NULL, " +
+//                        "`count` TINYINT NOT NULL, " +
 //                        "PRIMARY KEY(id))");
-
                 if (preparedStatement == null) {
                     preparedStatement = connection.prepareStatement("INSERT INTO voter_count " +
-                            "(name, birthDate, `count`) VALUES (?,?,?)  ON DUPLICATE KEY UPDATE `count`=`count`+1 ");
+                            "(name, birthDate) VALUES (?,?)");
                 }
 
             } catch (SQLException e) {
@@ -50,27 +46,16 @@ public class DBConnection {
     public static void countVoter(String name, String birthDay) throws SQLException{
 
 
-//          1)batch approach================================================================
         birthDay = birthDay.replace('.', '-');
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, birthDay);
-        preparedStatement.setInt(3, 1);
         preparedStatement.addBatch();
         if (butchCounter++ == butchSize) executeQuery();
-//          2)buffering approach============================================================
-//        if (buffer.length() > bufSize) executeQuery();
-//        if (buffer.length() > 0) {
-//            buffer.append(", ");
-//        } else {
-//            buffer.append("INSERT INTO voter_count (name, birthDate, `count`) VALUES ");
-//        }
-//        buffer.append("('" + name + "', '" + birthDay + "', 1)");
     }
 
     public static void executeQuery() {
         long startInsert = System.currentTimeMillis();
 
-//          1)batch approach================================================================
         try {
             getConnection().setAutoCommit(false);
             preparedStatement.executeBatch();
@@ -91,22 +76,17 @@ public class DBConnection {
                 e.printStackTrace();
             }
         }
-//          2)buffering approach============================================================
-//        buffer.append(" ON DUPLICATE KEY UPDATE `count`=`count`+1");
-//        getConnection().createStatement().execute(buffer.toString());
-//        buffer = new StringBuilder();
 
         long insertTime = System.currentTimeMillis()-startInsert;
         totalInsertTime += insertTime;
     }
 
     public static void printVoterCounts()  {
+
         long startSearch = System.currentTimeMillis();
-
         try {
-
-//            getConnection().prepareStatement("CREATE INDEX count ON learn.voter_count(count)").execute();
-            String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > ?";
+            getConnection().prepareStatement("CREATE INDEX name_birthDay USING BTREE ON learn.voter_count (name (50),birthDate);").execute();
+            String sql = "SELECT name, birthDate, COUNT(*) 'count' FROM learn.voter_count vc GROUP BY name, birthDate HAVING count > ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 1);
             ResultSet rs = preparedStatement.executeQuery();
@@ -114,12 +94,11 @@ public class DBConnection {
                 System.out.println("\t" + rs.getString("name") + " (" +
                         rs.getString("birthDate") + ") - " + rs.getInt("count"));
             }
-//            getConnection().prepareStatement("ALTER TABLE learn.voter_count DROP INDEX count").execute();
-            
+            getConnection().prepareStatement("ALTER TABLE learn.voter_count DROP INDEX name_birthDay").execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         System.out.println("Time to insert: " + totalInsertTime);
         System.out.println("Time to search: " + (System.currentTimeMillis()-startSearch));

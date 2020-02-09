@@ -31,13 +31,11 @@ public class NioAsyncFileChannel {
 
 
     static class FileEditFutureApproach {
-
-//        Метод будет работать правильно при размере файла менее 65_536.
+//        Блокирующий подход. Класс будет работать правильно при размере файла менее 65_536.
         public static int fileLength(Path path) {
             return (int)path.toFile().length();
         }
 
-//        Метод будет работать правильно при размере файла менее 65_536.
         public static void printFileContent(Path path) throws Exception {
             AsynchronousFileChannel channel = AsynchronousFileChannel.open(path, StandardOpenOption.READ);
             ByteBuffer bb = ByteBuffer.allocate((int) channel.size());
@@ -46,8 +44,6 @@ public class NioAsyncFileChannel {
             channel.close();
 
             System.out.println(new String(bb.array()));
-
-
         }
 
         public static void write(Path path,int pos, String text) throws Exception {
@@ -59,7 +55,7 @@ public class NioAsyncFileChannel {
     }
 
     static class FieldEditCompletionHandlerApproach {
-
+//        Non-blocking approach.
 
         public static void read(Path path, int pos) throws Exception{
             AsynchronousFileChannel channel = AsynchronousFileChannel.open(path, StandardOpenOption.READ);
