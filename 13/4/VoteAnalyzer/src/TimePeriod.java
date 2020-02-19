@@ -59,15 +59,27 @@ public class TimePeriod implements Comparable<TimePeriod>
     @Override
     public int compareTo(TimePeriod period)
     {
-        SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy.MM.dd");
-        Date current = new Date();
-        Date compared = new Date();
-        try {
-            current = dayFormat.parse(dayFormat.format(new Date(from)));
-            compared = dayFormat.parse(dayFormat.format(new Date(period.from)));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        SimpleDateFormat f = new SimpleDateFormat("dd");
+        Date d = new Date(from-period.from);
+        String res = f.format(d);
+        if (res.equals("01") | res.equals("31")) {
+            return 0;
+        } else {
+          return 1;
         }
-        return current.compareTo(compared);
+
+
+
+
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy.MM.dd");
+//        Date current = new Date();
+//        Date compared = new Date();
+//        try {
+//            current = dayFormat.parse(dayFormat.format(new Date(from)));
+//            compared = dayFormat.parse(dayFormat.format(new Date(period.from)));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return current.compareTo(compared);
     }
 }

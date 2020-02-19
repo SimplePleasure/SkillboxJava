@@ -22,6 +22,8 @@ public class WorkTime
         TimePeriod newPeriod = new TimePeriod(visit, visit);
         for(TimePeriod period : periods)
         {
+
+
             if(period.compareTo(newPeriod) == 0)
             {
                 period.appendTime(visit);

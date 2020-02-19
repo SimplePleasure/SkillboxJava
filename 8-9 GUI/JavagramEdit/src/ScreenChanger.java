@@ -18,6 +18,7 @@ public class ScreenChanger extends JFrame
         setContentPane(checkin.getRootPanel());
         checkin.setButton( e -> confirm());
 
+
         checkin.setButton( e -> personal.setUserPhone( checkin.getNumber()) );
         checkin.setCloseButton( e -> close());
     }
