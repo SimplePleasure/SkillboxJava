@@ -22,9 +22,6 @@ public class Loader {
         long start = System.currentTimeMillis();
         parseFile(fileName);
         System.out.println("Total time: " + (System.currentTimeMillis()-start));
-
-
-
     }
 
     private static void parseFile(String fileName) throws Exception

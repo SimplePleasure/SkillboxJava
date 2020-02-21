@@ -6,26 +6,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Handler extends DefaultHandler {
 
-    private SimpleDateFormat birthDayFormat = new SimpleDateFormat("yyyy.MM.dd");
-    private SimpleDateFormat visitDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-
-    private HashMap<Integer, WorkTime> voteStationWorkTimes = new HashMap<>();
-    private HashMap<Voter, Integer> voterCounts = new HashMap<>();
+    private HashMap<String, WorkTime> voteStationWorkTimes = new HashMap<>();
 
 
     @Override   // Создание Connection и PreparedStatement
     public void startDocument() {
-            DBConnection.getConnection();
+        DBConnection.getConnection();
     }
 
     @Override   // Дописываем остаток
     public void endDocument() {
-            DBConnection.executeQuery();
-            DBConnection.printVoterCounts();
+        DBConnection.executeQuery();
+        printWorkTime();
+        DBConnection.printVoterCounts();
+
     }
 
     @Override
@@ -40,31 +39,21 @@ public class Handler extends DefaultHandler {
             }
 
         } else if (qName.equals("visit")) {
-            try {
-                int station = Integer.parseInt(attributes.getValue("station"));
-                Date visit = visitDateFormat.parse(attributes.getValue("time"));
-                WorkTime workTime = voteStationWorkTimes.get(station);
-                if (workTime == null) {
-                    workTime = new WorkTime();
-                    voteStationWorkTimes.put(station, workTime);
-                }
-                workTime.addVisitTime(visit.getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+            String station = attributes.getValue("station");
+            String visit = attributes.getValue("time");
+            WorkTime workTime = voteStationWorkTimes.get(station);
+            if (workTime == null) {
+                workTime = new WorkTime();
+                voteStationWorkTimes.put(station, workTime);
             }
+            workTime.addVisitTime(visit);
         }
     }
 
-
-//    public void printResults() {
-//        System.out.println("Voting station work time: ");
-//        for (Integer i : voteStationWorkTimes.keySet()) {
-//            System.out.format("уч. %-7d %10s\n", i, voteStationWorkTimes.get(i));
-//        }
-//        try {
-//            DBConnection.printVoterCounts();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    void printWorkTime() {
+        for (Map.Entry<String, WorkTime> workTime : voteStationWorkTimes.entrySet()) {
+            System.out.println("Уч." + workTime.getKey() + "\t" + workTime.getValue());
+        }
+    }
 }

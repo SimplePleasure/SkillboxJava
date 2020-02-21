@@ -8,12 +8,12 @@ import java.io.IOException;
 public class Lipids {
     private JPanel rootPanel;
     private JPanel classifier;
+    private JScrollPane scroll;
     BufferedImage img;
 
 
     Lipids() {
         try {
-//            img = ImageIO.read(new File("./res/lipid.jpg"));
             img = ImageIO.read(getClass().getResource("lipid.jpg"));
         } catch (IOException e) {
             e.printStackTrace();

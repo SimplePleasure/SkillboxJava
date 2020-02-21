@@ -83,6 +83,8 @@ public class DBConnection {
 
     public static void printVoterCounts()  {
 
+
+
         long startSearch = System.currentTimeMillis();
         try {
             getConnection().prepareStatement("CREATE INDEX name_birthDay USING BTREE ON learn.voter_count (name (50),birthDate);").execute();

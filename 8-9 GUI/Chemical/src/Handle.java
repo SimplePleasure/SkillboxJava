@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Handle extends JFrame{
+public class Handle extends JFrame {
     private JPanel rootPanel;
     private JButton carbohydrates;
     private JButton proteins;
@@ -14,7 +14,7 @@ public class Handle extends JFrame{
 
     public Handle() {
 
-        setSize(960, 630);
+        setSize(980, 630);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Химия 10-11 класс. Органические / Неорганические в-ва");
         setLocationRelativeTo(null);
