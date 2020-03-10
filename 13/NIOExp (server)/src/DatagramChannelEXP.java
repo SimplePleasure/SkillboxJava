@@ -71,8 +71,8 @@ public class DatagramChannelEXP {
                 System.err.println("Client: Data was sent.");
 
                 buffer.clear();
-                SocketAddress serverAdress = channel.receive(buffer);
                 System.err.println("Client: Waiting reply...");
+                SocketAddress serverAdress = channel.receive(buffer);
                 System.err.println("Client: Reply received from" + serverAdress);
 
                 int caretPos = buffer.position();

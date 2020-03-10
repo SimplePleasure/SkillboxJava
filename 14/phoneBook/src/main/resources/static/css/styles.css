@@ -1,0 +1,27 @@
+
+#addContact-form {
+
+width: 125px;
+height: 180px;
+background: yellow;
+//outline: 3px solid #000;
+border: 20px solid #0FA;
+border-radius: 45px;
+
+position: fixed;
+left: 150px;
+top: 20px;
+}
+
+#header {
+position: fixed;
+}
+
+#save-btn {
+margin-left: 65px;
+}
+
+#my-div {
+position: relative;
+left: 400px;
+}

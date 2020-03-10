@@ -1,0 +1,44 @@
+.btn {
+    background: blue;
+    color: #f2f2f2;
+    font-size: 20px;
+    transition: all 1000ms ease;
+    position: relative;
+    top: 900px;
+    left: 1600px;
+    position: fixed;
+    z-index: 10;
+
+}
+
+.test{
+position: fixed;
+z-index: 11;
+}
+.img {
+margin-left: 185px;
+position: relative;
+z-index: 12;
+}
+
+
+.btn:hover {
+	width: 6%;
+	background: rgba(0,0,0,0);
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #3a7999;
+}
+.btn:hover:before {
+	left: 7px;
+}
+
+
+
+
+
+.t{
+//border-spacing: 10px 50px; ?
+font-size: 20pt;
+width: 70%;
+}
+

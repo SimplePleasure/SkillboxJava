@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<voters>
+    <voter name="Тиронов Мартьян" birthDay="1932.11.08">
+        <visit station="1" time="2015.09.17 14:51:40" />
+    </voter>
+    <voter name="Тиронов Мартьян" birthDay="1932.11.08">
+        <visit station="1" time="2015.09.18 15:51:40" />
+    </voter>
+    <voter name="Тиронов Мартьян" birthDay="1932.11.08">
+        <visit station="1" time="2015.09.17 12:51:40" />
+    </voter>
+    <voter name="Тиронов Мартьян" birthDay="1932.11.08">
+        <visit station="1" time="2015.09.18 13:51:40" />
+    </voter>
+    <voter name="Тиронов Мартьян" birthDay="1932.11.08">
+        <visit station="1" time="2015.09.17 11:51:40" />
+    </voter>
+
+</voters>
