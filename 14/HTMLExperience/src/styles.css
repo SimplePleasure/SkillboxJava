@@ -11,6 +11,11 @@
 
 }
 
+.even {
+background: #ffe4b5;
+color: black;
+}
+
 .test{
 position: fixed;
 z-index: 11;

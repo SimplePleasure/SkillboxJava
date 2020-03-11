@@ -24,9 +24,11 @@
 
 
                 $( function() {
-                $( "#sortable" ).sortable();
+                $( "#sortable" ).sortable({
+                distance: 5
+                });
                 $( "#sortable" ).disableSelection();
-                 } );
+                 });
 
 
 
@@ -99,8 +101,6 @@
             <input type="button" size="20" ondblclick="history.back();" value="Double click to back"
                    onmouseover="value ='Прювет (:'" onmouseout="value='Double click to back'"/>
             <br><input type="checkbox" onchange="alert('change')">
-            <br><a href="http://www.google.com">Search something</a>
-            <br><a onclick="return location.href='http://www.google.com'" style="color: red">Search something</a>
             <br><br><br>
 
 
@@ -115,13 +115,13 @@
                     <li><a href="#tab2">Tab 2</a> </li>
                     <li><a href="#tab3">Tab 3</a> </li>
                 </ul>
-                <div id="tab1"><p>tab1 tab1 tab1 tab1 tab1 </p></div>
-                <div id="tab2"><p>tab2 tab2 tab2 tab2 tab2 </p></div>
+                <div id="tab1"><p><a href="http://www.google.com">Search something</a></p></div>
+                <div id="tab2"><p><a onclick="return location.href='http://www.google.com'" style="color: red">Search something</a> </p></div>
                 <div id="tab3"><p>tab3 tab3 tab3 tab3 tab3 </p></div>
             </div>
 
 
-            <div id="dialogDiv" title="title">
+            <div id="dialogDiv" title="title" >
                 <p>Some text Some text Some text Some text Some text Some text Some text Some text Some text</p>
             </div>
 
@@ -129,10 +129,14 @@
 
 
 
-            <pre id="sortable">
+            <pre id="sortable" distance="1">
                 <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> aaaaaaaaa</p>
                 <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>bbbbbbbbb</p>
                 <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>ccccccccč</p>
+                <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> ddddddddd</p>
+                <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> eeeeeeeee</p>
+                <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> ffffffffff</p>
+                <p class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span> ggggggggggg</p>
             </pre>
 <!--            <ul id="sortable">-->
 <!--                <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>-->

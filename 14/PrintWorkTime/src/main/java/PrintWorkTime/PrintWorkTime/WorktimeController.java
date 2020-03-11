@@ -27,7 +27,8 @@ public class WorktimeController {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append("<table border=\"1\" bordercolor=\"yellow\" cellspacing=\"5\" > <tr> <td>station number</td><td>17.09.2015</td><td>19.09.2015</td><td>21.09.2015</td></tr>");
+        builder.append("<table id=\"table\" border=\"1\" bordercolor=\"blue\" cellpadding=\"10\" align=\"center\">" +
+                " <tr align=\"center\"><td>station</td><td a>17.09.2015</td><td>19.09.2015</td><td>21.09.2015</td></tr>");
         for(Map.Entry<Integer, VoteStationWorkTime> e : m.entrySet()) {
 
             builder.append("<tr> <td>" + e.getKey() + "</td>");
@@ -41,11 +42,11 @@ public class WorktimeController {
                 int lastDate = Integer.parseInt(e.getValue().periods.last().getVisitDate().substring(8, 10));
 
                 if (firstDate ==17 && lastDate == 19) {
-                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td><td></td>" );
+                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td><td bgcolor=\"green\"></td>" );
                 } else if (firstDate ==19 && lastDate == 21) {
-                    builder.append("<td></td><td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td>" );
+                    builder.append("<td bgcolor=\"green\"></td><td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td>" );
                 } else if (firstDate ==17 && lastDate == 21) {
-                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td></td><td>" + e.getValue().periods.first().toString() + "</td>" );
+                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td bgcolor=\"green\"></td><td>" + e.getValue().periods.first().toString() + "</td>" );
                 }
             }
             builder.append("</tr>");

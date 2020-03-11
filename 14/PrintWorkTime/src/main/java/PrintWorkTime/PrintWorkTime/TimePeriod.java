@@ -7,7 +7,7 @@ import java.util.Date;
 public class TimePeriod implements Comparable<TimePeriod>{
 
     static SimpleDateFormat day = new SimpleDateFormat("dd");
-    static SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss");
+    static SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
     String visitDate;
     Date from;
     Date to;
