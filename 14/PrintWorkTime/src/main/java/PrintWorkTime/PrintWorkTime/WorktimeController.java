@@ -42,11 +42,14 @@ public class WorktimeController {
                 int lastDate = Integer.parseInt(e.getValue().periods.last().getVisitDate().substring(8, 10));
 
                 if (firstDate ==17 && lastDate == 19) {
-                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td><td bgcolor=\"green\"></td>" );
+                    builder.append("<td>").append(e.getValue().periods.first().toString()).append("</td><td>")
+                            .append(e.getValue().periods.last().toString()).append("</td><td bgcolor=\"green\"></td>");
                 } else if (firstDate ==19 && lastDate == 21) {
-                    builder.append("<td bgcolor=\"green\"></td><td>" + e.getValue().periods.first().toString() + "</td><td>" + e.getValue().periods.first().toString() + "</td>" );
+                    builder.append("<td bgcolor=\"green\"></td><td>").append(e.getValue().periods.first().toString())
+                            .append("</td><td>").append(e.getValue().periods.last().toString()).append("</td>");
                 } else if (firstDate ==17 && lastDate == 21) {
-                    builder.append("<td>" + e.getValue().periods.first().toString() + "</td><td bgcolor=\"green\"></td><td>" + e.getValue().periods.first().toString() + "</td>" );
+                    builder.append("<td>").append(e.getValue().periods.first().toString()).append("</td><td bgcolor=\"green\"></td><td>")
+                            .append(e.getValue().periods.last().toString()).append("</td>");
                 }
             }
             builder.append("</tr>");
@@ -58,5 +61,6 @@ public class WorktimeController {
 
 
 }
+
 
 
