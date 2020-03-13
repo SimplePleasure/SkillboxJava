@@ -14,7 +14,7 @@
 
 
 <body>
-    <div id="addContact-form" style="display: none">
+    <div class="form" id="addContact-form" style="display: none">
         <form>
             <h3 align="center">Add contact</h3>
             <label>Add new contact</label>
@@ -22,7 +22,16 @@
             <label>Phone number</label>
             <input type="text" name="phone">
             <hr>
-            <input id="save-btn" type="button" value="save">
+            <input class="btn" id="save-btn" type="button" value="save">
+        </form>
+    </div>
+    <div class="form" id="delContact-form" style="display: none">
+        <form>
+            <h3 align="center">Delete contact</h3>
+            <label>Contact name</label>
+            <input id="delOnName" type="text" name="name" value="">
+            <hr>
+            <input class="btn" id="delBtn" type="button" value="Delete">
         </form>
     </div>
 
@@ -31,9 +40,9 @@
     <header id="header">
         <br><br>
         <h2>PhoneBook</h2>
-        <input id="show-form" type="button" value="show">
-<!--        <br><br>-->
-<!--        <input id="delForm" type="text", name="name"> <input id="delBtn" type="button" value="del">-->
+        <input id="show-form" type="button" value="Add contact">
+        <input type="button" id="showDel-form" value="Delete contact">
+        <br><br>
     </header>
 
 

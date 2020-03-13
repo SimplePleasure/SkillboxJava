@@ -7,6 +7,11 @@ public class Contact {
     String phone;
 
 
+
+
+
+
+
     public String getName() {
         return name;
     }

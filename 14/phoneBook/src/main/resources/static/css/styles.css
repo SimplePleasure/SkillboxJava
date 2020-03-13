@@ -1,27 +1,46 @@
 
 #addContact-form {
-
-width: 125px;
-height: 180px;
-background: yellow;
-//outline: 3px solid #000;
-border: 20px solid #0FA;
-border-radius: 45px;
-
-position: fixed;
-left: 150px;
-top: 20px;
+    width: 125px;
+    height: 180px;
+    background: yellow;
+    //outline: 3px solid #000;
+    border: 20px solid #0FA;
+    border-radius: 45px;
 }
+
+#delContact-form {
+    width: 125px;
+    height: 145px;
+    background: yellow;
+    //outline: 3px solid #000;
+    border: 20px solid #0FA;
+    border-radius: 45px;
+}
+
+.form {
+    position: fixed;
+    left: 800px;
+    top: 50px;
+}
+
+
+label {
+    margin-left: 5%;
+}
+
+
 
 #header {
 position: fixed;
+left: 1000px;
 }
 
-#save-btn {
+.btn {
 margin-left: 65px;
 }
 
 #my-div {
 position: relative;
 left: 400px;
+z-index: -1;
 }

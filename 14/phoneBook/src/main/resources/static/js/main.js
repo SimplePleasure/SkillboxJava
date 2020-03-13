@@ -5,16 +5,27 @@ $(document).ready(function(){
 
 
 
-    $('#show-form').click(function() {
-        $('#addContact-form').css('display', '');
-    });
 //      скрыть div щелчком по кнопке
 //    $('#hide').click(function(event) {
 //        $('#addContact-form').css('display', 'none');
 //    });
-    $(document).mouseup(function (e) {
+    $('#show-form').click(function() {
+        $('#addContact-form').css('display', '');
+    });
+    $(document).mouseup(function (event) {
         var container = $('#addContact-form');
-        if (container.has(e.target).length === 0){
+        if (container.has(event.target).length === 0){
+            container.hide();
+        }
+    });
+
+
+    $('#showDel-form').click(function() {
+            $('#delContact-form').css('display', '');
+        });
+    $(document).mouseup(function (event) {
+        var container = $('#delContact-form');
+        if (container.has(event.target).length === 0){
             container.hide();
         }
     });
@@ -31,7 +42,6 @@ $(document).ready(function(){
                 $('#my-div').append('<div>' + contact + '</div>');
             };
 
-
             $.get('/contact/', function(response) {
                 for (i in response) {
                     appendContact(response[i]);
@@ -40,7 +50,7 @@ $(document).ready(function(){
 
 
             $('#save-btn').click( function() {
-                var data = $('#addContact-form form').serialize();
+                var data = $('#addContact-form form').serialize();    //  form - обращение к форме
                 $.ajax({
                     method: "POST",
                     url: '/contact/',
@@ -59,18 +69,20 @@ $(document).ready(function(){
                 });
             });
 
-//            $('#delBtn').click(function() {
-//                var name = $('#delForm').serialize();
-//                console.log(name);
-//                $.ajax({
-//                    method: "DELETE",
-//                    url: 'contact' + name,
-//                    data: name,
-//                    success: function() {
-//                         location.reload();
-//                    }
-//                });
-//            });
+
+
+            delBtn.onclick = function() {
+                var name = document.getElementById("delOnName").value;
+                $.ajax({
+                    method: "DELETE",
+                    url: '/contact/'+name,
+                    success: location.reload()
+                });
+            }
+
+
+
+
 
 
 
