@@ -20,13 +20,14 @@ public class Storage {
         return id;
     }
 
-    public static void delete (String name) {
+    public static boolean delete (String name) {
         for(Contact c: list) {
             if (c.getName().equals(name)) {
                 list.remove(c);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
 

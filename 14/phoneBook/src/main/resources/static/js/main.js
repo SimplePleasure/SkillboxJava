@@ -35,11 +35,14 @@ $(document).ready(function(){
 
 
 
-
-
             const appendContact = function(data) {
-                var contact = '<h4>' + data.name + '</h4>' + 'phone: ' + data.phone;
-                $('#my-div').append('<div>' + contact + '</div>');
+            let h5 = document.createElement('h5');
+            h5.className = "contact";
+            h5.innerHTML =  '<li>' + data.name + '</li>' + ' phone: ' + data.phone;
+            $('#contactDiv').append(h5);
+//                var contact = '<h4>' + data.name + '</h4>' + 'phone: ' + data.phone;
+//                $('#contactDiv').append('<span class="span" style="border: 1px dotted">' + contact + '</span>');
+
             };
 
             $.get('/contact/', function(response) {
@@ -70,7 +73,6 @@ $(document).ready(function(){
             });
 
 
-
             delBtn.onclick = function() {
                 var name = document.getElementById("delOnName").value;
                 $.ajax({
@@ -82,6 +84,18 @@ $(document).ready(function(){
 
 
 
+            contactDiv.onclick = function(event) {
+                let target = event.target;
+                if(target.className != 'contact') return;
+                var toDelete = target.firstChild.innerHTML;
+                $.ajax({
+                    method: "DELETE",
+                    url: '/contact/'+toDelete,
+                    success: function() {
+                        target.style.visibility = 'hidden';
+                    }
+                });
+            }
 
 
 

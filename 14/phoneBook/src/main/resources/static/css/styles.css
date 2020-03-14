@@ -19,8 +19,8 @@
 
 .form {
     position: fixed;
-    left: 800px;
-    top: 50px;
+    top: 150px;
+    left: 100px;
 }
 
 
@@ -32,15 +32,15 @@ label {
 
 #header {
 position: fixed;
-left: 1000px;
+left: 100px;
 }
 
 .btn {
 margin-left: 65px;
 }
 
-#my-div {
+
+#contactDiv {
 position: relative;
 left: 400px;
-z-index: -1;
 }
