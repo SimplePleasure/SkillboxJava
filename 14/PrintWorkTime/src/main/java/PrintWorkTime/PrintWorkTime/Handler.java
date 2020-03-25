@@ -1,23 +1,23 @@
 package PrintWorkTime.PrintWorkTime;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.TreeMap;
-
 public class Handler extends DefaultHandler {
 
 
-    static TreeMap<Integer, VoteStationWorkTime> workTimeStorage = new TreeMap<>();
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+    TreeMap<Integer, VoteStationWorkTime> workTimeStorage = new TreeMap<>();
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         if (qName.equals("visit")) {
             Integer station = Integer.parseInt(attributes.getValue("station"));
-            String visit = attributes.getValue("time");
+            LocalDateTime visit = LocalDateTime.parse(attributes.getValue("time"), formatter);
 
 
             VoteStationWorkTime voteStation = workTimeStorage.get(station);
@@ -34,13 +34,4 @@ public class Handler extends DefaultHandler {
         return workTimeStorage;
     }
 
-
-
-    @Override
-    public void endDocument() throws SAXException {
-
-
-
-
-    }
 }

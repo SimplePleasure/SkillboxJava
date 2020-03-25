@@ -1,59 +1,50 @@
 package PrintWorkTime.PrintWorkTime;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-public class TimePeriod implements Comparable<TimePeriod>{
+public class TimePeriod implements Comparable<TimePeriod> {
 
-    static SimpleDateFormat day = new SimpleDateFormat("dd");
-    static SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-    String visitDate;
-    Date from;
-    Date to;
 
-    TimePeriod (String visit) {
-        try {
-            visitDate = visit.substring(0, 10);
-            Date visitTime = df.parse(visit.substring(11, 19));
-            from = visitTime;
-            to = visitTime;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    private LocalDate visitDate;
+    LocalTime from;
+    LocalTime to;
+
+    TimePeriod(LocalDateTime visit) {
+        visitDate = visit.toLocalDate();
+        from = visit.toLocalTime();
+        to = visit.toLocalTime();
+
     }
 
 
-    public String getVisitDate() {
+    public LocalDate getVisitDate() {
         return visitDate;
     }
-    public void addTime(String time) {
 
-        try {
-            Date visit = df.parse(time);
-            if (from.after(visit)) {
-                from = visit;
-            }
-            if (to.before(visit)) {
-                to = visit;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void addTime(LocalTime time) {
+
+        if (from.isAfter(time)) {
+            from = time;
+        } else if (to.isBefore(time)) {
+            to = time;
         }
 
     }
 
     @Override
     public String toString() {
-        return df.format(from) + " - " + df.format(to);
+        return formatter.format(from) + " - " + formatter.format(to);
+//        return from.getHour()+":"+from.getMinute() + " - " + to.getHour() + ":" + to.getMinute();
     }
 
     @Override
     public int compareTo(TimePeriod o) {
-        int currentDay = Integer.parseInt(visitDate.substring(8,10));
-        int comparedDay = Integer.parseInt(o.getVisitDate().substring(8,10));
-        if (currentDay>comparedDay) return 1;
-        if (currentDay<comparedDay) return -1;
+        if (visitDate.isAfter(o.getVisitDate()))  return 1;
+        if (visitDate.isBefore(o.getVisitDate())) return -1;
         return 0;
     }
 }

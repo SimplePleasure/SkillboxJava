@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote stations work-times</title>
+</head>
+<body>
+    <table border="1" align="center">
+        <tr>
+            <td>Station №</td><td th:text = "${one}">first day</td><td th:text = "${two}">second day</td><td th:text = "${three}">third day</td>
+        </tr>
+
+        <tr  th:each="entry : ${voteTable}">
+<!--            <td th:text = "${entry.getKey()}"></td>-->
+<!--            <td th:text = "${entry.getValue()}"></td>-->
+            <td th:text = "${entry.getKey()}"></td>
+            <td th:utext="${entry.getValue()} "></td>
+        </tr>
+
+<!--        <tr th:attr = "data-id= ${entry.getKey()}" th:text= "${entry.getValue()}">-->
+
+<!--        </tr>-->
+    </table>
+
+</body>
+</html>

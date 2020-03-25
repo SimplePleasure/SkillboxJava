@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th = "http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Contacts</title>
@@ -39,7 +39,7 @@
 
     <header id="header">
         <br><br>
-        <h2>PhoneBook</h2>
+        <h2>PhoneBook (<span th:text="${Count}">0</span>)</h2>
         <input id="show-form" type="button" value="Add contact">
         <input type="button" id="showDel-form" value="Delete contact">
         <br><br>
@@ -48,6 +48,9 @@
 
 
     <div id="contactDiv"> <ul> </ul>
+        <div th:each="contact : ${Contacts}">
+            <li class="contact" th:attr = "data-id=${contact.id}" th:text="${contact.name} +' '+ ${contact.phone}"></li>
+        </div>
     </div>
 
 

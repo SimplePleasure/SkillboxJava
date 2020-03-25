@@ -1,6 +1,6 @@
 package main;
 
-import response.Contact;
+import main.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     $('#showDel-form').click(function() {
             $('#delContact-form').css('display', '');
-        });
+    });
     $(document).mouseup(function (event) {
         var container = $('#delContact-form');
         if (container.has(event.target).length === 0){
@@ -36,20 +36,21 @@ $(document).ready(function(){
 
 
             const appendContact = function(data) {
-            let h5 = document.createElement('h5');
-            h5.className = "contact";
-            h5.innerHTML =  '<li>' + data.name + '</li>' + ' phone: ' + data.phone;
-            $('#contactDiv').append(h5);
-//                var contact = '<h4>' + data.name + '</h4>' + 'phone: ' + data.phone;
-//                $('#contactDiv').append('<span class="span" style="border: 1px dotted">' + contact + '</span>');
+            let el = document.createElement('li');
+            el.className = "contact";
+            el.setAttribute('data-id', data.id);
+            el.innerHTML = data.name + ' ' + data.phone;
+            $('#contactDiv').append(el);
+//            var contact = '<h4>' + data.name + '</h4>' + 'phone: ' + data.phone;
+//            $('#contactDiv').append('<span class="span" style="border: 1px dotted">' + contact + '</span>');
 
             };
 
-            $.get('/contact/', function(response) {
-                for (i in response) {
-                    appendContact(response[i]);
-                }
-            });
+//            $.get('/contact/', function(response) {
+//                for (i in response) {
+//                    appendContact(response[i]);
+//                }
+//            });
 
 
             $('#save-btn').click( function() {
@@ -87,15 +88,18 @@ $(document).ready(function(){
             contactDiv.onclick = function(event) {
                 let target = event.target;
                 if(target.className != 'contact') return;
-                var toDelete = target.firstChild.innerHTML;
+                var toDelete = target.getAttribute('data-id');
                 $.ajax({
                     method: "DELETE",
                     url: '/contact/'+toDelete,
                     success: function() {
-                        target.style.visibility = 'hidden';
+                        target.parentNode.removeChild(target);
                     }
                 });
             }
+
+
+
 
 
 
