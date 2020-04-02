@@ -14,7 +14,7 @@
             <td th:text = "${entry.getKey()}"></td>
             <td th:each="row : ${entry.getValue().periods}" th:attr="style='text-align:center'" th:switch="${row.toString().length()}">
                 <span th:case="0">
-                    <span  th:attr="style='background-color:lime'">Out of work</span>
+                    <span  th:attr="style='background-color:chartreuse'">non-working</span>
                 </span>
                 <span th:case="*">
                     <span th:text="${row}"></span>
