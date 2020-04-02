@@ -1,7 +1,6 @@
 package PrintWorkTime.PrintWorkTime;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,6 +25,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
         if(from == null) {
             from = time;
             to = time;
+            return;
         }
 
         if (from.isAfter(time)) {
@@ -37,7 +37,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
 
     @Override
     public String toString() {
-        if (from == null && to ==null ) {
+        if (from == null && to == null) {
             return "";
         }
         return formatter.format(from) + " - " + formatter.format(to);

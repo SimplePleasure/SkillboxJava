@@ -6,8 +6,8 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.TreeMap;
-public class Handler extends DefaultHandler {
 
+public class Handler extends DefaultHandler {
 
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
     TreeMap<Integer, VoteStationWorkTime> workTimeStorage = new TreeMap<>();
@@ -18,7 +18,6 @@ public class Handler extends DefaultHandler {
         if (qName.equals("visit")) {
             Integer station = Integer.parseInt(attributes.getValue("station"));
             LocalDateTime visit = LocalDateTime.parse(attributes.getValue("time"), formatter);
-
 
             VoteStationWorkTime voteStation = workTimeStorage.get(station);
             if (voteStation == null) {

@@ -12,7 +12,7 @@
         </tr>
         <tr  th:each="entry : ${voteTable}">
             <td th:text = "${entry.getKey()}"></td>
-            <td th:each="row : ${entry.getValue()}" th:attr="style='text-align:center'" th:switch="${row.toString().length()}">
+            <td th:each="row : ${entry.getValue().periods}" th:attr="style='text-align:center'" th:switch="${row.toString().length()}">
                 <span th:case="0">
                     <span  th:attr="style='color:blue'">Out of work</span>
                 </span>

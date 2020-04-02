@@ -1,27 +1,17 @@
 package PrintWorkTime.PrintWorkTime;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TreeSet;
 
 public class VoteStationWorkTime {
 
-
-    TreeSet<TimePeriod> periods;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    LocalDate first = LocalDate.parse("17.09.2015", formatter);
-    LocalDate second = LocalDate.parse("19.09.2015", formatter);
-    LocalDate third = LocalDate.parse("21.09.2015", formatter);
-
+    public TreeSet<TimePeriod> periods;
 
     VoteStationWorkTime() {
         periods = new TreeSet<>();
-        periods.add(new TimePeriod(first));
-        periods.add(new TimePeriod(second));
-        periods.add(new TimePeriod(third));
-
-
+        periods.add(new TimePeriod(WorktimeController.dayOne));
+        periods.add(new TimePeriod(WorktimeController.dayTwo));
+        periods.add(new TimePeriod(WorktimeController.dayThree));
     }
 
     public void addVisitTime(LocalDateTime visit) {
@@ -32,9 +22,4 @@ public class VoteStationWorkTime {
             }
         }
     }
-
-    public TreeSet<TimePeriod> getPeriods() {
-        return periods;
-    }
-
 }
