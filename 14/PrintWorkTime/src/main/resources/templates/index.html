@@ -5,21 +5,22 @@
     <title>Vote stations work-times</title>
 </head>
 <body>
+
     <table border="1" align="center">
         <tr>
-            <td>Station №</td><td th:text = "${one}">first day</td><td th:text = "${two}">second day</td><td th:text = "${three}">third day</td>
+            <th>Station №</th><th th:text = "${one}">first day</th><th th:text = "${two}">second day</th><th th:text = "${three}">third day</th>
         </tr>
-
         <tr  th:each="entry : ${voteTable}">
-<!--            <td th:text = "${entry.getKey()}"></td>-->
-<!--            <td th:text = "${entry.getValue()}"></td>-->
             <td th:text = "${entry.getKey()}"></td>
-            <td th:utext="${entry.getValue()} "></td>
+            <td th:each="row : ${entry.getValue()}" th:attr="style='text-align:center'" th:switch="${row.toString().length()}">
+                <span th:case="0">
+                    <span  th:attr="style='color:blue'">Work out</span>
+                </span>
+                <span th:case="*">
+                    <span th:text="${row}"></span>
+                </span>
+            </td>
         </tr>
-
-<!--        <tr th:attr = "data-id= ${entry.getKey()}" th:text= "${entry.getValue()}">-->
-
-<!--        </tr>-->
     </table>
 
 </body>

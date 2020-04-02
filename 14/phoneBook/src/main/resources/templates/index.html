@@ -47,7 +47,7 @@
 
 
 
-    <div id="contactDiv"> <ul> </ul>
+    <div id="contactDiv">
         <div th:each="contact : ${Contacts}">
             <li class="contact" th:attr = "data-id=${contact.id}" th:text="${contact.name} +' '+ ${contact.phone}"></li>
         </div>

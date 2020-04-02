@@ -11,6 +11,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 @Controller
 public class WorktimeController {
@@ -32,11 +34,14 @@ public class WorktimeController {
         LocalDate dayTwo = LocalDate.parse("2015.09.19", DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         LocalDate dayThree = LocalDate.parse("2015.09.21", DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 
-        Map<Integer, VoteStationWorkTime> m = handler.getMap();
+        Map <Integer, VoteStationWorkTime> m = handler.getMap();
+        Map<Integer, TreeSet<TimePeriod>> res = new TreeMap<>();
         for (Map.Entry<Integer, VoteStationWorkTime> e : m.entrySet()) {
-            System.out.println(e.getKey() + " "+ e.getValue());
+            res.put(e.getKey(), e.getValue().periods);
         }
-        model.addAttribute("voteTable", m);
+
+
+        model.addAttribute("voteTable", res);
 
         model.addAttribute("one", dayOne);
         model.addAttribute("two", dayTwo);

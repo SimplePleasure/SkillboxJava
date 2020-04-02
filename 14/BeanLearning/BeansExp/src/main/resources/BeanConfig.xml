@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="deep" class="main.genre.Deep">
+    </bean>
+    <bean id="rock" class="main.genre.Rock">
+    </bean>
+    <bean id="rap" class="main.genre.Rap">
+    </bean>
+
+    <bean id="player" class="main.Player">
+        <property name="playerList">
+            <list>
+                <ref bean="deep"/>
+                <ref bean="rock"/>
+                <ref bean="rap"/>
+            </list>
+        </property>
+
+        <property name="playerName" value="Bean test player"/>
+        <property name="volume" value="10"/>
+    </bean>
+
+</beans>
+
+
+

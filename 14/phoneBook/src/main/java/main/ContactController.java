@@ -20,7 +20,7 @@ public class ContactController {
 
     @RequestMapping(value = "/contact/", method = RequestMethod.GET)
     public List<Contact> list() {
-//        return Storage.getContacts();
+
         Iterable<Contact> iterable = contactRepository.findAll();
         ArrayList<Contact> contacts = new ArrayList<>();
         for(Contact contact : iterable) {
@@ -31,24 +31,19 @@ public class ContactController {
 
 
     @RequestMapping(value = "/contact/", method = RequestMethod.POST)
-    public int add(Contact contact) {
+    public ResponseEntity<Integer> add(Contact contact) {
 
+        if (contact.getName().length() == 0 || contact.getPhone().length() == 0 ) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         Contact entry= contactRepository.save(contact);
-        return entry.getId();
-
+        return ResponseEntity.status(HttpStatus.OK).body(entry.getId());
     }
-
-//    @RequestMapping(value = "/contact/{name}", method = RequestMethod.DELETE)
-//    public void del(@PathVariable String name) {
-//        Storage.delete(name);
-//    }
 
 
 
     @RequestMapping(value = "/contact/{id}", method = RequestMethod.DELETE)
     public ResponseEntity del(@PathVariable int id) {
-
-
 
         Optional<Contact> entry =  contactRepository.findById(id);
         if (!entry.isPresent()) {
@@ -56,26 +51,6 @@ public class ContactController {
         }
         contactRepository.delete(entry.get());
         return new ResponseEntity(HttpStatus.OK);
-
-
-
-
-
-//        if (contactRepository.existsById(id)) {
-//            contactRepository.deleteById(id);
-//            return new ResponseEntity(HttpStatus.OK);
-//        }
-//        return new ResponseEntity(HttpStatus.NOT_FOUND);
-
-
-
-
-
-
-//        if (Storage.delete(name)) {
-//            return new ResponseEntity(HttpStatus.OK);
-//        }
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
 }

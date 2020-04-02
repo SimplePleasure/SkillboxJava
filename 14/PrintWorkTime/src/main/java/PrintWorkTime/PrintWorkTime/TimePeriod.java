@@ -9,15 +9,12 @@ public class TimePeriod implements Comparable<TimePeriod> {
 
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-    private LocalDate visitDate;
+    public LocalDate visitDate;
     LocalTime from;
     LocalTime to;
 
-    TimePeriod(LocalDateTime visit) {
-        visitDate = visit.toLocalDate();
-        from = visit.toLocalTime();
-        to = visit.toLocalTime();
-
+    TimePeriod(LocalDate visit) {
+        visitDate = visit;
     }
 
 
@@ -26,19 +23,24 @@ public class TimePeriod implements Comparable<TimePeriod> {
     }
 
     public void addTime(LocalTime time) {
+        if(from == null) {
+            from = time;
+            to = time;
+        }
 
         if (from.isAfter(time)) {
             from = time;
         } else if (to.isBefore(time)) {
             to = time;
         }
-
     }
 
     @Override
     public String toString() {
+        if (from == null && to ==null ) {
+            return "";
+        }
         return formatter.format(from) + " - " + formatter.format(to);
-//        return from.getHour()+":"+from.getMinute() + " - " + to.getHour() + ":" + to.getMinute();
     }
 
     @Override
