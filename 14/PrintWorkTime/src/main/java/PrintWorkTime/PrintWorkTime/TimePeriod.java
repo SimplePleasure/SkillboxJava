@@ -22,7 +22,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
     }
 
     public void addTime(LocalTime time) {
-        if(from == null && to == null) {
+        if(from == null || to == null) {
             from = time;
             to = time;
             return;
