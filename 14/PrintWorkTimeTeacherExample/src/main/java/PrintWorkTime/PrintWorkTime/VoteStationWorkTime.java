@@ -1,6 +1,5 @@
 package PrintWorkTime.PrintWorkTime;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.TreeSet;
 
@@ -8,11 +7,11 @@ public class VoteStationWorkTime {
 
     public TreeSet<TimePeriod> periods;
 
-    VoteStationWorkTime(TreeSet<LocalDate> dayList) {
+    VoteStationWorkTime() {
         periods = new TreeSet<>();
-        for (LocalDate date : dayList) {
-            periods.add(new TimePeriod(date));
-        }
+        periods.add(new TimePeriod(WorktimeController.dayOne));
+        periods.add(new TimePeriod(WorktimeController.dayTwo));
+        periods.add(new TimePeriod(WorktimeController.dayThree));
     }
 
     public void addVisitTime(LocalDateTime visit) {
@@ -22,9 +21,5 @@ public class VoteStationWorkTime {
                 return;
             }
         }
-    }
-
-    public void addNewTimePeriod(LocalDate date) {
-        periods.add(new TimePeriod(date));
     }
 }

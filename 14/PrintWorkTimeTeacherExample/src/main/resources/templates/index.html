@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote stations work-times</title>
+</head>
+<body>
+
+    <table border="1" align="center">
+        <tr>
+            <th>Station №</th>
+            <th th:each="column : ${columns}" th:text = "${column}">first day</th>
+        </tr>
+        <tr  th:each="row : ${rows}">
+            <td th:text = "${row.getKey()}"></td>
+            <td th:each="day : ${row.getValue()}" th:attr="style='text-align:center'"
+                th:switch="${day == null}">
+                <span th:case="true" th:attr="style='background-color:chartreuse'">non-working</span>
+                <span th:case="false" th:text="${day}"></span>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -5,12 +5,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimePeriod implements Comparable<TimePeriod> {
-
-
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     public LocalDate visitDate;
-    public LocalTime from;
-    public LocalTime to;
+    LocalTime from;
+    LocalTime to;
 
     TimePeriod(LocalDate visit) {
         visitDate = visit;
@@ -22,7 +20,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
     }
 
     public void addTime(LocalTime time) {
-        if(from == null && to == null) {
+        if(from == null) {
             from = time;
             to = time;
             return;

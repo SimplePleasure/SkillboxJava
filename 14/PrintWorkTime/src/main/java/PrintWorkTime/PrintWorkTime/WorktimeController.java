@@ -15,10 +15,6 @@ import java.util.Map;
 public class WorktimeController {
 
 
-    static LocalDate dayOne = LocalDate.parse("2015.09.17", DateTimeFormatter.ofPattern("yyyy.MM.dd"));
-    static LocalDate dayTwo = LocalDate.parse("2015.09.19", DateTimeFormatter.ofPattern("yyyy.MM.dd"));
-    static LocalDate dayThree = LocalDate.parse("2015.09.21", DateTimeFormatter.ofPattern("yyyy.MM.dd"));
-
     @RequestMapping(value = "/")
     public String getWorkTime(Model model) {
 
@@ -31,14 +27,8 @@ public class WorktimeController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        Map <Integer, VoteStationWorkTime> m = handler.getMap();
-        model.addAttribute("voteTable", m);
-
-        model.addAttribute("one", dayOne);
-        model.addAttribute("two", dayTwo);
-        model.addAttribute("three", dayThree);
-
+        model.addAttribute("voteTable", handler.getVoteStationByNum());
+        model.addAttribute("workingDays", handler.getWorkingDaysList());
         return "index.html";
     }
 

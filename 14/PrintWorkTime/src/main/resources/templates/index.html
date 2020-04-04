@@ -8,11 +8,14 @@
 
     <table border="1" align="center">
         <tr>
-            <th>Station №</th><th th:text = "${one}">first day</th><th th:text = "${two}">second day</th><th th:text = "${three}">third day</th>
+            <th> Station № </th>
+            <th th:each="day : ${workingDays}" th:text="${day}"></th>
         </tr>
         <tr  th:each="entry : ${voteTable}">
             <td th:text = "${entry.getKey()}"></td>
-            <td th:each="row : ${entry.getValue().periods}" th:attr="style='text-align:center'" th:switch="${row.toString().length()}">
+            <td th:each="row : ${entry.getValue().periods}"
+                th:attr="style='text-align:center'"
+                th:switch="${row.toString().length()}">
                 <span th:case="0">
                     <span  th:attr="style='background-color:chartreuse'">non-working</span>
                 </span>
