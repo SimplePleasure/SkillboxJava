@@ -12,11 +12,11 @@ import java.util.TreeSet;
 public class Handler extends DefaultHandler {
 
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-    TreeMap<Integer, VoteStationWorkTime> workTimeStorage;
+    TreeMap<Integer, VoteStationWorkTime> workTimeByStation;
     TreeSet<LocalDate> dayList;
 
     Handler() {
-        workTimeStorage = new TreeMap<>();
+        workTimeByStation = new TreeMap<>();
         dayList = new TreeSet<>();
     }
 
@@ -29,14 +29,14 @@ public class Handler extends DefaultHandler {
 
             if (!dayList.contains(visit.toLocalDate())) {
                 dayList.add(visit.toLocalDate());
-                for (VoteStationWorkTime stationWorkTime: workTimeStorage.values()) {
+                for (VoteStationWorkTime stationWorkTime: workTimeByStation.values()) {
                     stationWorkTime.addNewTimePeriod(visit.toLocalDate());
                 }
             }
-            VoteStationWorkTime voteStation = workTimeStorage.get(station);
+            VoteStationWorkTime voteStation = workTimeByStation.get(station);
             if (voteStation == null) {
                 voteStation = new VoteStationWorkTime(dayList);
-                workTimeStorage.put(station, voteStation);
+                workTimeByStation.put(station, voteStation);
             }
             voteStation.addVisitTime(visit);
 
@@ -48,7 +48,7 @@ public class Handler extends DefaultHandler {
     }
 
     TreeMap<Integer, VoteStationWorkTime> getVoteStationByNum() {
-        return workTimeStorage;
+        return workTimeByStation;
     }
 
 }
