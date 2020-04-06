@@ -3,6 +3,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,11 +18,21 @@ public class Handler extends DefaultHandler {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
     TreeMap<Integer, VoteStationWorkTime> workTimeByStation;
     TreeSet<LocalDate> dayList;
+    SAXParser parser;
 
-    Handler() {
+    Handler(String path) {
         workTimeByStation = new TreeMap<>();
         dayList = new TreeSet<>();
+
+        try {
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            parser = spf.newSAXParser();
+            parser.parse(path, this);
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -39,7 +53,6 @@ public class Handler extends DefaultHandler {
                 workTimeByStation.put(station, voteStation);
             }
             voteStation.addVisitTime(visit);
-
         }
     }
 
@@ -50,5 +63,4 @@ public class Handler extends DefaultHandler {
     TreeMap<Integer, VoteStationWorkTime> getVoteStationByNum() {
         return workTimeByStation;
     }
-
 }

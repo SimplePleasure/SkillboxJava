@@ -81,7 +81,7 @@ $(document).ready(function(){
                     url: '/contact/'+name,
                     success: location.reload()
                 });
-            }
+            };
 
 
 
