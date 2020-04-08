@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Request for a loan</title>
     <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="javascript/main.js"></script>
-    <script>
-        function showMessage() {
-            alert( 'Всем привет!' );
-        }
-    </script>
     <link href="css/styles.css" rel="stylesheet" type="text/css">
-
-
-
 </head>
+
+
+
 <body>
-    <h3>My form</h3>
-    <form class="form" id="form" action="/templates" method="post"> <br>
+<h3>My form</h3>
+
+    <form class="form" id="form" action="/templates" method="post" th:object="${person}"> <br>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="${person.name}" th:attr="style='color:red'"></span>
         <table id="table" align="center">
             <tr>
                 <td><label for="surname">Фамилия</label></td>
@@ -46,21 +43,24 @@
             <tr>
             </tr>
             <tr>
-                <td align="center"> <em id="showTime" on><b>1 год</b></em></td>
+                <td align="center"> <em id="showTime"><b>2 года</b></em></td>
                 <td align="center"><b id="amount">2500000</b><em style="font-size:80%"> рублей</em></td>
             </tr>
             <tr>
-                <td align="center"><input type="range" min="1" max="5" value="1" step="1" name="period" id="timeChanger"></td>
+                <td align="center"><input type="range" min="1" max="5" value="2" step="1" name="period" id="timeChanger"></td>
                 <td align="center"><input type="range" min="10000" max="5000000" name="count" step="10000" id="size"></td>
 
             </tr>
             <tr>
-                <td></td>
+                <td align="center">    <em id="payment">125000</em><small style="font-size:80%"> / месяц</small>    </td>
                 <td align="center" > <input type="submit" class="formfield" id="btn" value="Отправить заявку" >  </td>
             </tr>
+
 
 
         </table>
     </form>
 </body>
+
+
 </html>
