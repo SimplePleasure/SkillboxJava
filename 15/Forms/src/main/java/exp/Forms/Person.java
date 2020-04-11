@@ -1,23 +1,21 @@
 package exp.Forms;
 
 
-import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-//@Component
 public class Person{
     static DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @NotBlank(message = "Имя должно быть заполнено")
     String name;
+    @NotBlank(message = "Фамилия должна быть заполнена")
     String surname;
+    @NotBlank(message = "Отчество должно быть заполнено")
     String patronymic;
     LocalDate birthday;
+    @NotBlank(message = "Должен быть указан телефон для связи!")
     String phone;
     Integer period;
     Integer count;

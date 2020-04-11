@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Request to credit</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body leftmargin="30">
 
-<h2 th:text="${person.getName()}"></h2>
+<h2> [[ ${person.getName()} ]]  [[${person.getPatronymic()}]], ваша заявка принята. В ближайшее время с вами свяжется специалист.</h2>
 
+<table style="border-spacing: 25px 7px;">
+    <tr>
+        <td><label>Ф.И.О.</label></td>
+        <td><em>  [[${person.getSurname()}]] [[ ${person.getName()} ]]  [[${person.getPatronymic()}]]</em></td>
+    </tr>
+    <tr><td>Дата рождения: </td> <td th:text="${person.getBirthday().toString()}"></td></tr>
+    <tr><td><label> Телефон для связи: </label></td><td th:text="${person.getPhone()}"></td></tr>
+</table>
 
 </body>
 </html>

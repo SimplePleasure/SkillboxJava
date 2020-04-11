@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/up" method="post" enctype="multipart/form-data">
+    <input type="file" name="scan" accept="image/*">
+    <input type="submit" value="ok">
+</form>
+
+<br>
+<div>
+    <h5 th:each="pic : ${img}"><a th:href="@{|/pics/${pic.getName()}/|}" th:text="${pic.getName()}"></a></h5>
+</div>
+
+
+</body>
+</html>

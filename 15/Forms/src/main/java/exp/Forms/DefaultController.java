@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DefaultController {
 
 
-    @ModelAttribute
-    public void attr(Model model){
-        model.addAttribute("key", "value");
-    }
+
 
 
     @GetMapping("/")
-    public String index(){
+    public String index(Person p){
         return "index.html";
     }
 
