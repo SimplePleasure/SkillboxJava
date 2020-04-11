@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 @Component
 public class FileStorage {
 
-
     public boolean saveFile(MultipartFile file) {
         try {
             String path = DefaultController.path+file.getOriginalFilename();
@@ -35,10 +34,6 @@ public class FileStorage {
         File[] pics = new File(DefaultController.path).listFiles();
         if (pics.length > 0) {
            Arrays.stream(pics).filter(e -> !e.getName().equals(".DS_Store")).forEach(files::add);
-        }
-        System.out.println("list returned. size:" + files.size());
-        for (File f : files) {
-            f.getName();
         }
         return files;
     }

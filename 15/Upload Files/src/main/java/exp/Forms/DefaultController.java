@@ -23,7 +23,6 @@ public class DefaultController {
 
     @GetMapping("/up")
     public String index(Model model) {
-        System.out.println("index()");
         model.addAttribute("img", storage.getFiles());
         return "uploadTest.html";
     }
@@ -31,7 +30,6 @@ public class DefaultController {
     @PostMapping("/up")
     public ModelAndView fileUpload(@RequestParam("scan") MultipartFile file, Model model) {
 
-        System.out.println("fileupload()");
         if (!file.isEmpty()) {
             storage.saveFile(file);
             model.addAttribute("img", storage.getFiles());
