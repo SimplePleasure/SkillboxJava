@@ -1,7 +1,7 @@
 package exp.Forms;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,11 @@ public class DefaultController {
 
     @Autowired
     FileStorage storage;
-    static String path = "/Users/simplepleasure/Doc/SkillboxJava/15/Upload Files/src/main/resources/static/pics/";
+
+    @GetMapping("/")
+    public String redirect() {
+        return "redirect:/up";
+    }
 
     @GetMapping("/up")
     public String index(Model model) {
@@ -37,7 +41,6 @@ public class DefaultController {
 
     @DeleteMapping("/up/{fileName}")
     public ResponseEntity del(@PathVariable String fileName) {
-
         boolean result = storage.delFile(fileName);
         if (result) {
             return ResponseEntity.ok().body(null);

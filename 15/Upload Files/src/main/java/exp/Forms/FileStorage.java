@@ -1,26 +1,27 @@
 package exp.Forms;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Stream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class FileStorage {
 
+    @Value("${fileSave.path}")
+    private String path;
+
     public boolean saveFile(MultipartFile file) {
-        try {
-            String path = DefaultController.path+file.getOriginalFilename();
-            FileOutputStream fos = new FileOutputStream(path);
+        try (FileOutputStream fos = new FileOutputStream(path+file.getOriginalFilename())){
             fos.write(file.getBytes());
             fos.flush();
-            fos.close();
-//            new File(path).deleteOnExit();
         } catch (IOException e) {
             return false;
         }
@@ -28,28 +29,25 @@ public class FileStorage {
     }
 
     public Set<File> getFiles() {
-
-
         HashSet<File> files = new HashSet<>();
-        File[] pics = new File(DefaultController.path).listFiles();
-        if (pics.length > 0) {
-           Arrays.stream(pics).filter(e -> !e.getName().equals(".DS_Store")).forEach(files::add);
+        try {
+            Files.walk(new File(path).toPath()).map(Path::toFile).filter(File::isFile).
+                    filter(e -> !e.getName().equals(".DS_Store")).forEach(files::add);
+            return files;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return files;
         }
-        return files;
     }
 
     public boolean delFile(String name) {
-        File[] pics = new File(DefaultController.path).listFiles();
-        for (File pic : pics) {
-            if (pic.getName().equals(name)) {
-                pic.delete();
-                return true;
-            }
+        try {
+            Files.walk(new File(path).toPath()).map(Path::toFile).filter(File::isFile).
+                    filter(x -> x.getName().equals(name)).forEach(File::delete);
+            return true;
+        } catch (IOException e) {
+            return false;
         }
-        return false;
     }
-
-
-
 
 }
