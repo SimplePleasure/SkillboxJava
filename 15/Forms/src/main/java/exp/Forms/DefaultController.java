@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 public class DefaultController {
@@ -23,7 +25,23 @@ public class DefaultController {
 
 
     @PostMapping("/templates")
-    public String test(@Validated @ModelAttribute Person p, BindingResult bindingResult) {
+    public String test(@Validated @ModelAttribute Person p, @RequestParam("scan")MultipartFile file,
+                       BindingResult bindingResult) {
+
+        if(!file.isEmpty()) {
+            try {
+                File f = new File("./src/main/resources/static/screens/"+
+                        p.getSurname()+p.getName()+ p.getBirthday() + " " + file.getOriginalFilename());
+                FileOutputStream fos = new FileOutputStream(f);
+                fos.write(file.getBytes());
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//            model.addAttribute("scan", p.getSurname()+p.getName()+ p.getBirthday() + " " + file.getOriginalFilename());
+        }
+
         if (bindingResult.hasErrors()) {
             System.out.println("Form is not filled");
             return "index.html";

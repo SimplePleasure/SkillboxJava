@@ -1,29 +1,11 @@
-.form {
-    width: 430px;
-    height: 280px;
-    background: yellow;
-    //outline: 3px solid #000;
-    border: 20px solid #0FA;
-    border-radius: 45px;
-    margin-left: auto;
-    margin-right: auto;
+form {
+
+    margin-left: 520px;
+    font-size: 150%;
+
 }
 
-.formfield {
-     margin-right: 10px;
+.del {
+    background-color: red;
 }
-
-#fontSize {
-    font-size: 50%;
-}
-
-#table {
-    border-spacing: 25px 7px;
-}
-
-#size {
-    width: 90%;
-}
-
-
 

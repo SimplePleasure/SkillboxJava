@@ -20,7 +20,7 @@ public class FileStorage {
             fos.write(file.getBytes());
             fos.flush();
             fos.close();
-            File f = new File(path);
+//            new File(path).deleteOnExit();
         } catch (IOException e) {
             return false;
         }
@@ -36,6 +36,17 @@ public class FileStorage {
            Arrays.stream(pics).filter(e -> !e.getName().equals(".DS_Store")).forEach(files::add);
         }
         return files;
+    }
+
+    public boolean delFile(String name) {
+        File[] pics = new File(DefaultController.path).listFiles();
+        for (File pic : pics) {
+            if (pic.getName().equals(name)) {
+                pic.delete();
+                return true;
+            }
+        }
+        return false;
     }
 
 

@@ -13,7 +13,7 @@
 <body>
 <h3>My form</h3>
 
-    <form class="form" id="form" action="/templates" method="post" th:object="${person}"> <br>
+    <form class="form" id="form" action="/templates" method="post" th:object="${person}" enctype="multipart/form-data"> <br>
         <table id="table" align="center" width="750">
             <tr>
                 <td><label for="surname">Фамилия</label></td>

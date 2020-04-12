@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="javascript/main.js"></script>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -12,8 +15,8 @@
 </form>
 
 <br>
-<div>
-    <h5 th:each="pic : ${img}"><a th:href="@{|/pics/${pic.getName()}/|}" th:text="${pic.getName()}"></a></h5>
+<div id="picsList">
+    <h5 th:each="pic : ${img}"><a th:href="@{|/pics/${pic.getName()}/|}" th:text="${pic.getName()}"></a> <a class="del"> Del</a></h5>
 </div>
 
 

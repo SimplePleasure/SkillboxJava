@@ -1,18 +1,15 @@
 package exp.Forms;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 @Controller
 public class DefaultController {
@@ -37,5 +34,34 @@ public class DefaultController {
         }
         return new ModelAndView("uploadTest.html", HttpStatus.BAD_REQUEST);
     }
+
+    @DeleteMapping("/up/{fileName}")
+    public ResponseEntity del(@PathVariable String fileName) {
+
+        boolean result = storage.delFile(fileName);
+        if (result) {
+            return ResponseEntity.ok().body(null);
+        }
+        return ResponseEntity.badRequest().body(null);
+    }
+
+
+//
+//    @GetMapping("/")
+//    public String test(){
+//        return "index.html";
+//    }
+//    @PostMapping("/")
+//    @ResponseBody
+//    public ResponseEntity upload(@RequestParam("file") MultipartFile f){
+//
+//        return ResponseEntity.ok().header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "attachment; filename=\"" + f.getOriginalFilename() + "\"")
+//                .body(new ModelAndView("index.html", HttpStatus.OK));
+//    }
+//    @GetMapping("/test")
+//
+//    public String test1(){
+//        return "<title>index</title><h1>testetstest</h1>";
+//    }
 
 }
