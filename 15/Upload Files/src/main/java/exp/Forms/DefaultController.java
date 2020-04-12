@@ -46,22 +46,4 @@ public class DefaultController {
     }
 
 
-//
-//    @GetMapping("/")
-//    public String test(){
-//        return "index.html";
-//    }
-//    @PostMapping("/")
-//    @ResponseBody
-//    public ResponseEntity upload(@RequestParam("file") MultipartFile f){
-//
-//        return ResponseEntity.ok().header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "attachment; filename=\"" + f.getOriginalFilename() + "\"")
-//                .body(new ModelAndView("index.html", HttpStatus.OK));
-//    }
-//    @GetMapping("/test")
-//
-//    public String test1(){
-//        return "<title>index</title><h1>testetstest</h1>";
-//    }
-
 }
