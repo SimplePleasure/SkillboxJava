@@ -1,0 +1,41 @@
+#log {
+position: fixed;
+top: 200px;
+left: 40%;
+
+    width: 290px;
+    height: 70px;
+    border: 5px solid #0FA;
+
+}
+
+.logfield {
+    margin-left: 10px;
+}
+
+
+#hello {
+position: fixed;
+background-color: lime;
+top: 25px;
+left: 80%;
+font-size: 135%
+}
+
+#counter{
+    position: fixed;
+    top: 33px;
+    left: 80%;
+    background:yellow;
+}
+
+#elem {
+    position: relative;
+    top: 150px;
+}
+
+#messagesent {
+    position: fixed;
+    top: 75px;
+
+}

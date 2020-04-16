@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TestPage</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="javascript/main.js"></script>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+
+
+
+    <em id="hello">Hello, [[${name}]] !</em>
+
+        <form method="post" action="/" id="messagesent">
+            <input type="text" name="line">
+            <input type="submit" value="sent">
+        </form>
+    <h2 id="counter">Notes: [[${size}]]</h2>
+    <div id="elem">
+        <h4 class="note" th:each="line : ${list}" th:text="${line}"></h4>
+
+    </div>
+
+
+
+
+</body>
+</html>

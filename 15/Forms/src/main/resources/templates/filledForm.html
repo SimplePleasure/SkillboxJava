@@ -16,7 +16,9 @@
     </tr>
     <tr><td>Дата рождения: </td> <td th:text="${person.getBirthday().toString()}"></td></tr>
     <tr><td><label> Телефон для связи: </label></td><td th:text="${person.getPhone()}"></td></tr>
-<!--    <img th:src="@{|/screens/${scan}|}">-->
+    <tr>
+        <td colspan="2"><img th:src="@{|/screens/${scan}|}"></td>
+    </tr>
 
 
 

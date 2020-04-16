@@ -10,12 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class DefaultController {
-
-
-
 
 
     @GetMapping("/")
@@ -23,24 +21,25 @@ public class DefaultController {
         return "index.html";
     }
 
-
     @PostMapping("/templates")
-    public String test(@Validated @ModelAttribute Person p, @RequestParam("scan")MultipartFile file,
-                       BindingResult bindingResult) {
+    public String test(@Validated @ModelAttribute Person p,
+                       BindingResult bindingResult,
+                       @RequestParam("scan")MultipartFile file,
+                       Model model) {
+
+        System.out.println("****************\nexecuting\n****************");
 
         if(!file.isEmpty()) {
-            try {
-                File f = new File("./src/main/resources/static/screens/"+
-                        p.getSurname()+p.getName()+ p.getBirthday() + " " + file.getOriginalFilename());
-                FileOutputStream fos = new FileOutputStream(f);
+            try (FileOutputStream fos = new FileOutputStream(new File("./src/main/resources/static/screens/"+
+                    p.getName()+ p.getPatronymic() + " " + file.getOriginalFilename())))   {
                 fos.write(file.getBytes());
                 fos.flush();
-                fos.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            model.addAttribute("scan", p.getSurname()+p.getName()+ p.getBirthday() + " " + file.getOriginalFilename());
+            model.addAttribute("scan", p.getName()+ p.getPatronymic() + " " + file.getOriginalFilename());
         }
+
 
         if (bindingResult.hasErrors()) {
             System.out.println("Form is not filled");

@@ -1,9 +1,17 @@
 package exp.Forms;
 
 
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+@Component
+@PropertySource("${classpath:app.properties}")
 
 public class Person{
     static DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -14,9 +22,10 @@ public class Person{
     String surname;
     @NotBlank(message = "Отчество должно быть заполнено")
     String patronymic;
-    LocalDate birthday;
-    @NotBlank(message = "Должен быть указан телефон для связи!")
+    @NotBlank(message = "Должен быть указан телефон для связи")
     String phone;
+    @NotBlank(message = "Графа день рождения должна быть заполнена")
+    String birthday;
     Integer period;
     Integer count;
 
@@ -29,7 +38,7 @@ public class Person{
     public String getPatronymic() {
         return patronymic;
     }
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
     public String getPhone() {
@@ -54,7 +63,7 @@ public class Person{
         this.patronymic = patronymic;
     }
     public void setBirthday(String birthday) {
-        this.birthday = LocalDate.parse(birthday, f);
+        this.birthday = birthday;
     }
     public void setPhone(String phone) {
         this.phone = phone;
