@@ -21,21 +21,21 @@ public class DefaultController {
                 session.setName(name);
                 return "redirect:/";
         }
-        return "authorize.html";
+        return "authorize";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
 
         if (!StringUtils.isEmpty(session.getName())) {
-        model.addAttribute("list", session.getStorage().getList());
-        model.addAttribute("size", session.getStorage().getSize());
-        model.addAttribute("name", session.getName());
-        return "index.html";
+            model.addAttribute("list", session.getStorage().getList());
+            model.addAttribute("size", session.getStorage().getSize());
+            model.addAttribute("name", session.getName());
+            return "index";
         }
-
-        return "authorize.html";
+        return "authorize";
     }
+
     @PostMapping("/")
     public String post(@RequestParam(name = "line") String str, Model model) {
 

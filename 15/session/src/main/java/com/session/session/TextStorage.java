@@ -5,12 +5,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
 @Scope("prototype")
 public class TextStorage {
 
-    private List<String> list = new ArrayList<>();
+    ConcurrentLinkedQueue<String> list = new ConcurrentLinkedQueue<>();
+//    private List<String> list = new ArrayList<>();
 
     boolean addLine(String str) {
         return list.add(str);
@@ -18,7 +20,7 @@ public class TextStorage {
     int getSize() {
         return list.size();
     }
-    List getList() {
+    ConcurrentLinkedQueue<String> getList() {
         return list;
     }
 

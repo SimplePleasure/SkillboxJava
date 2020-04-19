@@ -1,6 +1,7 @@
 package com.session.session.Beans;
 
 import com.session.session.TextStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -8,13 +9,10 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 public class SessionBean {
 
-
-    SessionBean (TextStorage storage) {
-        this.storage = storage;
-    }
-
-    private String name;
+    
+    @Autowired
     private TextStorage storage;
+    private String name;
 
     public String getName() {
         return name;
