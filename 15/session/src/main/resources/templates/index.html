@@ -9,24 +9,15 @@
 </head>
 <body>
 
-
-
-
-
     <em id="hello">Hello, [[${name}]] !</em>
-
-        <form method="post" action="/" id="messagesent">
-            <input type="text" name="line">
-            <input type="submit" value="sent">
-        </form>
-    <h2 id="counter">Notes: [[${size}]]</h2>
+    <form method="post" action="/" id="messagesent">
+        <input type="text" name="note">
+        <input type="submit" value="sent">
+    </form>
+    <h2 id="counter">Notes: [[${list.size()}]]</h2>
     <div id="elem">
         <h4 class="note" th:each="line : ${list}" th:text="${line}"></h4>
-
     </div>
-
-
-
 
 </body>
 </html>
