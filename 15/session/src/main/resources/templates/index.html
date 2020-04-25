@@ -10,6 +10,11 @@
 <body>
 
     <em id="hello">Hello, [[${name}]] !</em>
+    <table id="statistic" cellspacing="0">
+        <tr th:each="row : ${statistics}">
+            <td th:text="${row.getKey()}"></td> <td th:text="${row.getValue()}"></td>
+        </tr>
+    </table>
     <form method="post" action="/" id="messagesent">
         <input type="text" name="note">
         <input type="submit" value="sent">

@@ -36,6 +36,7 @@ public class DefaultController {
             ConcurrentLinkedQueue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
+            model.addAttribute("statistics", DBConnection.getStatistics());
             return "index";
         }
         return "authorize";

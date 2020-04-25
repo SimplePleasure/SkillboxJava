@@ -17,16 +17,25 @@ left: 40%;
 #hello {
 position: fixed;
 background-color: lime;
-top: 25px;
+top: 35px;
 left: 80%;
 font-size: 135%
 }
 
 #counter{
     position: fixed;
-    top: 33px;
+    top: 43px;
     left: 80%;
     background:yellow;
+}
+#statistic {
+    border: 1px solid black;
+    position: fixed;
+    top: 95px;
+    left: 80%
+}
+TD {
+    border-bottom: 1px solid lime;
 }
 
 #elem {
