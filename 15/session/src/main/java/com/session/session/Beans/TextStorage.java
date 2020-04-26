@@ -1,4 +1,4 @@
-package com.session.session;
+package com.session.session.Beans;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -11,10 +11,10 @@ public class TextStorage {
 
     ConcurrentLinkedQueue<String> list = new ConcurrentLinkedQueue<>();
 
-    boolean addLine(String str) {
+    public boolean addLine(String str) {
         return list.add(str);
     }
-    ConcurrentLinkedQueue<String> getList() {
+    public ConcurrentLinkedQueue<String> getList() {
         return list;
     }
 }

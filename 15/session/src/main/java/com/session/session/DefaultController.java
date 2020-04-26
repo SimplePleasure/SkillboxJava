@@ -1,5 +1,6 @@
 package com.session.session;
 
+import com.session.session.Beans.DBConnector;
 import com.session.session.Beans.SessionBean;
 import com.session.session.model.NoteRepository;
 import com.session.session.model.VisitSaver;
@@ -18,6 +19,9 @@ public class DefaultController {
     SessionBean session;
     @Autowired
     NoteRepository noteRepository;
+    @Autowired
+    DBConnector dbc;
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(@RequestParam String name, @RequestHeader("user-agent") String info) {
@@ -36,7 +40,8 @@ public class DefaultController {
             ConcurrentLinkedQueue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
-            model.addAttribute("statistics", DBConnection.getStatistics());
+//            model.addAttribute("statistics", DBConnection.getStatistics());
+            model.addAttribute("statistics", dbc.getStatistics());
             return "index";
         }
         return "authorize";

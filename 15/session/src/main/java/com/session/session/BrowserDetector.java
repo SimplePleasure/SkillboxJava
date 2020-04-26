@@ -32,6 +32,7 @@ public class BrowserDetector {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            info += "detect exception";
         }
         return info;
     }
