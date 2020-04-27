@@ -11,13 +11,12 @@ public class BrowserDetector {
     static String URL = "https://www.whatsmyua.info/";
 
     public static String getInfo(String userAgent) {
-
         String info = "";
         try {
             Connection.Response response = Jsoup.connect(URL).data("custom-ua-string", userAgent)
                     .method(Connection.Method.POST).execute();
 
-            if (response.statusCode() > 199 && response.statusCode()<300) {
+            if (response.statusCode() > 199 && response.statusCode() < 300) {
                 Elements elements = response.parse().select("li");
                 for (Element el : elements) {
                     if (el.id().equals("family")) {
@@ -36,7 +35,4 @@ public class BrowserDetector {
         }
         return info;
     }
-
-
-
 }

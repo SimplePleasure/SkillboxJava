@@ -1,28 +1,33 @@
 package com.session.session.Beans;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
-
+@Service
 public class DBConnector {
 
     String dbname;
     String user;
     String pass;
 
-    DBConnector(String db, String name, String password) {
+    DBConnector(@Value("${spring.datasource.myDb}") String db,
+                @Value("${spring.datasource.username}") String name,
+                @Value("${spring.datasource.password}") String password) {
+
         dbname = db;
         user = name;
         pass = password;
     }
 
-    public ConcurrentHashMap<String, String> getStatistics() {
-        ConcurrentHashMap<String, String> uses = new ConcurrentHashMap<>();
+
+    public HashMap<String, String> getStatistics() {
+        HashMap<String, String> uses = new HashMap<>();
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbname +

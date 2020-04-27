@@ -37,10 +37,21 @@ public class DefaultController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         if (!StringUtils.isEmpty(session.getName())) {
+
+
+            /*
+
+            List<Object[]> list = noteRepository.getStatistic();
+
+             */
+
+
+
+
+
             ConcurrentLinkedQueue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
-//            model.addAttribute("statistics", DBConnection.getStatistics());
             model.addAttribute("statistics", dbc.getStatistics());
             return "index";
         }
