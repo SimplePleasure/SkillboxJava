@@ -10,25 +10,26 @@ public class VisitSaver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @Column(name = "user")
-    private String name;
+    private String user;
     @Column(name = "user_info")
-    private String browserInfo;
+    private String user_info;
 
     public VisitSaver(String name, String browserInfo) {
-        this.name = name;
-        this.browserInfo = browserInfo;
+        this.user = name;
+        this.user_info = browserInfo;
     }
+    VisitSaver() {}
 
-    public String getName() {
-        return name;
+    public String getUser() {
+        return user;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
-    public String getBrowserInfo() {
-        return browserInfo;
+    public String getUser_info() {
+        return user_info;
     }
-    public void setBrowserInfo(String browserInfo) {
-        this.browserInfo = browserInfo;
+    public void setUser_info(String user_info) {
+        this.user_info = user_info;
     }
 }

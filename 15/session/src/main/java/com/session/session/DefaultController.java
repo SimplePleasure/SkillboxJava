@@ -1,10 +1,10 @@
 package com.session.session;
 
-import com.session.session.Beans.DBConnector;
 import com.session.session.Beans.SessionBean;
 import com.session.session.model.NoteRepository;
 import com.session.session.model.VisitSaver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class DefaultController {
     @Autowired
     NoteRepository noteRepository;
     @Autowired
-    DBConnector dbc;
+    CountStatistics counter;
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -36,23 +36,12 @@ public class DefaultController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
+
         if (!StringUtils.isEmpty(session.getName())) {
-
-
-            /*
-
-            List<Object[]> list = noteRepository.getStatistic();
-
-             */
-
-
-
-
-
             ConcurrentLinkedQueue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
-            model.addAttribute("statistics", dbc.getStatistics());
+            model.addAttribute("statistics", counter.getStat(noteRepository.getUses()));
             return "index";
         }
         return "authorize";
@@ -62,6 +51,14 @@ public class DefaultController {
     public String post(@RequestParam(name = "note") String str) {
         session.getStorage().addLine(str);
         return "redirect:/";
+    }
+
+
+    @PostMapping("/test")
+    public ResponseEntity<String> test(@RequestBody String s) {
+
+        System.out.println(s);
+        return ResponseEntity.ok("all right");
     }
 
 }

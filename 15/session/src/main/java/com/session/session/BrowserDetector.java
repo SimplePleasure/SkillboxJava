@@ -27,11 +27,11 @@ public class BrowserDetector {
                     }
                 }
             } else {
-                info += "not detected";
+                info += "no response";
             }
         } catch (IOException e) {
             e.printStackTrace();
-            info += "detect exception";
+            info += "exception";
         }
         return info;
     }
