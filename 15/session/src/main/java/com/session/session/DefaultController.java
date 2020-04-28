@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -52,13 +53,5 @@ public class DefaultController {
         session.getStorage().addLine(str);
         return "redirect:/";
     }
-
-
-    @PostMapping("/test")
-    public ResponseEntity<String> test(@RequestBody String s) {
-
-        System.out.println(s);
-        return ResponseEntity.ok("all right");
-    }
-
+    
 }
