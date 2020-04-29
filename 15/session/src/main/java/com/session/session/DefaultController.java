@@ -4,13 +4,10 @@ import com.session.session.Beans.SessionBean;
 import com.session.session.model.NoteRepository;
 import com.session.session.model.VisitSaver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.thymeleaf.util.StringUtils;
-
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Controller
@@ -19,17 +16,18 @@ public class DefaultController {
     @Autowired
     SessionBean session;
     @Autowired
-    NoteRepository noteRepository;
-    @Autowired
     CountStatistics counter;
+    @Autowired
+    NoteRepository noteRepository;
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(@RequestParam String name, @RequestHeader("user-agent") String info) {
         if (name != null && name.length()>0) {
-            session.setName(name);
             String browser = BrowserDetector.getInfo(info);
             noteRepository.save(new VisitSaver(name, browser));
+            session.setName(name);
+            session.setStatistic(counter.getStat(noteRepository.getUses()));
             return "redirect:/";
         }
         return "authorize";
@@ -42,7 +40,7 @@ public class DefaultController {
             ConcurrentLinkedQueue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
-            model.addAttribute("statistics", counter.getStat(noteRepository.getUses()));
+            model.addAttribute("statistics", session.getStatistic());
             return "index";
         }
         return "authorize";
@@ -53,5 +51,5 @@ public class DefaultController {
         session.getStorage().addLine(str);
         return "redirect:/";
     }
-    
+
 }

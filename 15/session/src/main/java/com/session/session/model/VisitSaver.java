@@ -12,11 +12,11 @@ public class VisitSaver {
     @Column(name = "user")
     private String user;
     @Column(name = "user_info")
-    private String user_info;
+    private String userInfo;
 
     public VisitSaver(String name, String browserInfo) {
         this.user = name;
-        this.user_info = browserInfo;
+        this.userInfo = browserInfo;
     }
     VisitSaver() {}
 
@@ -26,10 +26,10 @@ public class VisitSaver {
     public void setUser(String user) {
         this.user = user;
     }
-    public String getUser_info() {
-        return user_info;
+    public String getUserInfo() {
+        return userInfo;
     }
-    public void setUser_info(String user_info) {
-        this.user_info = user_info;
+    public void setUserInfo(String userInfo) {
+        this.userInfo = userInfo;
     }
 }
