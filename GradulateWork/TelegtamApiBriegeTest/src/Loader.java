@@ -1,8 +1,7 @@
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
-import org.javagram.response.AuthCheckedPhone;
-import org.javagram.response.AuthSentCode;
-import org.javagram.response.object.UserContact;
+import org.javagram.response.object.Dialog;
+import org.javagram.response.object.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +13,7 @@ public class Loader {
     static String productionHostAddress = "149.154.167.50:443";
     static int appId = 461984;
     static String appHash = "746eb50f5f37eb3d867dd38ea0f15a61";
+    static String phoneNum = "+79043360860";
     static BufferedReader reader;
 
     public static void main(String[] args) {
@@ -23,40 +23,46 @@ public class Loader {
         try {
 
             TelegramApiBridge telegram = new TelegramApiBridge(productionHostAddress, appId, appHash);
-            System.out.println("Please, type phone:");
-            String phone = reader.readLine().trim();
-            AuthCheckedPhone checkedPhone = telegram.authCheckPhone(phone);
+            telegram.authSendCode(phoneNum);
 
-            AuthAuthorization authorization;
-            if (checkedPhone.isRegistered()) {
-                AuthSentCode sentCode = telegram.authSendCode(phone);
-                System.out.println(sentCode.getPhoneCodeHash());
-                System.out.println("enter the code");
-                authorization = telegram.authSignIn(reader.readLine());
-                System.out.println("User: " + "\n" +
-                        authorization.getUser().getLastName() + "\t" + authorization.getUser().getFirstName() + "\n" +
-                        authorization.getUser().getPhone());
+            System.out.println("enter the code");
+            AuthAuthorization authorization = telegram.authSignIn(reader.readLine());
+            System.out.println("User: " + authorization.getUser().getLastName() + "\t" + authorization.getUser().getFirstName());
 
-                ArrayList<UserContact> userList = telegram.contactsGetContacts();
+
+            ArrayList<Integer> dialog = new ArrayList<>();
+
+            ArrayList<Dialog> m = telegram.messagesGetDialogs(0, 25000, 100);
+            System.out.println("\n\n\n" + m.size() + "\n\n\n");
+            for (Dialog d : m) {
+                int top = d.getTopMessage();
+                for (int i=0; i<15; i++) {
+                    dialog.add(top-i);
+                }
+            }
+            ArrayList<Message> list = telegram.messagesGetMessages(dialog);
+            for (Message q : list) {
+                System.err.println(q.getMessage());
+            }
+
+
+
+            telegram.authLogOut();
+
+
+
+
+
+
+
+
+
+//                ArrayList<UserContact> userList = telegram.contactsGetContacts();
 //                for (UserContact contact : userList) {
-//                    System.out.println("___________________");
-//                    System.out.println("Name: " + contact.getFirstName() +" "+ contact.getLastName() +
-//                            "\nPhone:" + contact.getPhone() + "\nID: " + contact.getId() +
-//                            "\nIs online: " + contact.isOnline());
-//                    System.out.println("___________________");
+//                    System.out.println(contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getId() + "\n_______________");
 //                }
 
 
-                /*
-                Name: Андрей Металистов 78
-                Phone:79110888802
-                ID: 696435093
-                Is online: false
-                 */
-
-                telegram.messagesSendMessage(696435093, "test message", 87657658);
-
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

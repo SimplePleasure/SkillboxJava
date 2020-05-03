@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
 @Scope("prototype")
-public class TextStorage {
+public class TextStorage implements IStorage{
 
     ConcurrentLinkedQueue<String> list = new ConcurrentLinkedQueue<>();
 

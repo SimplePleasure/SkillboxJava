@@ -8,15 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
-import java.util.concurrent.ConcurrentLinkedQueue;
+
+import java.util.Queue;
 
 @Controller
 public class DefaultController {
 
     @Autowired
     SessionBean session;
-    @Autowired
-    CountStatistics counter;
     @Autowired
     NoteRepository noteRepository;
 
@@ -27,7 +26,7 @@ public class DefaultController {
             String browser = BrowserDetector.getInfo(info);
             noteRepository.save(new VisitSaver(name, browser));
             session.setName(name);
-            session.setStatistic(counter.getStat(noteRepository.getUses()));
+            session.setStatistic(CountStatistics.getStat(noteRepository.getUses()));
             return "redirect:/";
         }
         return "authorize";
@@ -37,7 +36,7 @@ public class DefaultController {
     public String index(Model model) {
 
         if (!StringUtils.isEmpty(session.getName())) {
-            ConcurrentLinkedQueue<String> list = session.getStorage().getList();
+            Queue<String> list = session.getStorage().getList();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
             model.addAttribute("statistics", session.getStatistic());

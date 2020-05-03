@@ -11,7 +11,7 @@ import org.springframework.util.unit.DataSize;
 import javax.servlet.MultipartConfigElement;
 
 @Configuration
-@ComponentScan("exp.Forms")
+//@ComponentScan("exp.Forms")  //здесь не нужен
 @PropertySource("${classpath:application.properties}")
 @EnableAutoConfiguration
 public class BeanApplication {

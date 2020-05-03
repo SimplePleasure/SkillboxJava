@@ -11,10 +11,10 @@ import java.util.List;
 public interface NoteRepository extends CrudRepository<VisitSaver, Integer> {
 
 
-    @Query(value = "SELECT id, user, user_info FROM sessions.notes n  WHERE n.user = :name", nativeQuery = true)
+    @Query(value = "SELECT id, user, user_info FROM notes n  WHERE n.user = :name", nativeQuery = true)
     List<VisitSaver> getUserSessions(@Param("name") String userName);
 
-    @Query(value = "SELECT user_info AS `browser`, COUNT(*) AS `count` FROM sessions.notes GROUP BY user_info ", nativeQuery = true)
+    @Query(value = "SELECT user_info AS `browser`, COUNT(*) AS `count` FROM notes GROUP BY user_info ", nativeQuery = true)
     List<StatRow> getUses();
 
     interface StatRow {
