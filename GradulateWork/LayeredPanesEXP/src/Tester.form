@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Tester">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <opaque value="false"/>
+      <preferredSize width="100" height="45"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="e2a73" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+        <constraints border-constraint="North"/>
+        <properties>
+          <columns value="0"/>
+          <enabled value="true"/>
+          <opaque value="false"/>
+          <preferredSize width="100" height="20"/>
+        </properties>
+      </component>
+      <component id="bb1f4" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+        <constraints border-constraint="South"/>
+        <properties>
+          <columns value="0"/>
+          <enabled value="true"/>
+          <opaque value="false"/>
+          <preferredSize width="100" height="20"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

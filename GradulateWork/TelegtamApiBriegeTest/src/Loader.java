@@ -2,6 +2,7 @@ import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
+import org.javagram.response.object.UserContact;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,24 +31,24 @@ public class Loader {
             System.out.println("User: " + authorization.getUser().getLastName() + "\t" + authorization.getUser().getFirstName());
 
 
-            ArrayList<Integer> dialog = new ArrayList<>();
-
-            ArrayList<Dialog> m = telegram.messagesGetDialogs(0, 25000, 100);
-            System.out.println("\n\n\n" + m.size() + "\n\n\n");
-            for (Dialog d : m) {
-                int top = d.getTopMessage();
-                for (int i=0; i<15; i++) {
-                    dialog.add(top-i);
-                }
-            }
-            ArrayList<Message> list = telegram.messagesGetMessages(dialog);
-            for (Message q : list) {
-                System.err.println(q.getMessage());
-            }
-
-
-
-            telegram.authLogOut();
+//            ArrayList<Integer> dialog = new ArrayList<>();
+//
+//            ArrayList<Dialog> m = telegram.messagesGetDialogs(0, 25000, 100);
+//            System.out.println("\n\n\n" + m.size() + "\n\n\n");
+//            for (Dialog d : m) {
+//                int top = d.getTopMessage();
+//                for (int i=0; i<15; i++) {
+//                    dialog.add(top-i);
+//                }
+//            }
+//            ArrayList<Message> list = telegram.messagesGetMessages(dialog);
+//            for (Message q : list) {
+//                System.err.println(q.getMessage());
+//            }
+//
+//
+//
+//            telegram.authLogOut();
 
 
 
@@ -61,6 +62,17 @@ public class Loader {
 //                for (UserContact contact : userList) {
 //                    System.out.println(contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getId() + "\n_______________");
 //                }
+
+                /*
+                _______________
+                Папа
+                433997774
+                _______________
+                 */
+
+            String str = reader.readLine();
+            telegram.messagesSendMessage(433997774, str, 48654876 );
+
 
 
         } catch (IOException e) {

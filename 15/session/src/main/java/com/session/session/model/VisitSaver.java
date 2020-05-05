@@ -2,6 +2,8 @@ package com.session.session.model;
 
 import javax.persistence.*;
 
+
+//  класс заполняется и отправляется в базу данных при создании сессии
 @Entity
 @Table(name = "notes")
 public class VisitSaver {

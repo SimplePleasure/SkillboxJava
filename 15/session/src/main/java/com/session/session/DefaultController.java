@@ -14,10 +14,17 @@ import java.util.Queue;
 @Controller
 public class DefaultController {
 
-    @Autowired
+
     SessionBean session;
-    @Autowired
     NoteRepository noteRepository;
+
+
+//    Инжектить лучше через конструктор а не сразу в поля
+    DefaultController(@Autowired SessionBean sessionBean,
+                      @Autowired NoteRepository repository) {
+        session = sessionBean;
+        noteRepository = repository;
+    }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -36,7 +43,7 @@ public class DefaultController {
     public String index(Model model) {
 
         if (!StringUtils.isEmpty(session.getName())) {
-            Queue<String> list = session.getStorage().getList();
+            Queue<String> list = session.getStorage();
             model.addAttribute("list", list);
             model.addAttribute("name", session.getName());
             model.addAttribute("statistics", session.getStatistic());
@@ -47,7 +54,7 @@ public class DefaultController {
 
     @PostMapping("/")
     public String post(@RequestParam(name = "note") String str) {
-        session.getStorage().addLine(str);
+        session.getStorage().add(str);
         return "redirect:/";
     }
 
