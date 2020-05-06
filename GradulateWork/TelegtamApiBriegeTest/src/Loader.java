@@ -3,6 +3,10 @@ import org.javagram.response.AuthAuthorization;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.UserContact;
+import org.telegram.api.TLAbsInputUser;
+import org.telegram.api.TLDecryptedMessage;
+import org.telegram.api.TLInputPeerChat;
+import org.telegram.api.TLInputPeerContact;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,48 +35,47 @@ public class Loader {
             System.out.println("User: " + authorization.getUser().getLastName() + "\t" + authorization.getUser().getFirstName());
 
 
-//            ArrayList<Integer> dialog = new ArrayList<>();
-//
-//            ArrayList<Dialog> m = telegram.messagesGetDialogs(0, 25000, 100);
-//            System.out.println("\n\n\n" + m.size() + "\n\n\n");
-//            for (Dialog d : m) {
-//                int top = d.getTopMessage();
-//                for (int i=0; i<15; i++) {
-//                    dialog.add(top-i);
-//                }
+
+            ArrayList<Dialog> dialogList = telegram.messagesGetDialogs(0, 25000, 100);
+            System.err.println("\n\n\n" + dialogList.size() + "\n\n\n");
+
+
+
+            TLInputPeerContact c = new TLInputPeerContact(433997774);
+
+
+
+            int amount;
+            for (Dialog dialog : dialogList) {
+
+                int topMessage = dialog.getTopMessage();
+
+                ArrayList<Message> messages = telegram.messagesGetHistory(topMessage, 100, 20);
+                for (Message m : messages) {
+                    amount = m.getFromId()+m.getToId();
+                    System.out.println(m.getFromId() + "\n" +m.getMessage() + "\n~~~~~~~~~~~~~~~~");
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+//            ArrayList<UserContact> userList = telegram.contactsGetContacts();
+//            for (UserContact contact : userList) {
+//                System.out.println(contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getId() + "\n_______________");
 //            }
-//            ArrayList<Message> list = telegram.messagesGetMessages(dialog);
-//            for (Message q : list) {
-//                System.err.println(q.getMessage());
-//            }
-//
-//
-//
-//            telegram.authLogOut();
 
-
-
-
-
-
-
-
-
-//                ArrayList<UserContact> userList = telegram.contactsGetContacts();
-//                for (UserContact contact : userList) {
-//                    System.out.println(contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getId() + "\n_______________");
-//                }
-
-                /*
-                _______________
-                Папа
-                433997774
-                _______________
-                 */
-
-            String str = reader.readLine();
-            telegram.messagesSendMessage(433997774, str, 48654876 );
-
+//            String str = reader.readLine();
+//            telegram.messagesSendMessage(433997774, str, 48654876 );
 
 
         } catch (IOException e) {
