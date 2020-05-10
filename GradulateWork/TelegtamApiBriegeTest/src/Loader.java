@@ -3,10 +3,7 @@ import org.javagram.response.AuthAuthorization;
 import org.javagram.response.object.Dialog;
 import org.javagram.response.object.Message;
 import org.javagram.response.object.UserContact;
-import org.telegram.api.TLAbsInputUser;
-import org.telegram.api.TLDecryptedMessage;
-import org.telegram.api.TLInputPeerChat;
-import org.telegram.api.TLInputPeerContact;
+import org.telegram.api.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +22,9 @@ public class Loader {
         reader = new BufferedReader(new InputStreamReader(System.in));
 
 
+
+
+
         try {
 
             TelegramApiBridge telegram = new TelegramApiBridge(productionHostAddress, appId, appHash);
@@ -32,32 +32,40 @@ public class Loader {
 
             System.out.println("enter the code");
             AuthAuthorization authorization = telegram.authSignIn(reader.readLine());
+
+
+
+
             System.out.println("User: " + authorization.getUser().getLastName() + "\t" + authorization.getUser().getFirstName());
+//       _____log complete______________________________________________________________________________________________
 
 
 
-            ArrayList<Dialog> dialogList = telegram.messagesGetDialogs(0, 25000, 100);
-            System.err.println("\n\n\n" + dialogList.size() + "\n\n\n");
 
+            ArrayList<Dialog> dialogList = telegram.messagesGetDialogs(0, 25000, 10);
+            System.err.println("___\n___\n___\n" + dialogList.size() + "\n___\n___\n___");
 
+            int topMsgId = dialogList.get(0).getTopMessage();
 
-            TLInputPeerContact c = new TLInputPeerContact(433997774);
+            ArrayList<Integer> msgIds = new ArrayList<>();
+//            for (int i=0; i<20; i++) {
+//                msgIds.add(topMsgId-i);
+//            }
 
-
-
-            int amount;
-            for (Dialog dialog : dialogList) {
-
-                int topMessage = dialog.getTopMessage();
-
-                ArrayList<Message> messages = telegram.messagesGetHistory(topMessage, 100, 20);
-                for (Message m : messages) {
-                    amount = m.getFromId()+m.getToId();
-                    System.out.println(m.getFromId() + "\n" +m.getMessage() + "\n~~~~~~~~~~~~~~~~");
-                }
+            for (Dialog d : dialogList) {
+                msgIds.add(d.getTopMessage());
 
             }
 
+
+
+
+
+            ArrayList<Message> messages = telegram.messagesGetMessages(msgIds);
+            for (Message m : messages) {
+                System.out.println(m.getMessage());
+                System.err.println("from Id: " + m.getFromId() + " to Id: " + m.getToId());
+            }
 
 
 

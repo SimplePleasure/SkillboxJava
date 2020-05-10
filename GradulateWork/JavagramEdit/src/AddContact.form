@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AddContact">
+  <grid id="27dc6" binding="RootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="2307" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="2347d" binding="TopPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="4">
+        <constraints border-constraint="North"/>
+        <properties>
+          <preferredSize width="800" height="20"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a58d2" class="javax.swing.JButton" binding="RollUpButton">
+            <constraints/>
+            <properties>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="_"/>
+            </properties>
+          </component>
+          <component id="d01b7" class="javax.swing.JButton" binding="CloseButton">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <maximumSize width="45" height="20"/>
+              <minimumSize width="45" height="20"/>
+              <preferredSize width="45" height="20"/>
+              <text value="X"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="7544b" binding="MainPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <preferredSize width="800" height="510"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <vspacer id="b0248">
+            <constraints/>
+          </vspacer>
+          <component id="7b6dc" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <enabled value="true"/>
+              <font size="26"/>
+              <foreground color="-16590089"/>
+              <horizontalAlignment value="0"/>
+              <maximumSize width="280" height="70"/>
+              <minimumSize width="280" height="70"/>
+              <preferredSize width="280" height="70"/>
+              <text value="Добавление контакта"/>
+            </properties>
+          </component>
+          <vspacer id="b69ea">
+            <constraints/>
+          </vspacer>
+          <grid id="341b3" binding="SearshNumberPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <maximumSize width="800" height="40"/>
+              <minimumSize width="800" height="40"/>
+              <preferredSize width="800" height="40"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="d67ff" class="javax.swing.JTextField" binding="SearshUserPhone">
+                <constraints/>
+                <properties>
+                  <enabled value="true"/>
+                  <font size="20"/>
+                  <horizontalAlignment value="0"/>
+                  <maximumSize width="280" height="40"/>
+                  <minimumSize width="280" height="40"/>
+                  <opaque value="false"/>
+                  <preferredSize width="280" height="40"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="51815" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <maximumSize width="280" height="50"/>
+              <preferredSize width="280" height="50"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="5475e" class="javax.swing.JLabel" binding="userName">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <preferredSize width="280" height="50"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <vspacer id="4dab9">
+            <constraints/>
+          </vspacer>
+          <component id="af03a" class="javax.swing.JButton" binding="Add">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <background color="-16731162"/>
+              <foreground color="-1"/>
+              <opaque value="true"/>
+              <text value="Добавить"/>
+            </properties>
+          </component>
+          <vspacer id="b5413">
+            <constraints/>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="ef132" binding="BottomPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="800" height="50"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d7e50" class="javax.swing.JButton" binding="Back">
+            <constraints/>
+            <properties>
+              <text value="Назад"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

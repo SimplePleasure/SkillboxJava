@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Javagram.Viev.EnterPhoneNum">
+  <grid id="27dc6" binding="rootPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="817" height="400"/>
+    </constraints>
+    <properties>
+      <enabled value="true"/>
+      <foreground color="-16730646"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <vspacer id="4b912">
+        <constraints/>
+      </vspacer>
+      <grid id="845b7" binding="logoPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints/>
+        <properties>
+          <maximumSize width="165" height="168"/>
+          <opaque value="false"/>
+          <preferredSize width="165" height="168"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="aaa3a" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints/>
+        <properties>
+          <maximumSize width="250" height="70"/>
+          <minimumSize width="250" height="70"/>
+          <opaque value="false"/>
+          <preferredSize width="250" height="70"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="98aaf" class="javax.swing.JTextArea" binding="prompt">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="0" indent="2" use-parent-layout="false">
+                <preferred-size width="200" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <focusable value="false"/>
+              <font size="12"/>
+              <foreground color="-65537"/>
+              <maximumSize width="150" height="30"/>
+              <minimumSize width="150" height="30"/>
+              <opaque value="false"/>
+              <preferredSize width="250" height="50"/>
+              <requestFocusEnabled value="false"/>
+              <text value="Введите код страны и номер &#10;вашего мобильного телефона"/>
+              <verifyInputWhenFocusTarget value="false"/>
+            </properties>
+          </component>
+          <vspacer id="922de">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
+      <grid id="73a98" binding="phoneEnterPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <maximumSize width="245" height="45"/>
+          <minimumSize width="245" height="45"/>
+          <opaque value="false"/>
+          <preferredSize width="245" height="45"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="f23f0" binding="phoneImgPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints/>
+            <properties>
+              <maximumSize width="22" height="36"/>
+              <minimumSize width="22" height="36"/>
+              <preferredSize width="22" height="36"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="c4302" class="javax.swing.JFormattedTextField" binding="phoneField">
+            <constraints/>
+            <properties>
+              <caretColor color="-16730648"/>
+              <focusCycleRoot value="true"/>
+              <font size="18"/>
+              <foreground color="-65537"/>
+              <maximumSize width="200" height="30"/>
+              <minimumSize width="200" height="30"/>
+              <opaque value="false"/>
+              <preferredSize width="200" height="30"/>
+              <selectionEnd value="0"/>
+              <selectionStart value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="d6a58">
+        <constraints/>
+      </vspacer>
+      <grid id="8b295" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints/>
+        <properties>
+          <enabled value="true"/>
+          <foreground color="-16730646"/>
+          <maximumSize width="200" height="45"/>
+          <minimumSize width="200" height="45"/>
+          <opaque value="false"/>
+          <preferredSize width="200" height="45"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="ee90" class="javax.swing.JButton" binding="next">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12828863"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="false"/>
+              <defaultCapable value="false"/>
+              <enabled value="false"/>
+              <focusCycleRoot value="false"/>
+              <focusPainted value="false"/>
+              <focusTraversalPolicyProvider value="false"/>
+              <focusable value="false"/>
+              <font size="16"/>
+              <foreground color="-16730646"/>
+              <hideActionText value="false"/>
+              <horizontalAlignment value="0"/>
+              <label value="ПРОДОЛЖИТЬ"/>
+              <maximumSize width="200" height="45"/>
+              <minimumSize width="180" height="30"/>
+              <opaque value="false"/>
+              <preferredSize width="200" height="37"/>
+              <requestFocusEnabled value="false"/>
+              <rolloverEnabled value="false"/>
+              <selected value="false"/>
+              <text value="ПРОДОЛЖИТЬ"/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
+            </properties>
+            <clientProperties>
+              <hideActionText class="java.lang.Boolean" value="false"/>
+              <html.disable class="java.lang.Boolean" value="false"/>
+            </clientProperties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="a3d92">
+        <constraints/>
+      </vspacer>
+      <vspacer id="311af">
+        <constraints/>
+      </vspacer>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="MainFrame">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="860" height="600"/>
+    </constraints>
+    <properties>
+      <maximumSize width="1024" height="768"/>
+      <minimumSize width="800" height="600"/>
+      <preferredSize width="800" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="f84bd" binding="topPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="4">
+        <constraints border-constraint="North"/>
+        <properties>
+          <enabled value="true"/>
+          <maximumSize width="800" height="20"/>
+          <minimumSize width="800" height="20"/>
+          <preferredSize width="800" height="20"/>
+          <toolTipText value=""/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="ca01d" class="javax.swing.JButton" binding="rollupButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <preferredSize width="20" height="20"/>
+              <text value=""/>
+              <toolTipText value="Свернуть"/>
+            </properties>
+          </component>
+          <component id="8c897" class="javax.swing.JButton" binding="closeButton" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <preferredSize width="20" height="20"/>
+              <text value=""/>
+              <toolTipText value="Зкарыть"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f35e7" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="cd307" binding="UserNamePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="North"/>
+            <properties>
+              <background color="-16731162"/>
+              <maximumSize width="905" height="34"/>
+              <minimumSize width="800" height="34"/>
+              <preferredSize width="800" height="34"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="5f84b" binding="micrologoPanel" custom-create="true" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <maximumSize width="112" height="34"/>
+                  <minimumSize width="112" height="34"/>
+                  <opaque value="false"/>
+                  <preferredSize width="112" height="34"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="65853" binding="userPanel" layout-manager="FlowLayout" hgap="15" vgap="0" flow-align="2">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <minimumSize width="660" height="34"/>
+                  <opaque value="false"/>
+                  <preferredSize width="660" height="34"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="3e53e" class="javax.swing.JLabel" binding="userName">
+                    <constraints/>
+                    <properties>
+                      <foreground color="-1"/>
+                      <horizontalAlignment value="11"/>
+                      <maximumSize width="350" height="34"/>
+                      <minimumSize width="100" height="34"/>
+                      <preferredSize width="300" height="34"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="e654f" class="javax.swing.JButton" binding="userSettingsButton" custom-create="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <maximumSize width="21" height="34"/>
+                      <minimumSize width="21" height="34"/>
+                      <opaque value="false"/>
+                      <preferredSize width="21" height="34"/>
+                      <text value=""/>
+                      <verticalAlignment value="0"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <splitpane id="3b5e" binding="splitPane">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <dividerLocation value="200"/>
+              <preferredSize width="800" height="540"/>
+              <resizeWeight value="0.0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="b066a" binding="contactPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="540"/>
+                  <minimumSize width="200" height="540"/>
+                  <preferredSize width="200" height="540"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="620b3" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <maximumSize width="200" height="30"/>
+                      <minimumSize width="200" height="30"/>
+                      <preferredSize width="200" height="30"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <grid id="534cf" layout-manager="FlowLayout" hgap="15" vgap="0" flow-align="0">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <maximumSize width="200" height="44"/>
+                      <minimumSize width="200" height="44"/>
+                      <preferredSize width="200" height="34"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="251fa" class="javax.swing.JButton" binding="Add" custom-create="true">
+                        <constraints/>
+                        <properties>
+                          <alignmentX value="0.5"/>
+                          <borderPainted value="false"/>
+                          <contentAreaFilled value="false"/>
+                          <font size="16"/>
+                          <horizontalTextPosition value="0"/>
+                          <maximumSize width="26" height="34"/>
+                          <minimumSize width="26" height="34"/>
+                          <preferredSize width="26" height="34"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <scrollpane id="9f7a4">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="a912c" class="javax.swing.JList" binding="list">
+                        <constraints/>
+                        <properties>
+                          <background color="-1118482"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="2e15a" binding="dialogWindow" layout-manager="BorderLayout" hgap="20" vgap="0">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="700" height="540"/>
+                  <minimumSize width="500" height="540"/>
+                  <preferredSize width="500" height="540"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="7e0d" binding="sendMessage" layout-manager="BorderLayout" hgap="10" vgap="10">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <maximumSize width="600" height="44"/>
+                      <minimumSize width="600" height="44"/>
+                      <preferredSize width="600" height="34"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <hspacer id="1dff4">
+                        <constraints border-constraint="West"/>
+                      </hspacer>
+                      <hspacer id="9ea4d">
+                        <constraints border-constraint="East"/>
+                      </hspacer>
+                      <grid id="d310a" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints border-constraint="Center"/>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="359a4" class="javax.swing.JButton" binding="SendMessage">
+                            <constraints border-constraint="East"/>
+                            <properties>
+                              <text value="Button"/>
+                            </properties>
+                          </component>
+                          <scrollpane id="8d152">
+                            <constraints border-constraint="Center"/>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="2a52a" class="javax.swing.JTextArea" binding="MessageField">
+                                <constraints/>
+                                <properties>
+                                  <font size="20"/>
+                                  <preferredSize width="0" height="17"/>
+                                </properties>
+                              </component>
+                            </children>
+                          </scrollpane>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                  <grid id="c2541" binding="nameContactPane" layout-manager="BorderLayout" hgap="10" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <maximumSize width="600" height="30"/>
+                      <minimumSize width="600" height="30"/>
+                      <preferredSize width="600" height="30"/>
+                    </properties>
+                    <border type="line">
+                      <color color="-4601660"/>
+                    </border>
+                    <children>
+                      <grid id="9ef0e" binding="leftPanel" layout-manager="FlowLayout" hgap="20" vgap="0" flow-align="1">
+                        <constraints border-constraint="West"/>
+                        <properties>
+                          <preferredSize width="280" height="30"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <hspacer id="4f47d">
+                            <constraints/>
+                          </hspacer>
+                          <component id="ac17a" class="javax.swing.JLabel" binding="contactName">
+                            <constraints/>
+                            <properties>
+                              <maximumSize width="280" height="30"/>
+                              <minimumSize width="280" height="30"/>
+                              <preferredSize width="280" height="30"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="bb858" binding="rightPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+                        <constraints border-constraint="East"/>
+                        <properties>
+                          <preferredSize width="30" height="30"/>
+                          <visible value="false"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="e2f84" class="javax.swing.JButton" binding="editContact" custom-create="true">
+                            <constraints/>
+                            <properties>
+                              <borderPainted value="false"/>
+                              <contentAreaFilled value="false"/>
+                              <label value=""/>
+                              <maximumSize width="30" height="30"/>
+                              <minimumSize width="30" height="30"/>
+                              <opaque value="false"/>
+                              <preferredSize width="30" height="30"/>
+                              <text value=""/>
+                              <visible value="true"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                  <grid id="afb48" binding="messageField" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <vspacer id="4ac4e">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="dc1e7">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="6a1c4">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="91fc3">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="38057">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="2b71f">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="c9656">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="25d9c">
+                        <constraints/>
+                      </vspacer>
+                      <vspacer id="c598f">
+                        <constraints/>
+                      </vspacer>
+                      <grid id="e11dd" binding="message3" custom-create="true" layout-manager="FlowLayout" hgap="30" vgap="0" flow-align="0">
+                        <constraints/>
+                        <properties>
+                          <foreground color="-1"/>
+                          <preferredSize width="400" height="40"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="94527" class="javax.swing.JTextPane" binding="m3">
+                            <constraints/>
+                            <properties>
+                              <editable value="false"/>
+                              <focusable value="true"/>
+                              <foreground color="-1"/>
+                              <opaque value="false"/>
+                              <preferredSize width="250" height="40"/>
+                              <text value="Добрый день. Напишу вам, как соберусь выезжать."/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="68dbe" binding="message2" custom-create="true" layout-manager="FlowLayout" hgap="30" vgap="0" flow-align="0">
+                        <constraints/>
+                        <properties>
+                          <preferredSize width="400" height="40"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="247d0" class="javax.swing.JTextPane" binding="m2">
+                            <constraints/>
+                            <properties>
+                              <editable value="false"/>
+                              <enabled value="true"/>
+                              <focusable value="true"/>
+                              <foreground color="-1"/>
+                              <opaque value="false"/>
+                              <preferredSize width="250" height="40"/>
+                              <requestFocusEnabled value="true"/>
+                              <text value="Буду завтра в 17 часов у входа в ваш офис."/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="5520d" binding="message" custom-create="true" layout-manager="FlowLayout" hgap="55" vgap="5" flow-align="1">
+                        <constraints/>
+                        <properties>
+                          <minimumSize width="297" height="35"/>
+                          <preferredSize width="400" height="35"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <hspacer id="7532a">
+                            <constraints/>
+                          </hspacer>
+                          <component id="46ed6" class="javax.swing.JLabel" binding="m">
+                            <constraints/>
+                            <properties>
+                              <foreground color="-1"/>
+                              <text value="Хорошо! До Встречи."/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </splitpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
