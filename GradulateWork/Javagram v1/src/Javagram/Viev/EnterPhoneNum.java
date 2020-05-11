@@ -53,7 +53,6 @@ public class EnterPhoneNum implements MainInterface.IEnterPhoneNum {
                 if (next.getText().equals("error")) {
                     next.setText("ПРОДОЛЖИТЬ");
                 }
-
                 if (phoneField.getText().replaceAll("[^0-9]", "").length() == 11) {
                     next.setEnabled(true);
                 } else {

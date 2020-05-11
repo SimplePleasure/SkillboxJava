@@ -2,22 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class JListCustomRendererExp extends JFrame
-   {
+public class JListCustomRendererExp extends JFrame {
 
-    private JList<Country> list1 ;
+    private JList<Country> list1;
     private JPanel RootPanel;
 
 
-       public JListCustomRendererExp(){
+    public JListCustomRendererExp() {
 
         setContentPane(getRootPanel());
         setMinimumSize(new Dimension(300, 300));
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
-
-
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
         //========================================================================
@@ -46,12 +41,8 @@ public class JListCustomRendererExp extends JFrame
         model.addElement(Bg);
 
 
-
-
         list1.setModel(model);
         list1.setCellRenderer(new CountryRendener());
-
-
 
 
 //        HashMap<String, String> spisok = new HashMap<>();
@@ -68,17 +59,13 @@ public class JListCustomRendererExp extends JFrame
     }
 
 
-
-
-
-
     public static void main(String[] args) {
-        JFrame frame =  new JListCustomRendererExp();
+        JFrame frame = new JListCustomRendererExp();
         frame.setVisible(true);
 
     }
 
-       public JPanel getRootPanel() {
-           return RootPanel;
-       }
-   }
+    public JPanel getRootPanel() {
+        return RootPanel;
+    }
+}
