@@ -22,16 +22,13 @@ public class EnterPhoneNum implements MainInterface.IEnterPhoneNum {
     private JTextArea prompt;
     private JPanel phoneImgPanel;
     private JPanel phoneEnterPanel;
-
     private MaskFormatter maskFormatter;
 
 
     public EnterPhoneNum() {
-
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
         setPhoneFormatter();
         WindowHandler.setContainer(this);
-
 
         next.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +46,6 @@ public class EnterPhoneNum implements MainInterface.IEnterPhoneNum {
         phoneField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-
                 if (next.getText().equals("error")) {
                     next.setText("ПРОДОЛЖИТЬ");
                 }
@@ -67,7 +63,6 @@ public class EnterPhoneNum implements MainInterface.IEnterPhoneNum {
         phoneField.setBorder(BorderFactory.createEmptyBorder());
         phoneField.setCaretColor(new Color(0, 181, 232, 255));
         phoneField.setHorizontalAlignment(0);
-
         try {
             maskFormatter = new MaskFormatter(Config.phoneMask);
             maskFormatter.setValueContainsLiteralCharacters(false);
@@ -77,8 +72,6 @@ public class EnterPhoneNum implements MainInterface.IEnterPhoneNum {
             e.printStackTrace();
         }
     }
-
-
 
 
     @Override

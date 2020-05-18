@@ -44,6 +44,7 @@ public class Config {
     public static BufferedImage messageOutBottom;
     public static BufferedImage messageOutRight;
     public static BufferedImage messageOutTop;
+    public static BufferedImage standartPhoto;
 
 
     public static void loadProperties() {
@@ -78,6 +79,7 @@ public class Config {
             messageOutBottom = ImageIO.read(new File("./res/GUI Components/message-out-bottom.png"));
             messageOutRight = ImageIO.read(new File("./res/GUI Components/message-out-right.png"));
             messageOutTop = ImageIO.read(new File("./res/GUI Components/message-out-top.png"));
+            standartPhoto = ImageIO.read(new File("./res/GUI Components/standartPhoto.png"));
 
 
 

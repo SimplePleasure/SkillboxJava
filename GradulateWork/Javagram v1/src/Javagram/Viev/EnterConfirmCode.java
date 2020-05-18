@@ -2,10 +2,8 @@ package Javagram.Viev;
 
 import Javagram.AppSettings.Config;
 import Javagram.Storage.ABSUserData;
-import Javagram.Storage.UserData;
 import Javagram.TgAPI.TelegramAPI;
 import Javagram.interfaces.MainInterface;
-import org.javagram.response.AuthAuthorization;
 
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
@@ -57,11 +55,11 @@ public class EnterConfirmCode implements MainInterface.IConfirmPhone {
     }
 
     void initPanel() {
-
         rootPanel.setLayout(new BoxLayout(rootPanel, BoxLayout.Y_AXIS));
         phone.setText("+" + ABSUserData.getStorage().getPhone());
         passwordField.setBorder(BorderFactory.createEmptyBorder());
 
+//        Выравнивение поля
         StyledDocument doc = prompt.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -73,6 +71,8 @@ public class EnterConfirmCode implements MainInterface.IConfirmPhone {
         try {
             boolean authorizationComplete = TelegramAPI.sentConfirmCode(code);
             if (authorizationComplete) {
+                TelegramAPI.getContacts();
+                TelegramAPI.getDialogList();
                 new FinishRegister();
             }
         } catch (IOException e) {
@@ -97,14 +97,14 @@ public class EnterConfirmCode implements MainInterface.IConfirmPhone {
 
         logoPanel = new JPanel() {
             @Override
-            protected void paintComponent (Graphics g) {
+            protected void paintComponent(Graphics g) {
                 g.drawImage(Config.logoMini, 0, 50, null);
             }
         };
 
         enterCodePanel = new JPanel() {
             @Override
-            public void paintComponent (Graphics g) {
+            public void paintComponent(Graphics g) {
                 g.setColor(new Color(255, 255, 255));
                 g.fillRect(0, 57, 150, 59);
                 g.drawImage(Config.lock, 0, 20, null);

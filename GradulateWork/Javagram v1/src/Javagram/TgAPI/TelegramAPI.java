@@ -6,17 +6,19 @@ import Javagram.interfaces.MainInterface;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthSentCode;
-import org.javagram.response.object.User;
-import org.javagram.response.object.UserContact;
+import org.javagram.response.object.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TelegramAPI implements MainInterface.IBridge {
 
     static TelegramApiBridge bridge;
 
-    static TelegramApiBridge getBridge() {
+    public static TelegramApiBridge getBridge() {
         if (bridge == null) {
             try {
                 bridge = new TelegramApiBridge(Config.productionHostAddress,
@@ -40,8 +42,12 @@ public class TelegramAPI implements MainInterface.IBridge {
 
     public static boolean sentConfirmCode (String code) throws IOException {
         AuthAuthorization authorization =  getBridge().authSignIn(code);
-        ABSUserData.getStorage().authorizationComplete(authorization);
-        return authorization!=null;
+
+        if (authorization != null) {
+            ABSUserData.getStorage().authorizationComplete(authorization);
+            return true;
+        }
+        return false;
     }
 
     public static boolean fillInitials(String firstName, String lastName) throws IOException{
@@ -59,34 +65,25 @@ public class TelegramAPI implements MainInterface.IBridge {
         return true;
     }
 
-    public static List<UserContact> getContacts() throws IOException {
-        return getBridge().contactsGetContacts();
+    public static void getContacts() throws IOException {
+        List<UserContact> contacts = getBridge().contactsGetContacts();
+        ABSUserData.getStorage().setContacts(contacts);
     }
 
+    // TODO: 15.05.2020 sent dialogList & dialogLastMessge to UserData (invoked with successful sending confirmCode)
+    public static void getDialogList() throws IOException{
+        ArrayList<Dialog> dialogs = getBridge().messagesGetDialogs(0, 0, 100);
+        ABSUserData.getStorage().setDialogList(dialogs);
 
 
+        ArrayList<Message> lastMessges = getBridge().messagesGetMessages(dialogs.stream().
+                map(Dialog::getTopMessage).collect(Collectors.toCollection(ArrayList::new)));
+        ABSUserData.getStorage().setLastMessageList(lastMessges);
 
+    }
 
+    public static UserFull findUserById(int userId) throws IOException{
+        return getBridge().usersGetFullUser(userId);
+    }
 
-
-
-
-
-
-
-
-
-
-
-//    @Override
-//    public boolean logOut() {
-//        try {
-//            getBridge().authLogOut();
-//            bridge = null;
-//            return true;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
 }
